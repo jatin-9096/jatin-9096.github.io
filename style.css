@@ -1,0 +1,166 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: #1e293b;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #38bdf8;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #e2e8f0;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.trending-box {
+    background: white;
+    max-width: 800px;
+    margin: 15px auto 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-left: 5px solid #ef4444;
+}
+
+.btn {
+    display: inline-block;
+    background: #1e293b;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Grid Layout for Main Content */
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main-news, .sidebar {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.main-news h2, .sidebar h2 {
+    margin-bottom: 15px;
+    color: #1e293b;
+    border-bottom: 2px solid #38bdf8;
+    padding-bottom: 5px;
+}
+
+/* Cards style */
+.card {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 15px 0;
+}
+
+.card:last-child {
+    border-bottom: none;
+}
+
+.card h4 {
+    color: #0f172a;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.card a {
+    color: #0284c7;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Sidebar Elements */
+.sidebar ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.sidebar ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #334155;
+}
+
+.motivational-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 15px;
+    border-radius: 5px;
+    color: #166534;
+}
+
+/* Footer */
+footer {
+    background: #0f172a;
+    color: #94a3b8;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+/* Responsive Grid for bigger screens (like PC/Tablet if viewed) */
+@media (min-width: 768px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .container {
+        flex-direction: row;
+    }
+    .main-news {
+        flex: 2;
+    }
+    .sidebar {
+        flex: 1;
+    }
+}
+                                       
