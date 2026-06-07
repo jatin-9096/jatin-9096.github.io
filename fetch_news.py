@@ -7,16 +7,24 @@ GOVT_EXAMS_URL = "https://news.google.com/rss/search?q=Sarkari+Result+Exams+Form
 CBSE_URL = "https://news.google.com/rss/search?q=CBSE+Latest+Syllabus+Board+Exams&hl=hi&gl=IN&ceid=IN:hi"
 TRENDING_URL = "https://news.google.com/rss/headlines?hl=hi&gl=IN&ceid=IN:hi"
 
-# Keywords ke hisab se automatic standard images assign karne ka function
+# Keywords ke hisab se automatic advanced images assign karne ka function (FIXED)
 def get_thumbnail(title):
     t = title.lower()
-    if "cbse" in t or "board" in t or "syllabus" in t:
-        return "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" # Classroom/Books
-    elif "result" in t or "prelims" in t or "cutoff" in t:
-        return "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&auto=format&fit=crop&q=60" # Exam/Success
-    elif "job" in t or "govt" in t or "recruitment" in t or "vacancy" in t:
-        return "https://images.unsplash.com/photo-1521791136368-1a46827d0515?w=500&auto=format&fit=crop&q=60" # Office/Govt Job
-    return "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=500&auto=format&fit=crop&q=60" # Calendar/News
+    
+    # 1. CBSE aur Board Exams ke liye (Hindi + English)
+    if any(k in t for k in ["cbse", "board", "class", "10th", "12th", "syllabus", "कक्षा", "बोर्ड", "पाठ्यक्रम"]):
+        return "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" # Books/Classroom
+        
+    # 2. Results, Cutoff aur Merit list ke liye
+    elif any(k in t for k in ["result", "score", "rank", "cutoff", "merit", "marks", "परिणाम", "नतीजे"]):
+        return "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&auto=format&fit=crop&q=60" # Exam sheet
+        
+    # 3. Govt Job, Admit Card aur Entrance Exams (NDA, JEE, CUET, Agniveer)
+    elif any(k in t for k in ["job", "govt", "recruitment", "vacancy", "admit", "exam", "entrance", "nda", "jee", "cuet", "agniveer", "परीक्षा", "भर्ती", "सरकारी", "नौकरी"]):
+        return "https://images.unsplash.com/photo-1521791136368-1a46827d0515?w=500&auto=format&fit=crop&q=60" # Professional Setup
+        
+    # 4. Default image (General Education News)
+    return "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" # School board
 
 def fetch_feed_data(url, limit):
     feed = feedparser.parse(url)
@@ -38,7 +46,6 @@ def update_html(latest_news, trending_news, govt_exams, cbse_updates):
 <body>
     <header>
         <div class="logo">EduNews Hub</div>
-        <!-- WORKING TABS SECTION FIXED -->
         <nav>
             <a href="index.html">🏠 Home</a>
             <a href="#govt-section">💼 Govt Exams</a>
@@ -47,7 +54,6 @@ def update_html(latest_news, trending_news, govt_exams, cbse_updates):
         </nav>
     </header>
 
-    <!-- Trending Banner Inside Website -->
     <section class="hero" id="trending-section">
         <h2 style="color: #38bdf8; font-size: 28px;">⚡ Today's Top Trending Updates</h2>
         <p>Real-time automated education dashboard synced every 5 minutes.</p>
@@ -73,7 +79,6 @@ def update_html(latest_news, trending_news, govt_exams, cbse_updates):
     <main class="container">
         <section class="main-news">
             
-            <!-- 1. AUTOMATIC GOVT EXAMS SECTION -->
             <div id="govt-section">
                 <h2 class="section-title">💼 Live Govt Exam Forms & Notifications</h2>
                 <div class="news-grid">"""
@@ -96,7 +101,6 @@ def update_html(latest_news, trending_news, govt_exams, cbse_updates):
                 </div>
             </div>
 
-            <!-- 2. AUTOMATIC CBSE SECTION -->
             <div id="cbse-section" style="margin-top: 30px;">
                 <h2 class="section-title">📚 CBSE Latest Syllabus & Board Updates</h2>
                 <div class="news-grid">"""
@@ -119,13 +123,12 @@ def update_html(latest_news, trending_news, govt_exams, cbse_updates):
                 </div>
             </div>
 
-            <!-- 3. GENERAL NEWS FEED SECTION -->
             <div id="latest-section" style="margin-top: 30px;">
                 <h2 class="section-title">🎓 Educational News Feed</h2>
                 <div class="news-grid">"""
 
     html_dynamic = ""
-    for title in latest_news[:20]:  # Mobile optimization ke liye front page par 20 articles rkhe hain
+    for title in latest_news[:20]:
         safe_title = urllib.parse.quote(title)
         img_url = get_thumbnail(title)
         
@@ -145,7 +148,6 @@ def update_html(latest_news, trending_news, govt_exams, cbse_updates):
             </div>
         </section>
         
-        <!-- Sidebar Navigation List -->
         <aside class="sidebar">
             <h2 style="font-size: 18px; color: #1e293b; margin-top: 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">🔥 Trending Headlines</h2>
             <ul style="list-style: none; padding: 0; margin: 0;">"""
