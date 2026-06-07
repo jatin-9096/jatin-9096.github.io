@@ -1,9 +1,9 @@
-name: Auto Update News
+name: Auto 5-Min News Sync
 
 on:
   schedule:
-    - cron: '0 */2 * * *' # Yeh har 2 ghante mein automatic chalega
-  workflow_dispatch: # Isse aap manually bhi jab chahein chala sakte hain
+    - cron: '*/5 * * * *' # SYSTEM KO HAR 5 MINUTE MEIN AUTOMATIC CHALANE KE LIYE
+  workflow_dispatch: # Emergency manual trigger button ke liye
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-python: '3.x'
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
@@ -26,8 +26,8 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git config --global user.name "GitHub Action"
+        git config --global user.name "GitHub Action Bot"
         git config --global user.email "actions@github.com"
         git add index.html
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-updated news" && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-synced 100 news articles & trending topics" && git push)
         
