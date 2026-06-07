@@ -1,7 +1,7 @@
 import feedparser
 import urllib.parse
 
-# Google News RSS Feed (Top Indian Education & National Breaking News)
+# Google News RSS Feed (Education Section - Hindi)
 RSS_URL = "https://news.google.com/rss/headlines/section/topic/EDUCATION?hl=hi&gl=IN&ceid=IN:hi"
 TRENDING_URL = "https://news.google.com/rss/headlines?hl=hi&gl=IN&ceid=IN:hi"
 
@@ -37,13 +37,12 @@ def update_html(latest_news, trending_news):
         <p>Real-time updates directly synced via Cloudflare & Python every 5 minutes.</p>
         <div style="margin-top: 15px;">"""
 
-    # Adding Top 3 Trending news right inside the Hero Section
     for trend in trending_news[:3]:
         safe_trend = urllib.parse.quote(trend)
         html_start += f"""
-            <div class="trending-box" style="margin-bottom: 10px;">
-                <h3 style="font-size: 16px;"><span style="background:#ef4444; color:white; padding:2px 6px; border-radius:3px; margin-right:5px;">TRENDING</span> {trend}</h3>
-                <a href="news.html?title={safe_trend}" style="color:#0284c7; font-weight:bold; text-decoration:none; font-size:14px;">Open Inside EduNews →</a>
+            <div class="trending-box" style="margin-top: 10px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">
+                <h3 style="font-size: 16px; margin: 0 0 5px 0;"><span style="background:#ef4444; color:white; padding:2px 6px; border-radius:3px; margin-right:5px; font-size:12px;">TRENDING</span> {trend}</h3>
+                <a href="news.html?title={safe_trend}" style="color:#38bdf8; font-weight:bold; text-decoration:none; font-size:14px;">Open Inside EduNews →</a>
             </div>"""
 
     html_start += """
@@ -62,7 +61,7 @@ def update_html(latest_news, trending_news):
         html_dynamic += f"""
             <div class="card">
                 <h4>{title}</h4>
-                <p>Is khabar ki poori report, student forum discussion aur feedback form hamari website ke andar hi avilable hai.</p>
+                <p>Is khabar ki poori report, student forum discussion aur feedback form hamari website ke andar hi available hai.</p>
                 <a href="{internal_link}" style="color:#0284c7; font-weight:bold; text-decoration:none;">Read Full Report (Secure Page) →</a>
             </div>"""
 
@@ -93,11 +92,10 @@ def update_html(latest_news, trending_news):
         f.write(full_html)
 
 if __name__ == "__main__":
-    # Fetching up to 100 Educational Articles and 10 Trending Topics
     education_feed = fetch_news_data(RSS_URL, 100)
     trending_feed = fetch_news_data(TRENDING_URL, 10)
     
     if education_feed:
         update_html(education_feed, trending_feed)
-        print("100 News items & Trending section synced successfully inside the website!")
+        print("Success!")
         
