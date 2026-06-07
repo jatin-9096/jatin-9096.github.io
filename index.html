@@ -3,261 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNews Hub - Premium News & Education Portal</title>
+    <title>EduNews Hub - Home</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .hidden-card { display: none !important; }
+        .load-more-btn { background: #2563eb; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; display: block; margin: 30px auto; font-size: 16px; font-weight: bold; transition: 0.3s; }
+        .load-more-btn:hover { background: #1e40af; }
+        .about-box { background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 30px; line-height: 1.8; color: #334155; }
+        .about-box h2 { color: #0f172a; margin-top: 0; border-bottom: 2px solid #38bdf8; padding-bottom: 10px; }
+    </style>
 </head>
 <body>
     <header>
         <div class="logo">EduNews Hub</div>
         <nav>
-            <a href="index.html">🏠 Home</a>
-            <a href="#govt-section">💼 Govt Exams</a>
-            <a href="#cbse-section">📚 CBSE</a>
-            <a href="#latest-section">🎓 News Feed</a>
+            <a href="index.html" style="color: #38bdf8;">🏠 Home</a>
+            <a href="govt.html" >💼 Govt Exams</a>
+            <a href="cbse.html" >📚 CBSE</a>
+            <a href="latest.html" >🎓 News Feed</a>
         </nav>
     </header>
-
-    <section class="hero" id="trending-section">
-        <h2 style="color: #38bdf8; font-size: 28px;">⚡ Today's Top Trending Updates</h2>
-        <p>Real-time automated education dashboard synced every 5 minutes.</p>
-        <div class="trending-container" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
-            <div class="trending-card" style="background: #1e293b; border-radius: 8px; overflow: hidden; width: 300px; text-align: left; border: 1px solid #334155;">
-                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" style="width: 100%; height: 120px; object-fit: cover;">
-                <div style="padding: 12px;">
-                    <span style="background:#ef4444; color:white; padding:2px 6px; border-radius:3px; font-size:11px; font-weight:bold;">TRENDING</span>
-                    <h3 style="font-size: 14px; color: white; margin: 8px 0;">कॉकरोच जनता पार्टी को जंतर-मंतर पर एक दिन के विरोध प्रदर्शन से क्या हुआ हासिल</h3>
-                    <a href="news.html?title=%E0%A4%95%E0%A5%89%E0%A4%95%E0%A4%B0%E0%A5%8B%E0%A4%9A%20%E0%A4%9C%E0%A4%A8%E0%A4%A4%E0%A4%BE%20%E0%A4%AA%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%9F%E0%A5%80%20%E0%A4%95%E0%A5%8B%20%E0%A4%9C%E0%A4%82%E0%A4%A4%E0%A4%B0-%E0%A4%AE%E0%A4%82%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A4%B0%20%E0%A4%8F%E0%A4%95%20%E0%A4%A6%E0%A4%BF%E0%A4%A8%20%E0%A4%95%E0%A5%87%20%E0%A4%B5%E0%A4%BF%E0%A4%B0%E0%A5%8B%E0%A4%A7%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A4%B0%E0%A5%8D%E0%A4%B6%E0%A4%A8%20%E0%A4%B8%E0%A5%87%20%E0%A4%95%E0%A5%8D%E0%A4%AF%E0%A4%BE%20%E0%A4%B9%E0%A5%81%E0%A4%86%20%E0%A4%B9%E0%A4%BE%E0%A4%B8%E0%A4%BF%E0%A4%B2" style="color:#38bdf8; text-decoration:none; font-size:13px; font-weight:bold;">Open Inside →</a>
-                </div>
-            </div>
-            <div class="trending-card" style="background: #1e293b; border-radius: 8px; overflow: hidden; width: 300px; text-align: left; border: 1px solid #334155;">
-                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" style="width: 100%; height: 120px; object-fit: cover;">
-                <div style="padding: 12px;">
-                    <span style="background:#ef4444; color:white; padding:2px 6px; border-radius:3px; font-size:11px; font-weight:bold;">TRENDING</span>
-                    <h3 style="font-size: 14px; color: white; margin: 8px 0;">घरेलू गैस के दाम में 29 रुपये की बढ़ोतरी, अब कितने का हुआ सिलेंडर</h3>
-                    <a href="news.html?title=%E0%A4%98%E0%A4%B0%E0%A5%87%E0%A4%B2%E0%A5%82%20%E0%A4%97%E0%A5%88%E0%A4%B8%20%E0%A4%95%E0%A5%87%20%E0%A4%A6%E0%A4%BE%E0%A4%AE%20%E0%A4%AE%E0%A5%87%E0%A4%82%2029%20%E0%A4%B0%E0%A5%81%E0%A4%AA%E0%A4%AF%E0%A5%87%20%E0%A4%95%E0%A5%80%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%E0%A5%8B%E0%A4%A4%E0%A4%B0%E0%A5%80%2C%20%E0%A4%85%E0%A4%AC%20%E0%A4%95%E0%A4%BF%E0%A4%A4%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%BE%20%E0%A4%B9%E0%A5%81%E0%A4%86%20%E0%A4%B8%E0%A4%BF%E0%A4%B2%E0%A5%87%E0%A4%82%E0%A4%A1%E0%A4%B0" style="color:#38bdf8; text-decoration:none; font-size:13px; font-weight:bold;">Open Inside →</a>
-                </div>
-            </div>
-            <div class="trending-card" style="background: #1e293b; border-radius: 8px; overflow: hidden; width: 300px; text-align: left; border: 1px solid #334155;">
-                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" style="width: 100%; height: 120px; object-fit: cover;">
-                <div style="padding: 12px;">
-                    <span style="background:#ef4444; color:white; padding:2px 6px; border-radius:3px; font-size:11px; font-weight:bold;">TRENDING</span>
-                    <h3 style="font-size: 14px; color: white; margin: 8px 0;">ममता ने कतरे अभिषेक बनर्जी के पर, पुराने वफादारों पर भरोसा; TMC में बड़ा फेरबदल</h3>
-                    <a href="news.html?title=%E0%A4%AE%E0%A4%AE%E0%A4%A4%E0%A4%BE%20%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%A4%E0%A4%B0%E0%A5%87%20%E0%A4%85%E0%A4%AD%E0%A4%BF%E0%A4%B7%E0%A5%87%E0%A4%95%20%E0%A4%AC%E0%A4%A8%E0%A4%B0%E0%A5%8D%E0%A4%9C%E0%A5%80%20%E0%A4%95%E0%A5%87%20%E0%A4%AA%E0%A4%B0%2C%20%E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%87%20%E0%A4%B5%E0%A4%AB%E0%A4%BE%E0%A4%A6%E0%A4%BE%E0%A4%B0%E0%A5%8B%E0%A4%82%20%E0%A4%AA%E0%A4%B0%20%E0%A4%AD%E0%A4%B0%E0%A5%8B%E0%A4%B8%E0%A4%BE%3B%20TMC%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AC%E0%A4%A1%E0%A4%BC%E0%A4%BE%20%E0%A4%AB%E0%A5%87%E0%A4%B0%E0%A4%AC%E0%A4%A6%E0%A4%B2" style="color:#38bdf8; text-decoration:none; font-size:13px; font-weight:bold;">Open Inside →</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <main class="container">
         <section class="main-news">
             
-            <div id="govt-section">
-                <h2 class="section-title">💼 Live Govt Exam Forms & Notifications</h2>
-                <div class="news-grid">
+    <div class="about-box">
+        <h2>Welcome to EduNews Hub - Your Ultimate Education Partner</h2>
+        <p><strong>EduNews Hub</strong> ek fully automated, artificial intelligence powered news portal hai jo specifically students, teachers aur job aspirants ke liye design kiya gaya hai. Hamara maqsad aapko internet par chal rahi fake news se bacha kar 100% authentic aur verified education updates dena hai.</p>
+        <p><strong>Hum Kya Provide Karte Hain?</strong></p>
+        <ul>
+            <li><strong>Govt Exams:</strong> Sarkari Naukri ke naye forms, Admit Cards, aur Exam Date ki real-time updates.</li>
+            <li><strong>CBSE & Boards:</strong> Syllabus changes, marking schemes, aur board guidelines seedha official sources se.</li>
+            <li><strong>Security:</strong> Hamari website Cloudflare Anti-Bot security ke sath aati hai, yani aapki email aur identity comments section mein 100% safe hai.</li>
+        </ul>
+        <p>Upar diye gaye Tabs par click karke aap apni pasand ki specific category mein deep information padh sakte hain. Har 5 minute mein hamara server aapke liye naya data sync karta hai!</p>
+    </div>
+    <h2 class="section-title">⚡ Today's Top Headlines</h2>
+    <div class="news-grid" id="grid-home">
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
                 <div class="card-content">
-                    <span class="badge badge-govt">GOVT EXAM</span>
-                    <h4>सरकारी रिजल्ट यूपी बोर्ड 2026 (sarkari result up board 2026): हाईस्कूल और इंटर रिजल्ट upmsp.edu.in से चेक करें</h4>
-                    <p>Naye sarkari forms, eligibility criteria aur exam date ki details deep way mein padhein.</p>
-                    <a href="news.html?title=%E0%A4%B8%E0%A4%B0%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%B0%E0%A4%BF%E0%A4%9C%E0%A4%B2%E0%A5%8D%E0%A4%9F%20%E0%A4%AF%E0%A5%82%E0%A4%AA%E0%A5%80%20%E0%A4%AC%E0%A5%8B%E0%A4%B0%E0%A5%8D%E0%A4%A1%202026%20%28sarkari%20result%20up%20board%202026%29%3A%20%E0%A4%B9%E0%A4%BE%E0%A4%88%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A5%82%E0%A4%B2%20%E0%A4%94%E0%A4%B0%20%E0%A4%87%E0%A4%82%E0%A4%9F%E0%A4%B0%20%E0%A4%B0%E0%A4%BF%E0%A4%9C%E0%A4%B2%E0%A5%8D%E0%A4%9F%20upmsp.edu.in%20%E0%A4%B8%E0%A5%87%20%E0%A4%9A%E0%A5%87%E0%A4%95%20%E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82" class="read-link">Check Details →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1521791136368-1a46827d0515?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-govt">GOVT EXAM</span>
-                    <h4>BPSC Exam 2025: 1,298 पद, 4.70 लाख उम्मीदवार, कब आएगा बीपीएससी परीक्षा का एडमिट कार्ड?</h4>
-                    <p>Naye sarkari forms, eligibility criteria aur exam date ki details deep way mein padhein.</p>
-                    <a href="news.html?title=BPSC%20Exam%202025%3A%201%2C298%20%E0%A4%AA%E0%A4%A6%2C%204.70%20%E0%A4%B2%E0%A4%BE%E0%A4%96%20%E0%A4%89%E0%A4%AE%E0%A5%8D%E0%A4%AE%E0%A5%80%E0%A4%A6%E0%A4%B5%E0%A4%BE%E0%A4%B0%2C%20%E0%A4%95%E0%A4%AC%20%E0%A4%86%E0%A4%8F%E0%A4%97%E0%A4%BE%20%E0%A4%AC%E0%A5%80%E0%A4%AA%E0%A5%80%E0%A4%8F%E0%A4%B8%E0%A4%B8%E0%A5%80%20%E0%A4%AA%E0%A4%B0%E0%A5%80%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%20%E0%A4%95%E0%A4%BE%20%E0%A4%8F%E0%A4%A1%E0%A4%AE%E0%A4%BF%E0%A4%9F%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1%3F" class="read-link">Check Details →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1521791136368-1a46827d0515?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-govt">GOVT EXAM</span>
-                    <h4>AIIMS CRE Admit Card 2025: एम्स कॉमन रिक्रूटमेंट परीक्षा का एडमिट कार्ड कैसे डाउनलोड करें? कहां मिलेगा डायरेक्ट लिंक</h4>
-                    <p>Naye sarkari forms, eligibility criteria aur exam date ki details deep way mein padhein.</p>
-                    <a href="news.html?title=AIIMS%20CRE%20Admit%20Card%202025%3A%20%E0%A4%8F%E0%A4%AE%E0%A5%8D%E0%A4%B8%20%E0%A4%95%E0%A5%89%E0%A4%AE%E0%A4%A8%20%E0%A4%B0%E0%A4%BF%E0%A4%95%E0%A5%8D%E0%A4%B0%E0%A5%82%E0%A4%9F%E0%A4%AE%E0%A5%87%E0%A4%82%E0%A4%9F%20%E0%A4%AA%E0%A4%B0%E0%A5%80%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%20%E0%A4%95%E0%A4%BE%20%E0%A4%8F%E0%A4%A1%E0%A4%AE%E0%A4%BF%E0%A4%9F%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%95%E0%A5%88%E0%A4%B8%E0%A5%87%20%E0%A4%A1%E0%A4%BE%E0%A4%89%E0%A4%A8%E0%A4%B2%E0%A5%8B%E0%A4%A1%20%E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82%3F%20%E0%A4%95%E0%A4%B9%E0%A4%BE%E0%A4%82%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%87%E0%A4%97%E0%A4%BE%20%E0%A4%A1%E0%A4%BE%E0%A4%AF%E0%A4%B0%E0%A5%87%E0%A4%95%E0%A5%8D%E0%A4%9F%20%E0%A4%B2%E0%A4%BF%E0%A4%82%E0%A4%95" class="read-link">Check Details →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1521791136368-1a46827d0515?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-govt">GOVT EXAM</span>
-                    <h4>Bihar Jeevika Document Verification Call Letter 2026 Out, Download DV Admit Card</h4>
-                    <p>Naye sarkari forms, eligibility criteria aur exam date ki details deep way mein padhein.</p>
-                    <a href="news.html?title=Bihar%20Jeevika%20Document%20Verification%20Call%20Letter%202026%20Out%2C%20Download%20DV%20Admit%20Card" class="read-link">Check Details →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-govt">GOVT EXAM</span>
-                    <h4>राजस्थान पुलिस कांस्टेबल भर्ती 2025: परिणाम (जारी), कटऑफ, Physical परीक्षा तिथि, शारीरिक योग्यता</h4>
-                    <p>Naye sarkari forms, eligibility criteria aur exam date ki details deep way mein padhein.</p>
-                    <a href="news.html?title=%E0%A4%B0%E0%A4%BE%E0%A4%9C%E0%A4%B8%E0%A5%8D%E0%A4%A5%E0%A4%BE%E0%A4%A8%20%E0%A4%AA%E0%A5%81%E0%A4%B2%E0%A4%BF%E0%A4%B8%20%E0%A4%95%E0%A4%BE%E0%A4%82%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%87%E0%A4%AC%E0%A4%B2%20%E0%A4%AD%E0%A4%B0%E0%A5%8D%E0%A4%A4%E0%A5%80%202025%3A%20%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%A3%E0%A4%BE%E0%A4%AE%20%28%E0%A4%9C%E0%A4%BE%E0%A4%B0%E0%A5%80%29%2C%20%E0%A4%95%E0%A4%9F%E0%A4%91%E0%A4%AB%2C%20Physical%20%E0%A4%AA%E0%A4%B0%E0%A5%80%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%20%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%2C%20%E0%A4%B6%E0%A4%BE%E0%A4%B0%E0%A5%80%E0%A4%B0%E0%A4%BF%E0%A4%95%20%E0%A4%AF%E0%A5%8B%E0%A4%97%E0%A5%8D%E0%A4%AF%E0%A4%A4%E0%A4%BE" class="read-link">Check Details →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1521791136368-1a46827d0515?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-govt">GOVT EXAM</span>
-                    <h4>HTET Admit Card 2025: हरियाणा टीईटी एडमिट कार्ड कब तक जारी होगा? देख लें डाउनलोड स्टेप्स</h4>
-                    <p>Naye sarkari forms, eligibility criteria aur exam date ki details deep way mein padhein.</p>
-                    <a href="news.html?title=HTET%20Admit%20Card%202025%3A%20%E0%A4%B9%E0%A4%B0%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%A3%E0%A4%BE%20%E0%A4%9F%E0%A5%80%E0%A4%88%E0%A4%9F%E0%A5%80%20%E0%A4%8F%E0%A4%A1%E0%A4%AE%E0%A4%BF%E0%A4%9F%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%95%E0%A4%AC%20%E0%A4%A4%E0%A4%95%20%E0%A4%9C%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%B9%E0%A5%8B%E0%A4%97%E0%A4%BE%3F%20%E0%A4%A6%E0%A5%87%E0%A4%96%20%E0%A4%B2%E0%A5%87%E0%A4%82%20%E0%A4%A1%E0%A4%BE%E0%A4%89%E0%A4%A8%E0%A4%B2%E0%A5%8B%E0%A4%A1%20%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%87%E0%A4%AA%E0%A5%8D%E0%A4%B8" class="read-link">Check Details →</a>
-                </div>
-            </div>
-                </div>
-            </div>
-
-            <div id="cbse-section" style="margin-top: 30px;">
-                <h2 class="section-title">📚 CBSE Latest Syllabus & Board Updates</h2>
-                <div class="news-grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1521791136368-1a46827d0515?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-cbse">CBSE UPDATE</span>
-                    <h4>सीएम श्री स्कूल प्रवेश परीक्षा सिलेबस 2026-27</h4>
-                    <p>CBSE board ke naye pattern, change hua syllabus aur guidelines ki report padhein.</p>
-                    <a href="news.html?title=%E0%A4%B8%E0%A5%80%E0%A4%8F%E0%A4%AE%20%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A5%80%20%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A5%82%E0%A4%B2%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%B5%E0%A5%87%E0%A4%B6%20%E0%A4%AA%E0%A4%B0%E0%A5%80%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%20%E0%A4%B8%E0%A4%BF%E0%A4%B2%E0%A5%87%E0%A4%AC%E0%A4%B8%202026-27" class="read-link">View Syllabus →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-cbse">CBSE UPDATE</span>
-                    <h4>CBSE 2nd Board Exam 2026: पूरे सिलेबस से ही आएंगे सवाल, बिना LOC के नहीं मिलेगा एंट्री</h4>
-                    <p>CBSE board ke naye pattern, change hua syllabus aur guidelines ki report padhein.</p>
-                    <a href="news.html?title=CBSE%202nd%20Board%20Exam%202026%3A%20%E0%A4%AA%E0%A5%82%E0%A4%B0%E0%A5%87%20%E0%A4%B8%E0%A4%BF%E0%A4%B2%E0%A5%87%E0%A4%AC%E0%A4%B8%20%E0%A4%B8%E0%A5%87%20%E0%A4%B9%E0%A5%80%20%E0%A4%86%E0%A4%8F%E0%A4%82%E0%A4%97%E0%A5%87%20%E0%A4%B8%E0%A4%B5%E0%A4%BE%E0%A4%B2%2C%20%E0%A4%AC%E0%A4%BF%E0%A4%A8%E0%A4%BE%20LOC%20%E0%A4%95%E0%A5%87%20%E0%A4%A8%E0%A4%B9%E0%A5%80%E0%A4%82%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%87%E0%A4%97%E0%A4%BE%20%E0%A4%8F%E0%A4%82%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A5%80" class="read-link">View Syllabus →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-cbse">CBSE UPDATE</span>
-                    <h4>CBSE Board Exam 2026: स्टूडेंट्स ने किया खुलकर कमेंट, मैथ्स पेपर पर रहा ऐसा रिएक्शन</h4>
-                    <p>CBSE board ke naye pattern, change hua syllabus aur guidelines ki report padhein.</p>
-                    <a href="news.html?title=CBSE%20Board%20Exam%202026%3A%20%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%82%E0%A4%A1%E0%A5%87%E0%A4%82%E0%A4%9F%E0%A5%8D%E0%A4%B8%20%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%BF%E0%A4%AF%E0%A4%BE%20%E0%A4%96%E0%A5%81%E0%A4%B2%E0%A4%95%E0%A4%B0%20%E0%A4%95%E0%A4%AE%E0%A5%87%E0%A4%82%E0%A4%9F%2C%20%E0%A4%AE%E0%A5%88%E0%A4%A5%E0%A5%8D%E0%A4%B8%20%E0%A4%AA%E0%A5%87%E0%A4%AA%E0%A4%B0%20%E0%A4%AA%E0%A4%B0%20%E0%A4%B0%E0%A4%B9%E0%A4%BE%20%E0%A4%90%E0%A4%B8%E0%A4%BE%20%E0%A4%B0%E0%A4%BF%E0%A4%8F%E0%A4%95%E0%A5%8D%E0%A4%B6%E0%A4%A8" class="read-link">View Syllabus →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-cbse">CBSE UPDATE</span>
-                    <h4>CBSE बोर्ड परीक्षाओं में इस बार क्या होगा नया? सिलेबस से लेकर एग्जाम तक की पूरी जानकारी</h4>
-                    <p>CBSE board ke naye pattern, change hua syllabus aur guidelines ki report padhein.</p>
-                    <a href="news.html?title=CBSE%20%E0%A4%AC%E0%A5%8B%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%AA%E0%A4%B0%E0%A5%80%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%E0%A4%93%E0%A4%82%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%87%E0%A4%B8%20%E0%A4%AC%E0%A4%BE%E0%A4%B0%20%E0%A4%95%E0%A5%8D%E0%A4%AF%E0%A4%BE%20%E0%A4%B9%E0%A5%8B%E0%A4%97%E0%A4%BE%20%E0%A4%A8%E0%A4%AF%E0%A4%BE%3F%20%E0%A4%B8%E0%A4%BF%E0%A4%B2%E0%A5%87%E0%A4%AC%E0%A4%B8%20%E0%A4%B8%E0%A5%87%20%E0%A4%B2%E0%A5%87%E0%A4%95%E0%A4%B0%20%E0%A4%8F%E0%A4%97%E0%A5%8D%E0%A4%9C%E0%A4%BE%E0%A4%AE%20%E0%A4%A4%E0%A4%95%20%E0%A4%95%E0%A5%80%20%E0%A4%AA%E0%A5%82%E0%A4%B0%E0%A5%80%20%E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%80" class="read-link">View Syllabus →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-cbse">CBSE UPDATE</span>
-                    <h4>सीबीएसई कक्षा 10 हिंदी ए पाठ्यक्रम 2026 (CBSE Class 10 Hindi A Syllabus 2026 in Hindi)</h4>
-                    <p>CBSE board ke naye pattern, change hua syllabus aur guidelines ki report padhein.</p>
-                    <a href="news.html?title=%E0%A4%B8%E0%A5%80%E0%A4%AC%E0%A5%80%E0%A4%8F%E0%A4%B8%E0%A4%88%20%E0%A4%95%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%2010%20%E0%A4%B9%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A5%80%20%E0%A4%8F%20%E0%A4%AA%E0%A4%BE%E0%A4%A0%E0%A5%8D%E0%A4%AF%E0%A4%95%E0%A5%8D%E0%A4%B0%E0%A4%AE%202026%20%28CBSE%20Class%2010%20Hindi%20A%20Syllabus%202026%20in%20Hindi%29" class="read-link">View Syllabus →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-cbse">CBSE UPDATE</span>
-                    <h4>क्या दोनों Board Exams का सिलेबस अलग होगा? CBSE ने जारी किए कक्षा 10वीं बोर्ड परीक्षा से जुड़े 33 सवालों के जवाब</h4>
-                    <p>CBSE board ke naye pattern, change hua syllabus aur guidelines ki report padhein.</p>
-                    <a href="news.html?title=%E0%A4%95%E0%A5%8D%E0%A4%AF%E0%A4%BE%20%E0%A4%A6%E0%A5%8B%E0%A4%A8%E0%A5%8B%E0%A4%82%20Board%20Exams%20%E0%A4%95%E0%A4%BE%20%E0%A4%B8%E0%A4%BF%E0%A4%B2%E0%A5%87%E0%A4%AC%E0%A4%B8%20%E0%A4%85%E0%A4%B2%E0%A4%97%20%E0%A4%B9%E0%A5%8B%E0%A4%97%E0%A4%BE%3F%20CBSE%20%E0%A4%A8%E0%A5%87%20%E0%A4%9C%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%95%E0%A4%BF%E0%A4%8F%20%E0%A4%95%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%2010%E0%A4%B5%E0%A5%80%E0%A4%82%20%E0%A4%AC%E0%A5%8B%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%AA%E0%A4%B0%E0%A5%80%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%20%E0%A4%B8%E0%A5%87%20%E0%A4%9C%E0%A5%81%E0%A4%A1%E0%A4%BC%E0%A5%87%2033%20%E0%A4%B8%E0%A4%B5%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%87%20%E0%A4%9C%E0%A4%B5%E0%A4%BE%E0%A4%AC" class="read-link">View Syllabus →</a>
-                </div>
-            </div>
-                </div>
-            </div>
-
-            <div id="latest-section" style="margin-top: 30px;">
-                <h2 class="section-title">🎓 Educational News Feed</h2>
-                <div class="news-grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-general">EDUCATION</span>
-                    <h4>UPSC Prelims Result: upsc.gov.in पर जारी होगा यूपीएससी प्रीलिम्स रिजल्ट, जानें पिछले साल की कट-ऑफ?</h4>
-                    <p>Is khabar ki poori report aur community discussions hamari website ke andar padhein.</p>
-                    <a href="news.html?title=UPSC%20Prelims%20Result%3A%20upsc.gov.in%20%E0%A4%AA%E0%A4%B0%20%E0%A4%9C%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%B9%E0%A5%8B%E0%A4%97%E0%A4%BE%20%E0%A4%AF%E0%A5%82%E0%A4%AA%E0%A5%80%E0%A4%8F%E0%A4%B8%E0%A4%B8%E0%A5%80%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A5%80%E0%A4%B2%E0%A4%BF%E0%A4%AE%E0%A5%8D%E0%A4%B8%20%E0%A4%B0%E0%A4%BF%E0%A4%9C%E0%A4%B2%E0%A5%8D%E0%A4%9F%2C%20%E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A5%87%E0%A4%82%20%E0%A4%AA%E0%A4%BF%E0%A4%9B%E0%A4%B2%E0%A5%87%20%E0%A4%B8%E0%A4%BE%E0%A4%B2%20%E0%A4%95%E0%A5%80%20%E0%A4%95%E0%A4%9F-%E0%A4%91%E0%A4%AB%3F" class="read-link">Read Full Report →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-general">EDUCATION</span>
-                    <h4>पहले मार्कशीट में नंबर नहीं, अब CBSE री-इवैल्यूएशन में एक कॉपी ही गायब; 81 फीसदी पाने वाले छात्र का दावा</h4>
-                    <p>Is khabar ki poori report aur community discussions hamari website ke andar padhein.</p>
-                    <a href="news.html?title=%E0%A4%AA%E0%A4%B9%E0%A4%B2%E0%A5%87%20%E0%A4%AE%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%95%E0%A4%B6%E0%A5%80%E0%A4%9F%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%A8%E0%A4%82%E0%A4%AC%E0%A4%B0%20%E0%A4%A8%E0%A4%B9%E0%A5%80%E0%A4%82%2C%20%E0%A4%85%E0%A4%AC%20CBSE%20%E0%A4%B0%E0%A5%80-%E0%A4%87%E0%A4%B5%E0%A5%88%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A5%82%E0%A4%8F%E0%A4%B6%E0%A4%A8%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%8F%E0%A4%95%20%E0%A4%95%E0%A5%89%E0%A4%AA%E0%A5%80%20%E0%A4%B9%E0%A5%80%20%E0%A4%97%E0%A4%BE%E0%A4%AF%E0%A4%AC%3B%2081%20%E0%A4%AB%E0%A5%80%E0%A4%B8%E0%A4%A6%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%A8%E0%A5%87%20%E0%A4%B5%E0%A4%BE%E0%A4%B2%E0%A5%87%20%E0%A4%9B%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%20%E0%A4%95%E0%A4%BE%20%E0%A4%A6%E0%A4%BE%E0%A4%B5%E0%A4%BE" class="read-link">Read Full Report →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-general">EDUCATION</span>
-                    <h4>CBSE 10वीं दूसरी परीक्षा का रिजल्ट कब आएगा? कहां और कैसे करें चेक</h4>
-                    <p>Is khabar ki poori report aur community discussions hamari website ke andar padhein.</p>
-                    <a href="news.html?title=CBSE%2010%E0%A4%B5%E0%A5%80%E0%A4%82%20%E0%A4%A6%E0%A5%82%E0%A4%B8%E0%A4%B0%E0%A5%80%20%E0%A4%AA%E0%A4%B0%E0%A5%80%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%20%E0%A4%95%E0%A4%BE%20%E0%A4%B0%E0%A4%BF%E0%A4%9C%E0%A4%B2%E0%A5%8D%E0%A4%9F%20%E0%A4%95%E0%A4%AC%20%E0%A4%86%E0%A4%8F%E0%A4%97%E0%A4%BE%3F%20%E0%A4%95%E0%A4%B9%E0%A4%BE%E0%A4%82%20%E0%A4%94%E0%A4%B0%20%E0%A4%95%E0%A5%88%E0%A4%B8%E0%A5%87%20%E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82%20%E0%A4%9A%E0%A5%87%E0%A4%95" class="read-link">Read Full Report →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1521791136368-1a46827d0515?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-general">EDUCATION</span>
-                    <h4>यूपीएससी परीक्षा की तैयारी किस उम्र में शुरू करें? क्या स्कूली बच्चों को भी करनी चाहिए इसकी पढ़ाई?</h4>
-                    <p>Is khabar ki poori report aur community discussions hamari website ke andar padhein.</p>
-                    <a href="news.html?title=%E0%A4%AF%E0%A5%82%E0%A4%AA%E0%A5%80%E0%A4%8F%E0%A4%B8%E0%A4%B8%E0%A5%80%20%E0%A4%AA%E0%A4%B0%E0%A5%80%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%20%E0%A4%95%E0%A5%80%20%E0%A4%A4%E0%A5%88%E0%A4%AF%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%95%E0%A4%BF%E0%A4%B8%20%E0%A4%89%E0%A4%AE%E0%A5%8D%E0%A4%B0%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%B6%E0%A5%81%E0%A4%B0%E0%A5%82%20%E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82%3F%20%E0%A4%95%E0%A5%8D%E0%A4%AF%E0%A4%BE%20%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A5%82%E0%A4%B2%E0%A5%80%20%E0%A4%AC%E0%A4%9A%E0%A5%8D%E0%A4%9A%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%8B%20%E0%A4%AD%E0%A5%80%20%E0%A4%95%E0%A4%B0%E0%A4%A8%E0%A5%80%20%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%8F%20%E0%A4%87%E0%A4%B8%E0%A4%95%E0%A5%80%20%E0%A4%AA%E0%A4%A2%E0%A4%BC%E0%A4%BE%E0%A4%88%3F" class="read-link">Read Full Report →</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
-                <div class="card-content">
-                    <span class="badge badge-general">EDUCATION</span>
-                    <h4>CBSE विवाद के बीच JEE में 75% की शर्त हटेगी? IIT ने क्या दिया जवाब</h4>
-                    <p>Is khabar ki poori report aur community discussions hamari website ke andar padhein.</p>
-                    <a href="news.html?title=CBSE%20%E0%A4%B5%E0%A4%BF%E0%A4%B5%E0%A4%BE%E0%A4%A6%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A5%80%E0%A4%9A%20JEE%20%E0%A4%AE%E0%A5%87%E0%A4%82%2075%25%20%E0%A4%95%E0%A5%80%20%E0%A4%B6%E0%A4%B0%E0%A5%8D%E0%A4%A4%20%E0%A4%B9%E0%A4%9F%E0%A5%87%E0%A4%97%E0%A5%80%3F%20IIT%20%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A5%8D%E0%A4%AF%E0%A4%BE%20%E0%A4%A6%E0%A4%BF%E0%A4%AF%E0%A4%BE%20%E0%A4%9C%E0%A4%B5%E0%A4%BE%E0%A4%AC" class="read-link">Read Full Report →</a>
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>कॉकरोच जनता पार्टी को जंतर-मंतर पर एक दिन के विरोध प्रदर्शन से क्या हुआ हासिल</h4>
+                    <a href="news.html?title=%E0%A4%95%E0%A5%89%E0%A4%95%E0%A4%B0%E0%A5%8B%E0%A4%9A%20%E0%A4%9C%E0%A4%A8%E0%A4%A4%E0%A4%BE%20%E0%A4%AA%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%9F%E0%A5%80%20%E0%A4%95%E0%A5%8B%20%E0%A4%9C%E0%A4%82%E0%A4%A4%E0%A4%B0-%E0%A4%AE%E0%A4%82%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A4%B0%20%E0%A4%8F%E0%A4%95%20%E0%A4%A6%E0%A4%BF%E0%A4%A8%20%E0%A4%95%E0%A5%87%20%E0%A4%B5%E0%A4%BF%E0%A4%B0%E0%A5%8B%E0%A4%A7%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A4%B0%E0%A5%8D%E0%A4%B6%E0%A4%A8%20%E0%A4%B8%E0%A5%87%20%E0%A4%95%E0%A5%8D%E0%A4%AF%E0%A4%BE%20%E0%A4%B9%E0%A5%81%E0%A4%86%20%E0%A4%B9%E0%A4%BE%E0%A4%B8%E0%A4%BF%E0%A4%B2" class="read-link">Read Detailed News →</a>
                 </div>
             </div>
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
                 <div class="card-content">
-                    <span class="badge badge-general">EDUCATION</span>
-                    <h4>'तुम कोई कलेक्टर हो क्या?'... MBBS डॉक्टर ने दिल पर ली बात और बन गई आईएएस अफसर</h4>
-                    <p>Is khabar ki poori report aur community discussions hamari website ke andar padhein.</p>
-                    <a href="news.html?title=%27%E0%A4%A4%E0%A5%81%E0%A4%AE%20%E0%A4%95%E0%A5%8B%E0%A4%88%20%E0%A4%95%E0%A4%B2%E0%A5%87%E0%A4%95%E0%A5%8D%E0%A4%9F%E0%A4%B0%20%E0%A4%B9%E0%A5%8B%20%E0%A4%95%E0%A5%8D%E0%A4%AF%E0%A4%BE%3F%27...%20MBBS%20%E0%A4%A1%E0%A5%89%E0%A4%95%E0%A5%8D%E0%A4%9F%E0%A4%B0%20%E0%A4%A8%E0%A5%87%20%E0%A4%A6%E0%A4%BF%E0%A4%B2%20%E0%A4%AA%E0%A4%B0%20%E0%A4%B2%E0%A5%80%20%E0%A4%AC%E0%A4%BE%E0%A4%A4%20%E0%A4%94%E0%A4%B0%20%E0%A4%AC%E0%A4%A8%20%E0%A4%97%E0%A4%88%20%E0%A4%86%E0%A4%88%E0%A4%8F%E0%A4%8F%E0%A4%B8%20%E0%A4%85%E0%A4%AB%E0%A4%B8%E0%A4%B0" class="read-link">Read Full Report →</a>
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>घरेलू गैस के दाम में 29 रुपये की बढ़ोतरी, अब कितने का हुआ सिलेंडर</h4>
+                    <a href="news.html?title=%E0%A4%98%E0%A4%B0%E0%A5%87%E0%A4%B2%E0%A5%82%20%E0%A4%97%E0%A5%88%E0%A4%B8%20%E0%A4%95%E0%A5%87%20%E0%A4%A6%E0%A4%BE%E0%A4%AE%20%E0%A4%AE%E0%A5%87%E0%A4%82%2029%20%E0%A4%B0%E0%A5%81%E0%A4%AA%E0%A4%AF%E0%A5%87%20%E0%A4%95%E0%A5%80%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%E0%A5%8B%E0%A4%A4%E0%A4%B0%E0%A5%80%2C%20%E0%A4%85%E0%A4%AC%20%E0%A4%95%E0%A4%BF%E0%A4%A4%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%BE%20%E0%A4%B9%E0%A5%81%E0%A4%86%20%E0%A4%B8%E0%A4%BF%E0%A4%B2%E0%A5%87%E0%A4%82%E0%A4%A1%E0%A4%B0" class="read-link">Read Detailed News →</a>
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
                 <div class="card-content">
-                    <span class="badge badge-general">EDUCATION</span>
-                    <h4>CBSE ने 12वीं के स्टूडेंट्स को दी बड़ी राहत, एप्लीकेशन जमा करने के लिए 7 जून तक बढ़ाई तारीख</h4>
-                    <p>Is khabar ki poori report aur community discussions hamari website ke andar padhein.</p>
-                    <a href="news.html?title=CBSE%20%E0%A4%A8%E0%A5%87%2012%E0%A4%B5%E0%A5%80%E0%A4%82%20%E0%A4%95%E0%A5%87%20%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%82%E0%A4%A1%E0%A5%87%E0%A4%82%E0%A4%9F%E0%A5%8D%E0%A4%B8%20%E0%A4%95%E0%A5%8B%20%E0%A4%A6%E0%A5%80%20%E0%A4%AC%E0%A4%A1%E0%A4%BC%E0%A5%80%20%E0%A4%B0%E0%A4%BE%E0%A4%B9%E0%A4%A4%2C%20%E0%A4%8F%E0%A4%AA%E0%A5%8D%E0%A4%B2%E0%A5%80%E0%A4%95%E0%A5%87%E0%A4%B6%E0%A4%A8%20%E0%A4%9C%E0%A4%AE%E0%A4%BE%20%E0%A4%95%E0%A4%B0%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A5%87%20%E0%A4%B2%E0%A4%BF%E0%A4%8F%207%20%E0%A4%9C%E0%A5%82%E0%A4%A8%20%E0%A4%A4%E0%A4%95%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%E0%A4%BE%E0%A4%88%20%E0%A4%A4%E0%A4%BE%E0%A4%B0%E0%A5%80%E0%A4%96" class="read-link">Read Full Report →</a>
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>ममता ने कतरे अभिषेक बनर्जी के पर, पुराने वफादारों पर भरोसा; TMC में बड़ा फेरबदल</h4>
+                    <a href="news.html?title=%E0%A4%AE%E0%A4%AE%E0%A4%A4%E0%A4%BE%20%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%A4%E0%A4%B0%E0%A5%87%20%E0%A4%85%E0%A4%AD%E0%A4%BF%E0%A4%B7%E0%A5%87%E0%A4%95%20%E0%A4%AC%E0%A4%A8%E0%A4%B0%E0%A5%8D%E0%A4%9C%E0%A5%80%20%E0%A4%95%E0%A5%87%20%E0%A4%AA%E0%A4%B0%2C%20%E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%87%20%E0%A4%B5%E0%A4%AB%E0%A4%BE%E0%A4%A6%E0%A4%BE%E0%A4%B0%E0%A5%8B%E0%A4%82%20%E0%A4%AA%E0%A4%B0%20%E0%A4%AD%E0%A4%B0%E0%A5%8B%E0%A4%B8%E0%A4%BE%3B%20TMC%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AC%E0%A4%A1%E0%A4%BC%E0%A4%BE%20%E0%A4%AB%E0%A5%87%E0%A4%B0%E0%A4%AC%E0%A4%A6%E0%A4%B2" class="read-link">Read Detailed News →</a>
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
                 <div class="card-content">
-                    <span class="badge badge-general">EDUCATION</span>
-                    <h4>CBSE : OSM के झटकों के बाद सीबीएसई ने री-इवैल्यूएशन में किया बड़ा बदलाव, OnMark प्लेटफॉर्म हटाया</h4>
-                    <p>Is khabar ki poori report aur community discussions hamari website ke andar padhein.</p>
-                    <a href="news.html?title=CBSE%20%3A%20OSM%20%E0%A4%95%E0%A5%87%20%E0%A4%9D%E0%A4%9F%E0%A4%95%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A4%BE%E0%A4%A6%20%E0%A4%B8%E0%A5%80%E0%A4%AC%E0%A5%80%E0%A4%8F%E0%A4%B8%E0%A4%88%20%E0%A4%A8%E0%A5%87%20%E0%A4%B0%E0%A5%80-%E0%A4%87%E0%A4%B5%E0%A5%88%E0%A4%B2%E0%A5%8D%E0%A4%AF%E0%A5%82%E0%A4%8F%E0%A4%B6%E0%A4%A8%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%95%E0%A4%BF%E0%A4%AF%E0%A4%BE%20%E0%A4%AC%E0%A4%A1%E0%A4%BC%E0%A4%BE%20%E0%A4%AC%E0%A4%A6%E0%A4%B2%E0%A4%BE%E0%A4%B5%2C%20OnMark%20%E0%A4%AA%E0%A5%8D%E0%A4%B2%E0%A5%87%E0%A4%9F%E0%A4%AB%E0%A5%89%E0%A4%B0%E0%A5%8D%E0%A4%AE%20%E0%A4%B9%E0%A4%9F%E0%A4%BE%E0%A4%AF%E0%A4%BE" class="read-link">Read Full Report →</a>
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>मीटिंग से पहले INDIA ब्लॉक में घमासान... CPI (M) ने दिखाई आंख, जेएमएम भी नाखुश... DMK-AAP ने बनाई दूरी!</h4>
+                    <a href="news.html?title=%E0%A4%AE%E0%A5%80%E0%A4%9F%E0%A4%BF%E0%A4%82%E0%A4%97%20%E0%A4%B8%E0%A5%87%20%E0%A4%AA%E0%A4%B9%E0%A4%B2%E0%A5%87%20INDIA%20%E0%A4%AC%E0%A5%8D%E0%A4%B2%E0%A5%89%E0%A4%95%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%98%E0%A4%AE%E0%A4%BE%E0%A4%B8%E0%A4%BE%E0%A4%A8...%20CPI%20%28M%29%20%E0%A4%A8%E0%A5%87%20%E0%A4%A6%E0%A4%BF%E0%A4%96%E0%A4%BE%E0%A4%88%20%E0%A4%86%E0%A4%82%E0%A4%96%2C%20%E0%A4%9C%E0%A5%87%E0%A4%8F%E0%A4%AE%E0%A4%8F%E0%A4%AE%20%E0%A4%AD%E0%A5%80%20%E0%A4%A8%E0%A4%BE%E0%A4%96%E0%A5%81%E0%A4%B6...%20DMK-AAP%20%E0%A4%A8%E0%A5%87%20%E0%A4%AC%E0%A4%A8%E0%A4%BE%E0%A4%88%20%E0%A4%A6%E0%A5%82%E0%A4%B0%E0%A5%80%21" class="read-link">Read Detailed News →</a>
                 </div>
             </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>'ईरानी संपत्ति खाड़ी देशों में बांटने की तैयारी', ट्रंप प्रशासन का तेहरान को तगड़ा झटका देने का प्लान, तनाव बढ़ना तय</h4>
+                    <a href="news.html?title=%27%E0%A4%88%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%80%20%E0%A4%B8%E0%A4%82%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%BF%20%E0%A4%96%E0%A4%BE%E0%A4%A1%E0%A4%BC%E0%A5%80%20%E0%A4%A6%E0%A5%87%E0%A4%B6%E0%A5%8B%E0%A4%82%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AC%E0%A4%BE%E0%A4%82%E0%A4%9F%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A5%80%20%E0%A4%A4%E0%A5%88%E0%A4%AF%E0%A4%BE%E0%A4%B0%E0%A5%80%27%2C%20%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A4%82%E0%A4%AA%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%B6%E0%A4%BE%E0%A4%B8%E0%A4%A8%20%E0%A4%95%E0%A4%BE%20%E0%A4%A4%E0%A5%87%E0%A4%B9%E0%A4%B0%E0%A4%BE%E0%A4%A8%20%E0%A4%95%E0%A5%8B%20%E0%A4%A4%E0%A4%97%E0%A4%A1%E0%A4%BC%E0%A4%BE%20%E0%A4%9D%E0%A4%9F%E0%A4%95%E0%A4%BE%20%E0%A4%A6%E0%A5%87%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%BE%20%E0%A4%AA%E0%A5%8D%E0%A4%B2%E0%A4%BE%E0%A4%A8%2C%20%E0%A4%A4%E0%A4%A8%E0%A4%BE%E0%A4%B5%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%E0%A4%A8%E0%A4%BE%20%E0%A4%A4%E0%A4%AF" class="read-link">Read Detailed News →</a>
                 </div>
             </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>महाराष्ट्र में मानसून का तांडव शुरू, 19 राज्यों पर टूटेगा आसमानी कहर, अगले 48 घंटे बेहद भारी, मौसम पर IMD अ...</h4>
+                    <a href="news.html?title=%E0%A4%AE%E0%A4%B9%E0%A4%BE%E0%A4%B0%E0%A4%BE%E0%A4%B7%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B0%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A4%B8%E0%A5%82%E0%A4%A8%20%E0%A4%95%E0%A4%BE%20%E0%A4%A4%E0%A4%BE%E0%A4%82%E0%A4%A1%E0%A4%B5%20%E0%A4%B6%E0%A5%81%E0%A4%B0%E0%A5%82%2C%2019%20%E0%A4%B0%E0%A4%BE%E0%A4%9C%E0%A5%8D%E0%A4%AF%E0%A5%8B%E0%A4%82%20%E0%A4%AA%E0%A4%B0%20%E0%A4%9F%E0%A5%82%E0%A4%9F%E0%A5%87%E0%A4%97%E0%A4%BE%20%E0%A4%86%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A5%80%20%E0%A4%95%E0%A4%B9%E0%A4%B0%2C%20%E0%A4%85%E0%A4%97%E0%A4%B2%E0%A5%87%2048%20%E0%A4%98%E0%A4%82%E0%A4%9F%E0%A5%87%20%E0%A4%AC%E0%A5%87%E0%A4%B9%E0%A4%A6%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A5%80%2C%20%E0%A4%AE%E0%A5%8C%E0%A4%B8%E0%A4%AE%20%E0%A4%AA%E0%A4%B0%20IMD%20%E0%A4%85..." class="read-link">Read Detailed News →</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>साड़ियों के ढेर में छिपा TMC नेता, फिर भी पुलिस से बच नहीं पाया, गिरफ्तारी का VIDEO वायरल</h4>
+                    <a href="news.html?title=%E0%A4%B8%E0%A4%BE%E0%A4%A1%E0%A4%BC%E0%A4%BF%E0%A4%AF%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%87%20%E0%A4%A2%E0%A5%87%E0%A4%B0%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%9B%E0%A4%BF%E0%A4%AA%E0%A4%BE%20TMC%20%E0%A4%A8%E0%A5%87%E0%A4%A4%E0%A4%BE%2C%20%E0%A4%AB%E0%A4%BF%E0%A4%B0%20%E0%A4%AD%E0%A5%80%20%E0%A4%AA%E0%A5%81%E0%A4%B2%E0%A4%BF%E0%A4%B8%20%E0%A4%B8%E0%A5%87%20%E0%A4%AC%E0%A4%9A%20%E0%A4%A8%E0%A4%B9%E0%A5%80%E0%A4%82%20%E0%A4%AA%E0%A4%BE%E0%A4%AF%E0%A4%BE%2C%20%E0%A4%97%E0%A4%BF%E0%A4%B0%E0%A4%AB%E0%A5%8D%E0%A4%A4%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%95%E0%A4%BE%20VIDEO%20%E0%A4%B5%E0%A4%BE%E0%A4%AF%E0%A4%B0%E0%A4%B2" class="read-link">Read Detailed News →</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>सुलझ गई DU की महिला प्रोफेसर के मर्डर की गुत्थी, कोलकाता से कपल गिरफ्तार, हैरान कर देगी हत्या की वजह</h4>
+                    <a href="news.html?title=%E0%A4%B8%E0%A5%81%E0%A4%B2%E0%A4%9D%20%E0%A4%97%E0%A4%88%20DU%20%E0%A4%95%E0%A5%80%20%E0%A4%AE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A4%BE%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A5%8B%E0%A4%AB%E0%A5%87%E0%A4%B8%E0%A4%B0%20%E0%A4%95%E0%A5%87%20%E0%A4%AE%E0%A4%B0%E0%A5%8D%E0%A4%A1%E0%A4%B0%20%E0%A4%95%E0%A5%80%20%E0%A4%97%E0%A5%81%E0%A4%A4%E0%A5%8D%E0%A4%A5%E0%A5%80%2C%20%E0%A4%95%E0%A5%8B%E0%A4%B2%E0%A4%95%E0%A4%BE%E0%A4%A4%E0%A4%BE%20%E0%A4%B8%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%B2%20%E0%A4%97%E0%A4%BF%E0%A4%B0%E0%A4%AB%E0%A5%8D%E0%A4%A4%E0%A4%BE%E0%A4%B0%2C%20%E0%A4%B9%E0%A5%88%E0%A4%B0%E0%A4%BE%E0%A4%A8%20%E0%A4%95%E0%A4%B0%20%E0%A4%A6%E0%A5%87%E0%A4%97%E0%A5%80%20%E0%A4%B9%E0%A4%A4%E0%A5%8D%E0%A4%AF%E0%A4%BE%20%E0%A4%95%E0%A5%80%20%E0%A4%B5%E0%A4%9C%E0%A4%B9" class="read-link">Read Detailed News →</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>गाड़ी पर धूल पड़ी तो खान सर ने रौशन आनंद पर कराई थी FIR, दोनों के बीच पुरानी अदावत; दोस्त कैसे बने दुश्मन?</h4>
+                    <a href="news.html?title=%E0%A4%97%E0%A4%BE%E0%A4%A1%E0%A4%BC%E0%A5%80%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A7%E0%A5%82%E0%A4%B2%20%E0%A4%AA%E0%A4%A1%E0%A4%BC%E0%A5%80%20%E0%A4%A4%E0%A5%8B%20%E0%A4%96%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B0%20%E0%A4%A8%E0%A5%87%20%E0%A4%B0%E0%A5%8C%E0%A4%B6%E0%A4%A8%20%E0%A4%86%E0%A4%A8%E0%A4%82%E0%A4%A6%20%E0%A4%AA%E0%A4%B0%20%E0%A4%95%E0%A4%B0%E0%A4%BE%E0%A4%88%20%E0%A4%A5%E0%A5%80%20FIR%2C%20%E0%A4%A6%E0%A5%8B%E0%A4%A8%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A5%80%E0%A4%9A%20%E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%80%20%E0%A4%85%E0%A4%A6%E0%A4%BE%E0%A4%B5%E0%A4%A4%3B%20%E0%A4%A6%E0%A5%8B%E0%A4%B8%E0%A5%8D%E0%A4%A4%20%E0%A4%95%E0%A5%88%E0%A4%B8%E0%A5%87%20%E0%A4%AC%E0%A4%A8%E0%A5%87%20%E0%A4%A6%E0%A5%81%E0%A4%B6%E0%A5%8D%E0%A4%AE%E0%A4%A8%3F" class="read-link">Read Detailed News →</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>अन्‍नामलाई ने तमिलनाडु में मचाया गर्दा, लॉन्‍च के कुछ ही घंटों में 15 लाख लोग जुड़े, किसकी बढ़ रही टेंशन?</h4>
+                    <a href="news.html?title=%E0%A4%85%E0%A4%A8%E0%A5%8D%E2%80%8D%E0%A4%A8%E0%A4%BE%E0%A4%AE%E0%A4%B2%E0%A4%BE%E0%A4%88%20%E0%A4%A8%E0%A5%87%20%E0%A4%A4%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A4%A8%E0%A4%BE%E0%A4%A1%E0%A5%81%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A4%9A%E0%A4%BE%E0%A4%AF%E0%A4%BE%20%E0%A4%97%E0%A4%B0%E0%A5%8D%E0%A4%A6%E0%A4%BE%2C%20%E0%A4%B2%E0%A5%89%E0%A4%A8%E0%A5%8D%E2%80%8D%E0%A4%9A%20%E0%A4%95%E0%A5%87%20%E0%A4%95%E0%A5%81%E0%A4%9B%20%E0%A4%B9%E0%A5%80%20%E0%A4%98%E0%A4%82%E0%A4%9F%E0%A5%8B%E0%A4%82%20%E0%A4%AE%E0%A5%87%E0%A4%82%2015%20%E0%A4%B2%E0%A4%BE%E0%A4%96%20%E0%A4%B2%E0%A5%8B%E0%A4%97%20%E0%A4%9C%E0%A5%81%E0%A4%A1%E0%A4%BC%E0%A5%87%2C%20%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%95%E0%A5%80%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%20%E0%A4%B0%E0%A4%B9%E0%A5%80%20%E0%A4%9F%E0%A5%87%E0%A4%82%E0%A4%B6%E0%A4%A8%3F" class="read-link">Read Detailed News →</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>Hormuz Strait: 'होर्मुज ही हमारा परमाणु बम, कभी नहीं छोड़ेंगे', ईरान की ट्रंप को खुली चेतावनी, कहा- अमेरिका का दौर खत्म</h4>
+                    <a href="news.html?title=Hormuz%20Strait%3A%20%27%E0%A4%B9%E0%A5%8B%E0%A4%B0%E0%A5%8D%E0%A4%AE%E0%A5%81%E0%A4%9C%20%E0%A4%B9%E0%A5%80%20%E0%A4%B9%E0%A4%AE%E0%A4%BE%E0%A4%B0%E0%A4%BE%20%E0%A4%AA%E0%A4%B0%E0%A4%AE%E0%A4%BE%E0%A4%A3%E0%A5%81%20%E0%A4%AC%E0%A4%AE%2C%20%E0%A4%95%E0%A4%AD%E0%A5%80%20%E0%A4%A8%E0%A4%B9%E0%A5%80%E0%A4%82%20%E0%A4%9B%E0%A5%8B%E0%A4%A1%E0%A4%BC%E0%A5%87%E0%A4%82%E0%A4%97%E0%A5%87%27%2C%20%E0%A4%88%E0%A4%B0%E0%A4%BE%E0%A4%A8%20%E0%A4%95%E0%A5%80%20%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A4%82%E0%A4%AA%20%E0%A4%95%E0%A5%8B%20%E0%A4%96%E0%A5%81%E0%A4%B2%E0%A5%80%20%E0%A4%9A%E0%A5%87%E0%A4%A4%E0%A4%BE%E0%A4%B5%E0%A4%A8%E0%A5%80%2C%20%E0%A4%95%E0%A4%B9%E0%A4%BE-%20%E0%A4%85%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A4%BF%E0%A4%95%E0%A4%BE%20%E0%A4%95%E0%A4%BE%20%E0%A4%A6%E0%A5%8C%E0%A4%B0%20%E0%A4%96%E0%A4%A4%E0%A5%8D%E0%A4%AE" class="read-link">Read Detailed News →</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>पेंटागन की नस-नस तक पहुंच चुका था मोसाद, सरकार में अंदर तक थी पैठ, आखिर ट्रंप का कौन सा राज जानना चाहते थे ...</h4>
+                    <a href="news.html?title=%E0%A4%AA%E0%A5%87%E0%A4%82%E0%A4%9F%E0%A4%BE%E0%A4%97%E0%A4%A8%20%E0%A4%95%E0%A5%80%20%E0%A4%A8%E0%A4%B8-%E0%A4%A8%E0%A4%B8%20%E0%A4%A4%E0%A4%95%20%E0%A4%AA%E0%A4%B9%E0%A5%81%E0%A4%82%E0%A4%9A%20%E0%A4%9A%E0%A5%81%E0%A4%95%E0%A4%BE%20%E0%A4%A5%E0%A4%BE%20%E0%A4%AE%E0%A5%8B%E0%A4%B8%E0%A4%BE%E0%A4%A6%2C%20%E0%A4%B8%E0%A4%B0%E0%A4%95%E0%A4%BE%E0%A4%B0%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%85%E0%A4%82%E0%A4%A6%E0%A4%B0%20%E0%A4%A4%E0%A4%95%20%E0%A4%A5%E0%A5%80%20%E0%A4%AA%E0%A5%88%E0%A4%A0%2C%20%E0%A4%86%E0%A4%96%E0%A4%BF%E0%A4%B0%20%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A4%82%E0%A4%AA%20%E0%A4%95%E0%A4%BE%20%E0%A4%95%E0%A5%8C%E0%A4%A8%20%E0%A4%B8%E0%A4%BE%20%E0%A4%B0%E0%A4%BE%E0%A4%9C%20%E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A4%A8%E0%A4%BE%20%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%A4%E0%A5%87%20%E0%A4%A5%E0%A5%87%20..." class="read-link">Read Detailed News →</a>
+                </div>
+            </div>
+            <div class="card hidden-card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>ट्रंप और खामेनेई की मुलाकात नामुमकिन; ईरान ने अमेरिका के सामने रख दी 24 अरब डॉलर की शर्त</h4>
+                    <a href="news.html?title=%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A4%82%E0%A4%AA%20%E0%A4%94%E0%A4%B0%20%E0%A4%96%E0%A4%BE%E0%A4%AE%E0%A5%87%E0%A4%A8%E0%A5%87%E0%A4%88%20%E0%A4%95%E0%A5%80%20%E0%A4%AE%E0%A5%81%E0%A4%B2%E0%A4%BE%E0%A4%95%E0%A4%BE%E0%A4%A4%20%E0%A4%A8%E0%A4%BE%E0%A4%AE%E0%A5%81%E0%A4%AE%E0%A4%95%E0%A4%BF%E0%A4%A8%3B%20%E0%A4%88%E0%A4%B0%E0%A4%BE%E0%A4%A8%20%E0%A4%A8%E0%A5%87%20%E0%A4%85%E0%A4%AE%E0%A5%87%E0%A4%B0%E0%A4%BF%E0%A4%95%E0%A4%BE%20%E0%A4%95%E0%A5%87%20%E0%A4%B8%E0%A4%BE%E0%A4%AE%E0%A4%A8%E0%A5%87%20%E0%A4%B0%E0%A4%96%20%E0%A4%A6%E0%A5%80%2024%20%E0%A4%85%E0%A4%B0%E0%A4%AC%20%E0%A4%A1%E0%A5%89%E0%A4%B2%E0%A4%B0%20%E0%A4%95%E0%A5%80%20%E0%A4%B6%E0%A4%B0%E0%A5%8D%E0%A4%A4" class="read-link">Read Detailed News →</a>
+                </div>
+            </div>
+            <div class="card hidden-card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>जेलेंस्की के पीस टॉक्स के ऑफर को पुतिन ने ठुकराया, फेस-टू-फेस मीटिंग से इनकार</h4>
+                    <a href="news.html?title=%E0%A4%9C%E0%A5%87%E0%A4%B2%E0%A5%87%E0%A4%82%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A5%80%20%E0%A4%95%E0%A5%87%20%E0%A4%AA%E0%A5%80%E0%A4%B8%20%E0%A4%9F%E0%A5%89%E0%A4%95%E0%A5%8D%E0%A4%B8%20%E0%A4%95%E0%A5%87%20%E0%A4%91%E0%A4%AB%E0%A4%B0%20%E0%A4%95%E0%A5%8B%20%E0%A4%AA%E0%A5%81%E0%A4%A4%E0%A4%BF%E0%A4%A8%20%E0%A4%A8%E0%A5%87%20%E0%A4%A0%E0%A5%81%E0%A4%95%E0%A4%B0%E0%A4%BE%E0%A4%AF%E0%A4%BE%2C%20%E0%A4%AB%E0%A5%87%E0%A4%B8-%E0%A4%9F%E0%A5%82-%E0%A4%AB%E0%A5%87%E0%A4%B8%20%E0%A4%AE%E0%A5%80%E0%A4%9F%E0%A4%BF%E0%A4%82%E0%A4%97%20%E0%A4%B8%E0%A5%87%20%E0%A4%87%E0%A4%A8%E0%A4%95%E0%A4%BE%E0%A4%B0" class="read-link">Read Detailed News →</a>
+                </div>
+            </div>
+            <div class="card hidden-card">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60" class="card-img">
+                <div class="card-content">
+                    <span class="badge badge-govt">TRENDING</span>
+                    <h4>Dividend Stocks: टाटा ग्रुप की 7 कंपनियां इस हफ्ते ट्रेड करेंगी एक्स-डिविडेंड, आपका है किसी पर दांव?</h4>
+                    <a href="news.html?title=Dividend%20Stocks%3A%20%E0%A4%9F%E0%A4%BE%E0%A4%9F%E0%A4%BE%20%E0%A4%97%E0%A5%8D%E0%A4%B0%E0%A5%81%E0%A4%AA%20%E0%A4%95%E0%A5%80%207%20%E0%A4%95%E0%A4%82%E0%A4%AA%E0%A4%A8%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%82%20%E0%A4%87%E0%A4%B8%20%E0%A4%B9%E0%A4%AB%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A5%87%E0%A4%A1%20%E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82%E0%A4%97%E0%A5%80%20%E0%A4%8F%E0%A4%95%E0%A5%8D%E0%A4%B8-%E0%A4%A1%E0%A4%BF%E0%A4%B5%E0%A4%BF%E0%A4%A1%E0%A5%87%E0%A4%82%E0%A4%A1%2C%20%E0%A4%86%E0%A4%AA%E0%A4%95%E0%A4%BE%20%E0%A4%B9%E0%A5%88%20%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A5%80%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A6%E0%A4%BE%E0%A4%82%E0%A4%B5%3F" class="read-link">Read Detailed News →</a>
+                </div>
+            </div></div><button class="load-more-btn" onclick="loadMore('grid-home', this)">Read More News ⬇️</button>
         </section>
         
         <aside class="sidebar">
-            <h2 style="font-size: 18px; color: #1e293b; margin-top: 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">🔥 Trending Headlines</h2>
-            <ul style="list-style: none; padding: 0; margin: 0;"><li style="margin-bottom: 12px; font-size: 14px; line-height: 1.4;"><a href="news.html?title=%E0%A4%95%E0%A5%89%E0%A4%95%E0%A4%B0%E0%A5%8B%E0%A4%9A%20%E0%A4%9C%E0%A4%A8%E0%A4%A4%E0%A4%BE%20%E0%A4%AA%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%9F%E0%A5%80%20%E0%A4%95%E0%A5%8B%20%E0%A4%9C%E0%A4%82%E0%A4%A4%E0%A4%B0-%E0%A4%AE%E0%A4%82%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A4%B0%20%E0%A4%8F%E0%A4%95%20%E0%A4%A6%E0%A4%BF%E0%A4%A8%20%E0%A4%95%E0%A5%87%20%E0%A4%B5%E0%A4%BF%E0%A4%B0%E0%A5%8B%E0%A4%A7%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A4%B0%E0%A5%8D%E0%A4%B6%E0%A4%A8%20%E0%A4%B8%E0%A5%87%20%E0%A4%95%E0%A5%8D%E0%A4%AF%E0%A4%BE%20%E0%A4%B9%E0%A5%81%E0%A4%86%20%E0%A4%B9%E0%A4%BE%E0%A4%B8%E0%A4%BF%E0%A4%B2" style="color: #475569; text-decoration: none; font-weight: 500;">👉 कॉकरोच जनता पार्टी को जंतर-मंतर पर एक दिन के विरोध प्रदर्शन से क्या हुआ हासिल</a></li><li style="margin-bottom: 12px; font-size: 14px; line-height: 1.4;"><a href="news.html?title=%E0%A4%98%E0%A4%B0%E0%A5%87%E0%A4%B2%E0%A5%82%20%E0%A4%97%E0%A5%88%E0%A4%B8%20%E0%A4%95%E0%A5%87%20%E0%A4%A6%E0%A4%BE%E0%A4%AE%20%E0%A4%AE%E0%A5%87%E0%A4%82%2029%20%E0%A4%B0%E0%A5%81%E0%A4%AA%E0%A4%AF%E0%A5%87%20%E0%A4%95%E0%A5%80%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%E0%A5%8B%E0%A4%A4%E0%A4%B0%E0%A5%80%2C%20%E0%A4%85%E0%A4%AC%20%E0%A4%95%E0%A4%BF%E0%A4%A4%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%BE%20%E0%A4%B9%E0%A5%81%E0%A4%86%20%E0%A4%B8%E0%A4%BF%E0%A4%B2%E0%A5%87%E0%A4%82%E0%A4%A1%E0%A4%B0" style="color: #475569; text-decoration: none; font-weight: 500;">👉 घरेलू गैस के दाम में 29 रुपये की बढ़ोतरी, अब कितने का हुआ सिलेंडर</a></li><li style="margin-bottom: 12px; font-size: 14px; line-height: 1.4;"><a href="news.html?title=%E0%A4%AE%E0%A4%AE%E0%A4%A4%E0%A4%BE%20%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%A4%E0%A4%B0%E0%A5%87%20%E0%A4%85%E0%A4%AD%E0%A4%BF%E0%A4%B7%E0%A5%87%E0%A4%95%20%E0%A4%AC%E0%A4%A8%E0%A4%B0%E0%A5%8D%E0%A4%9C%E0%A5%80%20%E0%A4%95%E0%A5%87%20%E0%A4%AA%E0%A4%B0%2C%20%E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%87%20%E0%A4%B5%E0%A4%AB%E0%A4%BE%E0%A4%A6%E0%A4%BE%E0%A4%B0%E0%A5%8B%E0%A4%82%20%E0%A4%AA%E0%A4%B0%20%E0%A4%AD%E0%A4%B0%E0%A5%8B%E0%A4%B8%E0%A4%BE%3B%20TMC%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AC%E0%A4%A1%E0%A4%BC%E0%A4%BE%20%E0%A4%AB%E0%A5%87%E0%A4%B0%E0%A4%AC%E0%A4%A6%E0%A4%B2" style="color: #475569; text-decoration: none; font-weight: 500;">👉 ममता ने कतरे अभिषेक बनर्जी के पर, पुराने वफादारों पर भरोसा; TMC में बड़ा फेरबदल</a></li><li style="margin-bottom: 12px; font-size: 14px; line-height: 1.4;"><a href="news.html?title=%E0%A4%AA%E0%A5%87%E0%A4%82%E0%A4%9F%E0%A4%BE%E0%A4%97%E0%A4%A8%20%E0%A4%95%E0%A5%80%20%E0%A4%A8%E0%A4%B8-%E0%A4%A8%E0%A4%B8%20%E0%A4%A4%E0%A4%95%20%E0%A4%AA%E0%A4%B9%E0%A5%81%E0%A4%82%E0%A4%9A%20%E0%A4%9A%E0%A5%81%E0%A4%95%E0%A4%BE%20%E0%A4%A5%E0%A4%BE%20%E0%A4%AE%E0%A5%8B%E0%A4%B8%E0%A4%BE%E0%A4%A6%2C%20%E0%A4%B8%E0%A4%B0%E0%A4%95%E0%A4%BE%E0%A4%B0%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%85%E0%A4%82%E0%A4%A6%E0%A4%B0%20%E0%A4%A4%E0%A4%95%20%E0%A4%A5%E0%A5%80%20%E0%A4%AA%E0%A5%88%E0%A4%A0%2C%20%E0%A4%86%E0%A4%96%E0%A4%BF%E0%A4%B0%20%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A4%82%E0%A4%AA%20%E0%A4%95%E0%A4%BE%20%E0%A4%95%E0%A5%8C%E0%A4%A8%20%E0%A4%B8%E0%A4%BE%20%E0%A4%B0%E0%A4%BE%E0%A4%9C%20%E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A4%A8%E0%A4%BE%20%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%A4%E0%A5%87%20%E0%A4%A5%E0%A5%87%20..." style="color: #475569; text-decoration: none; font-weight: 500;">👉 पेंटागन की नस-नस तक पहुंच चुका था मोसाद, सरकार में अंदर तक थी पैठ, आखिर ट्रंप का कौन सा राज जानना चाहते थे ...</a></li><li style="margin-bottom: 12px; font-size: 14px; line-height: 1.4;"><a href="news.html?title=%E0%A4%B9%E0%A4%AE%20%E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%80%20%E0%A4%AC%E0%A4%BE%E0%A4%A4%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A4%BE%20%E0%A4%AC%E0%A5%8B%E0%A4%9D%20%E0%A4%A8%E0%A4%B9%E0%A5%80%E0%A4%82%20%E0%A4%89%E0%A4%A0%E0%A4%BE%E0%A4%A4%E0%A5%87%2C%20%E0%A4%9C%E0%A4%AF%E0%A4%B6%E0%A4%82%E0%A4%95%E0%A4%B0%20%E0%A4%B8%E0%A5%87%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A4%95%E0%A4%B0%20%E0%A4%AC%E0%A5%8B%E0%A4%B2%E0%A5%87%20%E0%A4%A8%E0%A5%87%E0%A4%AA%E0%A4%BE%E0%A4%B2%20%E0%A4%95%E0%A5%87%20%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A5%87%E0%A4%B6%20%E0%A4%AE%E0%A4%82%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A5%80%3B%20%E0%A4%85%E0%A4%9C%E0%A5%80%E0%A4%A4%20%E0%A4%A1%E0%A5%8B%E0%A4%AD%E0%A4%BE%E0%A4%B2%20%E0%A4%B8%E0%A5%87%20%E0%A4%AD%E0%A5%80%20%E0%A4%95%E0%A5%80%20%E0%A4%AE%E0%A5%81%E0%A4%B2%E0%A4%BE%E0%A4%95%E0%A4%BE%E0%A4%A4" style="color: #475569; text-decoration: none; font-weight: 500;">👉 हम पुरानी बातों का बोझ नहीं उठाते, जयशंकर से मिलकर बोले नेपाल के विदेश मंत्री; अजीत डोभाल से भी की मुलाकात</a></li><li style="margin-bottom: 12px; font-size: 14px; line-height: 1.4;"><a href="news.html?title=%27%E0%A4%88%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%80%20%E0%A4%B8%E0%A4%82%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%BF%20%E0%A4%96%E0%A4%BE%E0%A4%A1%E0%A4%BC%E0%A5%80%20%E0%A4%A6%E0%A5%87%E0%A4%B6%E0%A5%8B%E0%A4%82%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AC%E0%A4%BE%E0%A4%82%E0%A4%9F%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A5%80%20%E0%A4%A4%E0%A5%88%E0%A4%AF%E0%A4%BE%E0%A4%B0%E0%A5%80%27%2C%20%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A4%82%E0%A4%AA%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%B6%E0%A4%BE%E0%A4%B8%E0%A4%A8%20%E0%A4%95%E0%A4%BE%20%E0%A4%A4%E0%A5%87%E0%A4%B9%E0%A4%B0%E0%A4%BE%E0%A4%A8%20%E0%A4%95%E0%A5%8B%20%E0%A4%A4%E0%A4%97%E0%A4%A1%E0%A4%BC%E0%A4%BE%20%E0%A4%9D%E0%A4%9F%E0%A4%95%E0%A4%BE%20%E0%A4%A6%E0%A5%87%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%BE%20%E0%A4%AA%E0%A5%8D%E0%A4%B2%E0%A4%BE%E0%A4%A8%2C%20%E0%A4%A4%E0%A4%A8%E0%A4%BE%E0%A4%B5%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%E0%A4%A8%E0%A4%BE%20%E0%A4%A4%E0%A4%AF" style="color: #475569; text-decoration: none; font-weight: 500;">👉 'ईरानी संपत्ति खाड़ी देशों में बांटने की तैयारी', ट्रंप प्रशासन का तेहरान को तगड़ा झटका देने का प्लान, तनाव बढ़ना तय</a></li><li style="margin-bottom: 12px; font-size: 14px; line-height: 1.4;"><a href="news.html?title=DMK%20%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%BF%E0%A4%AF%E0%A4%BE%20%E0%A4%AC%E0%A5%88%E0%A4%A0%E0%A4%95%20%E0%A4%95%E0%A4%BE%20%E0%A4%AC%E0%A4%B9%E0%A4%BF%E0%A4%B7%E0%A5%8D%E0%A4%95%E0%A4%BE%E0%A4%B0%2C%20JMM%20%E0%A4%94%E0%A4%B0%20CPI-M%20%E0%A4%AD%E0%A5%80%20%E0%A4%95%E0%A4%BE%E0%A4%82%E0%A4%97%E0%A5%8D%E0%A4%B0%E0%A5%87%E0%A4%B8%20%E0%A4%B8%E0%A5%87%20%E0%A4%A8%E0%A4%BE%E0%A4%B0%E0%A4%BE%E0%A4%9C%3B%20INDIA%20%E0%A4%97%E0%A4%A0%E0%A4%AC%E0%A4%82%E0%A4%A7%E0%A4%A8%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%E0%A5%80%20%E0%A4%B0%E0%A4%BE%E0%A4%B0" style="color: #475569; text-decoration: none; font-weight: 500;">👉 DMK ने किया बैठक का बहिष्कार, JMM और CPI-M भी कांग्रेस से नाराज; INDIA गठबंधन में बढ़ी रार</a></li><li style="margin-bottom: 12px; font-size: 14px; line-height: 1.4;"><a href="news.html?title=%E0%A4%AE%E0%A4%A3%E0%A4%BF%E0%A4%AA%E0%A5%81%E0%A4%B0%20%E0%A4%B9%E0%A4%BF%E0%A4%82%E0%A4%B8%E0%A4%BE%3A%20%E0%A4%B0%E0%A4%BE%E0%A4%B9%E0%A4%A4%20%E0%A4%B6%E0%A4%BF%E0%A4%B5%E0%A4%BF%E0%A4%B0%E0%A5%8B%E0%A4%82%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%85%E0%A4%AC%20%E0%A4%A4%E0%A4%95%20731%20%E0%A4%B5%E0%A4%BF%E0%A4%B8%E0%A5%8D%E0%A4%A5%E0%A4%BE%E0%A4%AA%E0%A4%BF%E0%A4%A4%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%80%20%E0%A4%AE%E0%A5%8C%E0%A4%A4%2C%2043%20%E0%A4%B9%E0%A4%9C%E0%A4%BE%E0%A4%B0%20%E0%A4%B2%E0%A5%8B%E0%A4%97%20%E0%A4%85%E0%A4%AD%E0%A5%80%20%E0%A4%AD%E0%A5%80%20%E0%A4%AC%E0%A5%87%E0%A4%98%E0%A4%B0" style="color: #475569; text-decoration: none; font-weight: 500;">👉 मणिपुर हिंसा: राहत शिविरों में अब तक 731 विस्थापितों की मौत, 43 हजार लोग अभी भी बेघर</a></li><li style="margin-bottom: 12px; font-size: 14px; line-height: 1.4;"><a href="news.html?title=%E0%A4%86%E0%A4%9C%20%E0%A4%95%E0%A4%BE%20%E0%A4%AE%E0%A5%8C%E0%A4%B8%E0%A4%AE%207%20%E0%A4%9C%E0%A5%82%E0%A4%A8%3A%20%E0%A4%AF%E0%A5%82%E0%A4%AA%E0%A5%80-%E0%A4%AC%E0%A4%BF%E0%A4%B9%E0%A4%BE%E0%A4%B0%20%E0%A4%B8%E0%A4%AE%E0%A5%87%E0%A4%A4%2017%20%E0%A4%B0%E0%A4%BE%E0%A4%9C%E0%A5%8D%E0%A4%AF%E0%A5%8B%E0%A4%82%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%86%E0%A4%82%E0%A4%A7%E0%A5%80-%E0%A4%AC%E0%A4%BE%E0%A4%B0%E0%A4%BF%E0%A4%B6%20%E0%A4%95%E0%A4%BE%20%E0%A4%85%E0%A4%B2%E0%A4%B0%E0%A5%8D%E0%A4%9F%2C%20%E0%A4%AE%E0%A4%B9%E0%A4%BE%E0%A4%B0%E0%A4%BE%E0%A4%B7%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B0%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A4%B8%E0%A5%82%E0%A4%A8%20%E0%A4%95%E0%A5%80%20%E0%A4%8F%E0%A4%82%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A5%80%3B%20IMD%20%E0%A4%85%E0%A4%AA%E0%A4%A1%E0%A5%87%E0%A4%9F" style="color: #475569; text-decoration: none; font-weight: 500;">👉 आज का मौसम 7 जून: यूपी-बिहार समेत 17 राज्यों में आंधी-बारिश का अलर्ट, महाराष्ट्र में मानसून की एंट्री; IMD अपडेट</a></li><li style="margin-bottom: 12px; font-size: 14px; line-height: 1.4;"><a href="news.html?title=%E0%A4%97%E0%A4%BE%E0%A4%A1%E0%A4%BC%E0%A5%80%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A7%E0%A5%82%E0%A4%B2%20%E0%A4%AA%E0%A4%A1%E0%A4%BC%E0%A5%80%20%E0%A4%A4%E0%A5%8B%20%E0%A4%96%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B0%20%E0%A4%A8%E0%A5%87%20%E0%A4%B0%E0%A5%8C%E0%A4%B6%E0%A4%A8%20%E0%A4%86%E0%A4%A8%E0%A4%82%E0%A4%A6%20%E0%A4%AA%E0%A4%B0%20%E0%A4%95%E0%A4%B0%E0%A4%BE%E0%A4%88%20%E0%A4%A5%E0%A5%80%20FIR%2C%20%E0%A4%A6%E0%A5%8B%E0%A4%A8%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A5%80%E0%A4%9A%20%E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%80%20%E0%A4%85%E0%A4%A6%E0%A4%BE%E0%A4%B5%E0%A4%A4%3B%20%E0%A4%A6%E0%A5%8B%E0%A4%B8%E0%A5%8D%E0%A4%A4%20%E0%A4%95%E0%A5%88%E0%A4%B8%E0%A5%87%20%E0%A4%AC%E0%A4%A8%E0%A5%87%20%E0%A4%A6%E0%A5%81%E0%A4%B6%E0%A5%8D%E0%A4%AE%E0%A4%A8%3F" style="color: #475569; text-decoration: none; font-weight: 500;">👉 गाड़ी पर धूल पड़ी तो खान सर ने रौशन आनंद पर कराई थी FIR, दोनों के बीच पुरानी अदावत; दोस्त कैसे बने दुश्मन?</a></li>
+            <h2 style="font-size: 18px; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">🔥 Trending Now</h2>
+            <ul style="list-style: none; padding: 0;"><li style="margin-bottom: 15px;"><a href="news.html?title=%E0%A4%95%E0%A5%89%E0%A4%95%E0%A4%B0%E0%A5%8B%E0%A4%9A%20%E0%A4%9C%E0%A4%A8%E0%A4%A4%E0%A4%BE%20%E0%A4%AA%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%9F%E0%A5%80%20%E0%A4%95%E0%A5%8B%20%E0%A4%9C%E0%A4%82%E0%A4%A4%E0%A4%B0-%E0%A4%AE%E0%A4%82%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A4%B0%20%E0%A4%8F%E0%A4%95%20%E0%A4%A6%E0%A4%BF%E0%A4%A8%20%E0%A4%95%E0%A5%87%20%E0%A4%B5%E0%A4%BF%E0%A4%B0%E0%A5%8B%E0%A4%A7%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A4%B0%E0%A5%8D%E0%A4%B6%E0%A4%A8%20%E0%A4%B8%E0%A5%87%20%E0%A4%95%E0%A5%8D%E0%A4%AF%E0%A4%BE%20%E0%A4%B9%E0%A5%81%E0%A4%86%20%E0%A4%B9%E0%A4%BE%E0%A4%B8%E0%A4%BF%E0%A4%B2" style="color: #475569; text-decoration: none; font-size: 14px; font-weight: 500;">👉 कॉकरोच जनता पार्टी को जंतर-मंतर पर एक दिन के विरोध प्रदर्शन से क्या हुआ हासिल</a></li><li style="margin-bottom: 15px;"><a href="news.html?title=%E0%A4%98%E0%A4%B0%E0%A5%87%E0%A4%B2%E0%A5%82%20%E0%A4%97%E0%A5%88%E0%A4%B8%20%E0%A4%95%E0%A5%87%20%E0%A4%A6%E0%A4%BE%E0%A4%AE%20%E0%A4%AE%E0%A5%87%E0%A4%82%2029%20%E0%A4%B0%E0%A5%81%E0%A4%AA%E0%A4%AF%E0%A5%87%20%E0%A4%95%E0%A5%80%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%E0%A5%8B%E0%A4%A4%E0%A4%B0%E0%A5%80%2C%20%E0%A4%85%E0%A4%AC%20%E0%A4%95%E0%A4%BF%E0%A4%A4%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%BE%20%E0%A4%B9%E0%A5%81%E0%A4%86%20%E0%A4%B8%E0%A4%BF%E0%A4%B2%E0%A5%87%E0%A4%82%E0%A4%A1%E0%A4%B0" style="color: #475569; text-decoration: none; font-size: 14px; font-weight: 500;">👉 घरेलू गैस के दाम में 29 रुपये की बढ़ोतरी, अब कितने का हुआ सिलेंडर</a></li><li style="margin-bottom: 15px;"><a href="news.html?title=%E0%A4%AE%E0%A4%AE%E0%A4%A4%E0%A4%BE%20%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%A4%E0%A4%B0%E0%A5%87%20%E0%A4%85%E0%A4%AD%E0%A4%BF%E0%A4%B7%E0%A5%87%E0%A4%95%20%E0%A4%AC%E0%A4%A8%E0%A4%B0%E0%A5%8D%E0%A4%9C%E0%A5%80%20%E0%A4%95%E0%A5%87%20%E0%A4%AA%E0%A4%B0%2C%20%E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%87%20%E0%A4%B5%E0%A4%AB%E0%A4%BE%E0%A4%A6%E0%A4%BE%E0%A4%B0%E0%A5%8B%E0%A4%82%20%E0%A4%AA%E0%A4%B0%20%E0%A4%AD%E0%A4%B0%E0%A5%8B%E0%A4%B8%E0%A4%BE%3B%20TMC%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AC%E0%A4%A1%E0%A4%BC%E0%A4%BE%20%E0%A4%AB%E0%A5%87%E0%A4%B0%E0%A4%AC%E0%A4%A6%E0%A4%B2" style="color: #475569; text-decoration: none; font-size: 14px; font-weight: 500;">👉 ममता ने कतरे अभिषेक बनर्जी के पर, पुराने वफादारों पर भरोसा; TMC में बड़ा फेरबदल</a></li><li style="margin-bottom: 15px;"><a href="news.html?title=%E0%A4%AE%E0%A5%80%E0%A4%9F%E0%A4%BF%E0%A4%82%E0%A4%97%20%E0%A4%B8%E0%A5%87%20%E0%A4%AA%E0%A4%B9%E0%A4%B2%E0%A5%87%20INDIA%20%E0%A4%AC%E0%A5%8D%E0%A4%B2%E0%A5%89%E0%A4%95%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%98%E0%A4%AE%E0%A4%BE%E0%A4%B8%E0%A4%BE%E0%A4%A8...%20CPI%20%28M%29%20%E0%A4%A8%E0%A5%87%20%E0%A4%A6%E0%A4%BF%E0%A4%96%E0%A4%BE%E0%A4%88%20%E0%A4%86%E0%A4%82%E0%A4%96%2C%20%E0%A4%9C%E0%A5%87%E0%A4%8F%E0%A4%AE%E0%A4%8F%E0%A4%AE%20%E0%A4%AD%E0%A5%80%20%E0%A4%A8%E0%A4%BE%E0%A4%96%E0%A5%81%E0%A4%B6...%20DMK-AAP%20%E0%A4%A8%E0%A5%87%20%E0%A4%AC%E0%A4%A8%E0%A4%BE%E0%A4%88%20%E0%A4%A6%E0%A5%82%E0%A4%B0%E0%A5%80%21" style="color: #475569; text-decoration: none; font-size: 14px; font-weight: 500;">👉 मीटिंग से पहले INDIA ब्लॉक में घमासान... CPI (M) ने दिखाई आंख, जेएमएम भी नाखुश... DMK-AAP ने बनाई दूरी!</a></li><li style="margin-bottom: 15px;"><a href="news.html?title=%27%E0%A4%88%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%80%20%E0%A4%B8%E0%A4%82%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%BF%20%E0%A4%96%E0%A4%BE%E0%A4%A1%E0%A4%BC%E0%A5%80%20%E0%A4%A6%E0%A5%87%E0%A4%B6%E0%A5%8B%E0%A4%82%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AC%E0%A4%BE%E0%A4%82%E0%A4%9F%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A5%80%20%E0%A4%A4%E0%A5%88%E0%A4%AF%E0%A4%BE%E0%A4%B0%E0%A5%80%27%2C%20%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A4%82%E0%A4%AA%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%B6%E0%A4%BE%E0%A4%B8%E0%A4%A8%20%E0%A4%95%E0%A4%BE%20%E0%A4%A4%E0%A5%87%E0%A4%B9%E0%A4%B0%E0%A4%BE%E0%A4%A8%20%E0%A4%95%E0%A5%8B%20%E0%A4%A4%E0%A4%97%E0%A4%A1%E0%A4%BC%E0%A4%BE%20%E0%A4%9D%E0%A4%9F%E0%A4%95%E0%A4%BE%20%E0%A4%A6%E0%A5%87%E0%A4%A8%E0%A5%87%20%E0%A4%95%E0%A4%BE%20%E0%A4%AA%E0%A5%8D%E0%A4%B2%E0%A4%BE%E0%A4%A8%2C%20%E0%A4%A4%E0%A4%A8%E0%A4%BE%E0%A4%B5%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%E0%A4%A8%E0%A4%BE%20%E0%A4%A4%E0%A4%AF" style="color: #475569; text-decoration: none; font-size: 14px; font-weight: 500;">👉 'ईरानी संपत्ति खाड़ी देशों में बांटने की तैयारी', ट्रंप प्रशासन का तेहरान को तगड़ा झटका देने का प्लान, तनाव बढ़ना तय</a></li><li style="margin-bottom: 15px;"><a href="news.html?title=%E0%A4%AE%E0%A4%B9%E0%A4%BE%E0%A4%B0%E0%A4%BE%E0%A4%B7%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B0%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A4%B8%E0%A5%82%E0%A4%A8%20%E0%A4%95%E0%A4%BE%20%E0%A4%A4%E0%A4%BE%E0%A4%82%E0%A4%A1%E0%A4%B5%20%E0%A4%B6%E0%A5%81%E0%A4%B0%E0%A5%82%2C%2019%20%E0%A4%B0%E0%A4%BE%E0%A4%9C%E0%A5%8D%E0%A4%AF%E0%A5%8B%E0%A4%82%20%E0%A4%AA%E0%A4%B0%20%E0%A4%9F%E0%A5%82%E0%A4%9F%E0%A5%87%E0%A4%97%E0%A4%BE%20%E0%A4%86%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A5%80%20%E0%A4%95%E0%A4%B9%E0%A4%B0%2C%20%E0%A4%85%E0%A4%97%E0%A4%B2%E0%A5%87%2048%20%E0%A4%98%E0%A4%82%E0%A4%9F%E0%A5%87%20%E0%A4%AC%E0%A5%87%E0%A4%B9%E0%A4%A6%20%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A5%80%2C%20%E0%A4%AE%E0%A5%8C%E0%A4%B8%E0%A4%AE%20%E0%A4%AA%E0%A4%B0%20IMD%20%E0%A4%85..." style="color: #475569; text-decoration: none; font-size: 14px; font-weight: 500;">👉 महाराष्ट्र में मानसून का तांडव शुरू, 19 राज्यों पर टूटेगा आसमानी कहर, अगले 48 घंटे बेहद भारी, मौसम पर IMD अ...</a></li><li style="margin-bottom: 15px;"><a href="news.html?title=%E0%A4%B8%E0%A4%BE%E0%A4%A1%E0%A4%BC%E0%A4%BF%E0%A4%AF%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%87%20%E0%A4%A2%E0%A5%87%E0%A4%B0%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%9B%E0%A4%BF%E0%A4%AA%E0%A4%BE%20TMC%20%E0%A4%A8%E0%A5%87%E0%A4%A4%E0%A4%BE%2C%20%E0%A4%AB%E0%A4%BF%E0%A4%B0%20%E0%A4%AD%E0%A5%80%20%E0%A4%AA%E0%A5%81%E0%A4%B2%E0%A4%BF%E0%A4%B8%20%E0%A4%B8%E0%A5%87%20%E0%A4%AC%E0%A4%9A%20%E0%A4%A8%E0%A4%B9%E0%A5%80%E0%A4%82%20%E0%A4%AA%E0%A4%BE%E0%A4%AF%E0%A4%BE%2C%20%E0%A4%97%E0%A4%BF%E0%A4%B0%E0%A4%AB%E0%A5%8D%E0%A4%A4%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%95%E0%A4%BE%20VIDEO%20%E0%A4%B5%E0%A4%BE%E0%A4%AF%E0%A4%B0%E0%A4%B2" style="color: #475569; text-decoration: none; font-size: 14px; font-weight: 500;">👉 साड़ियों के ढेर में छिपा TMC नेता, फिर भी पुलिस से बच नहीं पाया, गिरफ्तारी का VIDEO वायरल</a></li><li style="margin-bottom: 15px;"><a href="news.html?title=%E0%A4%B8%E0%A5%81%E0%A4%B2%E0%A4%9D%20%E0%A4%97%E0%A4%88%20DU%20%E0%A4%95%E0%A5%80%20%E0%A4%AE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A4%BE%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A5%8B%E0%A4%AB%E0%A5%87%E0%A4%B8%E0%A4%B0%20%E0%A4%95%E0%A5%87%20%E0%A4%AE%E0%A4%B0%E0%A5%8D%E0%A4%A1%E0%A4%B0%20%E0%A4%95%E0%A5%80%20%E0%A4%97%E0%A5%81%E0%A4%A4%E0%A5%8D%E0%A4%A5%E0%A5%80%2C%20%E0%A4%95%E0%A5%8B%E0%A4%B2%E0%A4%95%E0%A4%BE%E0%A4%A4%E0%A4%BE%20%E0%A4%B8%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%B2%20%E0%A4%97%E0%A4%BF%E0%A4%B0%E0%A4%AB%E0%A5%8D%E0%A4%A4%E0%A4%BE%E0%A4%B0%2C%20%E0%A4%B9%E0%A5%88%E0%A4%B0%E0%A4%BE%E0%A4%A8%20%E0%A4%95%E0%A4%B0%20%E0%A4%A6%E0%A5%87%E0%A4%97%E0%A5%80%20%E0%A4%B9%E0%A4%A4%E0%A5%8D%E0%A4%AF%E0%A4%BE%20%E0%A4%95%E0%A5%80%20%E0%A4%B5%E0%A4%9C%E0%A4%B9" style="color: #475569; text-decoration: none; font-size: 14px; font-weight: 500;">👉 सुलझ गई DU की महिला प्रोफेसर के मर्डर की गुत्थी, कोलकाता से कपल गिरफ्तार, हैरान कर देगी हत्या की वजह</a></li><li style="margin-bottom: 15px;"><a href="news.html?title=%E0%A4%97%E0%A4%BE%E0%A4%A1%E0%A4%BC%E0%A5%80%20%E0%A4%AA%E0%A4%B0%20%E0%A4%A7%E0%A5%82%E0%A4%B2%20%E0%A4%AA%E0%A4%A1%E0%A4%BC%E0%A5%80%20%E0%A4%A4%E0%A5%8B%20%E0%A4%96%E0%A4%BE%E0%A4%A8%20%E0%A4%B8%E0%A4%B0%20%E0%A4%A8%E0%A5%87%20%E0%A4%B0%E0%A5%8C%E0%A4%B6%E0%A4%A8%20%E0%A4%86%E0%A4%A8%E0%A4%82%E0%A4%A6%20%E0%A4%AA%E0%A4%B0%20%E0%A4%95%E0%A4%B0%E0%A4%BE%E0%A4%88%20%E0%A4%A5%E0%A5%80%20FIR%2C%20%E0%A4%A6%E0%A5%8B%E0%A4%A8%E0%A5%8B%E0%A4%82%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A5%80%E0%A4%9A%20%E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A4%BE%E0%A4%A8%E0%A5%80%20%E0%A4%85%E0%A4%A6%E0%A4%BE%E0%A4%B5%E0%A4%A4%3B%20%E0%A4%A6%E0%A5%8B%E0%A4%B8%E0%A5%8D%E0%A4%A4%20%E0%A4%95%E0%A5%88%E0%A4%B8%E0%A5%87%20%E0%A4%AC%E0%A4%A8%E0%A5%87%20%E0%A4%A6%E0%A5%81%E0%A4%B6%E0%A5%8D%E0%A4%AE%E0%A4%A8%3F" style="color: #475569; text-decoration: none; font-size: 14px; font-weight: 500;">👉 गाड़ी पर धूल पड़ी तो खान सर ने रौशन आनंद पर कराई थी FIR, दोनों के बीच पुरानी अदावत; दोस्त कैसे बने दुश्मन?</a></li><li style="margin-bottom: 15px;"><a href="news.html?title=%E0%A4%85%E0%A4%A8%E0%A5%8D%E2%80%8D%E0%A4%A8%E0%A4%BE%E0%A4%AE%E0%A4%B2%E0%A4%BE%E0%A4%88%20%E0%A4%A8%E0%A5%87%20%E0%A4%A4%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A4%A8%E0%A4%BE%E0%A4%A1%E0%A5%81%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A4%9A%E0%A4%BE%E0%A4%AF%E0%A4%BE%20%E0%A4%97%E0%A4%B0%E0%A5%8D%E0%A4%A6%E0%A4%BE%2C%20%E0%A4%B2%E0%A5%89%E0%A4%A8%E0%A5%8D%E2%80%8D%E0%A4%9A%20%E0%A4%95%E0%A5%87%20%E0%A4%95%E0%A5%81%E0%A4%9B%20%E0%A4%B9%E0%A5%80%20%E0%A4%98%E0%A4%82%E0%A4%9F%E0%A5%8B%E0%A4%82%20%E0%A4%AE%E0%A5%87%E0%A4%82%2015%20%E0%A4%B2%E0%A4%BE%E0%A4%96%20%E0%A4%B2%E0%A5%8B%E0%A4%97%20%E0%A4%9C%E0%A5%81%E0%A4%A1%E0%A4%BC%E0%A5%87%2C%20%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%95%E0%A5%80%20%E0%A4%AC%E0%A4%A2%E0%A4%BC%20%E0%A4%B0%E0%A4%B9%E0%A5%80%20%E0%A4%9F%E0%A5%87%E0%A4%82%E0%A4%B6%E0%A4%A8%3F" style="color: #475569; text-decoration: none; font-size: 14px; font-weight: 500;">👉 अन्‍नामलाई ने तमिलनाडु में मचाया गर्दा, लॉन्‍च के कुछ ही घंटों में 15 लाख लोग जुड़े, किसकी बढ़ रही टेंशन?</a></li>
             </ul>
         </aside>
     </main>
     <footer>
-        <p>&copy; 2026 EduNews Portal. User Privacy Ensured via Cloudflare Secure Code. | Auto-Synced Every 5 Minutes</p>
+        <p>&copy; 2026 EduNews Portal. 100% Secure & Auto-Synced | Designed for Students</p>
     </footer>
+
+    <script>
+        // Load More Functionality
+        function loadMore(gridId, btn) {
+            let hiddenCards = document.querySelectorAll(`#${gridId} .hidden-card`);
+            for(let i=0; i<12 && i<hiddenCards.length; i++) {
+                hiddenCards[i].classList.remove('hidden-card');
+            }
+            // Agar aur hidden cards nahi bache, toh button chupa do
+            if(document.querySelectorAll(`#${gridId} .hidden-card`).length === 0) {
+                btn.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
