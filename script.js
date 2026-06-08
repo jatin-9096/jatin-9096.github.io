@@ -35,39 +35,32 @@ async function loadRealNews(category) {
     let query = category === 'govt' ? "government exams jobs india" : (category === 'cbse' ? "CBSE board exam india" : "education india");
     const url = `https://gnews.io/api/v4/search?q=${query}&lang=en&max=10&page=${pageTracker[category]}&apikey=${API_KEY}`;
 
-        try {
-        console.log("Requesting URL:", url); // <--- Bas yeh line add karni hai
-        const response = await fetch(url);
-        const data = await response.json();
-            
-        const response = await fetch(url);
-        const data = await response.json();
-        if (data.articles) {
-            data.articles.forEach(article => {
-                const card = document.createElement('div');
-                card.classList.add('news-card');
-                const img = article.image || 'https://via.placeholder.com/300x150?text=No+Image';
-                card.innerHTML = `
-                    <img src="${img}" style="width:100%; height:150px; object-fit:cover; border-radius:8px;">
-                    <div style="display:flex; justify-content:space-between; margin:10px 0;">
-                        <span class="badge verified">Verified</span>
-                        <div>
-                            <i class="fa-regular fa-bookmark" onclick="alert('Saved!')" style="cursor:pointer; margin-right:10px;"></i>
-                            <i class="fa-solid fa-share-nodes" onclick="shareNews('${article.title.replace(/'/g, "")}', '${article.url}')" style="cursor:pointer;"></i>
-                        </div>
-                    </div>
-                    <h3>${article.title}</h3>
-                    <p>${article.description ? article.description.substring(0, 100) : 'Click to read more...'}...</p>
-                    <a href="${article.url}" target="_blank" class="read-btn" style="text-decoration:none; margin:5px 0; display:block;">Read Official News</a>
-                    <button class="read-btn" style="background:#333; width:100%; border:none;" onclick="openAITutor('Analyze: ${article.title.replace(/'/g, "")}')">Ask AI Tutor</button>
-                `;
-                gridElement.appendChild(card);
-            });
-            pageTracker[category]++;
-        }
-    } catch (e) { loader.innerHTML = "API Connection Error"; }
-    finally { isFetching[category] = false; }
+        // REPLACE KAREIN is pure block ko (try se lekar catch ke end tak)
+try {
+    console.log("Fetching for:", category);
+    const response = await fetch(url);
+    
+    // Check agar connection sahi hai
+    if (!response.ok) {
+        throw new Error(`HTTP Error: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log("Data aaya:", data); // Isse console mein check karo
+    
+    if (data.articles && data.articles.length > 0) {
+        data.articles.forEach(article => {
+            // ... (Aapka baki card wala code yahan rahega)
+        });
+        pageTracker[category]++;
+    } else {
+        loader.innerHTML = "No Articles Found.";
+    }
+} catch (err) {
+    console.error("Error:", err);
+    loader.innerHTML = "Error: " + err.message; // Ab error screen par dikhega
 }
+    
 
 // 5. ADVANCED AI TUTOR (DIVYA DRISHTI)
 function processAILogic(query) {
