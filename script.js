@@ -138,78 +138,66 @@ observer.observe(document.getElementById('cbse-loader'));
 
 
 // ==========================================
-// 3. AI-CENTRIC DISCOVERY & SMART ROUTING
+// 3. ADVANCED AI-CENTRIC DISCOVERY (DIVYA DRISHTI EXPERT SYSTEM)
 // ==========================================
-const searchInput = document.getElementById('ai-search-input');
-const searchBtn = document.getElementById('search-btn');
-const aiTutorWindow = document.getElementById('ai-tutor-window');
-const tutorResponse = document.getElementById('tutor-response');
-const closeTutorBtn = document.getElementById('close-tutor');
 
-// Mock AI Logic based on keywords
 function processAILogic(query) {
     const lowerQuery = query.toLowerCase();
     let responseText = "";
 
-    // Smart Routing Logic
-    if (lowerQuery.includes("nda") || lowerQuery.includes("admit card")) {
+    // 1. Intent: Results & Cutoffs
+    if (lowerQuery.match(/(result|cutoff|score|merit list)/)) {
         responseText = `
-            <strong>Divya Drishti AI Analysis:</strong><br><br>
-            You are searching for NDA admit cards.<br>
-            👉 <em>Step 1:</em> The NDA admit cards are usually released on the official UPSC website.<br>
-            👉 <em>Step 2:</em> Would you like me to redirect you to the 'Govt Exams' section to see the latest UPSC notifications?
+            <strong><i class="fa-solid fa-chart-line"></i> Divya Drishti Analysis:</strong><br><br>
+            Aap result ya cutoff ke baare mein janna chahte hain.<br>
+            👉 <em>Tip:</em> Hamesha official website par apna Roll Number ready rakhein. <br>
+            Kya main aapko latest CBSE ya Govt updates dikhaun?
             <br><br>
-            <button class="read-btn" style="width:auto; font-size:12px; padding: 5px 10px;" onclick="goToSection('govt-section')">Go to Govt Exams</button>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button class="read-btn" style="padding: 5px; font-size:12px;" onclick="goToSection('cbse-section')">CBSE Results</button>
+                <button class="read-btn" style="padding: 5px; font-size:12px; background: #333;" onclick="goToSection('govt-section')">Govt Results</button>
+            </div>
         `;
-    } else if (lowerQuery.includes("cbse") || lowerQuery.includes("result")) {
+    } 
+    // 2. Intent: Syllabus & Preparation
+    else if (lowerQuery.match(/(syllabus|prepare|strategy|books|notes)/)) {
         responseText = `
-            <strong>Divya Drishti AI Analysis:</strong><br><br>
-            Looking for CBSE updates? Let me take you straight to our verified CBSE portal where you can check real-time updates.
+            <strong><i class="fa-solid fa-book-open"></i> Divya Drishti Tutor:</strong><br><br>
+            Syllabus aur preparation strategy kisi bhi exam ka base hoti hai.<br>
+            👉 <em>Strategy:</em> Previous Year Questions (PYQs) aur Mock Tests par focus karein.<br>
+            👉 Main is topic se related latest news background mein fetch kar rahi hoon. Aap Home feed scroll karke dekh sakte hain.
+        `;
+    }
+    // 3. Intent: Specific Exams (NDA, UPSC, SSC, JEE, NEET)
+    else if (lowerQuery.match(/(nda|upsc|ssc|jee|neet|admit card)/)) {
+        responseText = `
+            <strong><i class="fa-solid fa-crosshairs"></i> Divya Drishti Target:</strong><br><br>
+            Aap competitive exams ki details dhund rahe hain.<br>
+            👉 Har saal in exams ke pattern mein chote changes aate hain. <br>
+            Chaliye main aapko Government Exams ke dedicated section mein le chalti hoon kahan verified updates hain.
             <br><br>
-            <button class="read-btn" style="width:auto; font-size:12px; padding: 5px 10px;" onclick="goToSection('cbse-section')">Go to CBSE Section</button>
+            <button class="read-btn" style="width:100%; font-size:12px; padding: 8px;" onclick="goToSection('govt-section')">Take me to Govt Exams Section</button>
         `;
-    } else {
+    }
+    // 4. Intent: Greeting / Casual
+    else if (lowerQuery.match(/(hello|hi|kaise|who are you|help)/)) {
         responseText = `
-            <strong>Divya Drishti AI Tutor:</strong><br><br>
-            I have searched our secure database for "<em>${query}</em>". I am fetching the verified updates for you. Please scroll down to read more!
+            <strong><i class="fa-solid fa-robot"></i> Divya Drishti:</strong><br><br>
+            Namaste! 🙏 Main Divya Drishti hoon, aapki personal Ed-Tech AI Tutor. <br>
+            Aap mujhse kisi bhi exam, syllabus, ya latest education news ke baare mein pooch sakte hain. Main fake news filter karke sirf verified data deti hoon.
+        `;
+    }
+    // 5. Default Fallback
+    else {
+        responseText = `
+            <strong><i class="fa-solid fa-magnifying-glass"></i> Divya Drishti Search:</strong><br><br>
+            Maine "<em>${query}</em>" ke liye apna verified database scan kiya hai. <br>
+            Relevant updates aapke background feed mein load ho rahe hain. Kripya scroll karke check karein!
         `;
     }
 
     openAITutor(responseText, true);
+    
+    // Yahan hum chahein toh background mein GNews API ko is specific query ke sath dobara call kar sakte hain!
+    // Example: loadRealNewsForCustomQuery(query); (Future scope)
 }
-
-// Show AI Tutor Window
-function openAITutor(message, isHtml = false) {
-    aiTutorWindow.classList.remove('hidden');
-    if(isHtml) {
-        tutorResponse.innerHTML = message;
-    } else {
-        tutorResponse.innerHTML = `<strong>Divya Drishti AI:</strong><br><br>${message}`;
-    }
-}
-
-// Close AI Tutor
-closeTutorBtn.addEventListener('click', () => {
-    aiTutorWindow.classList.add('hidden');
-});
-
-// Trigger Search
-searchBtn.addEventListener('click', () => {
-    if(searchInput.value.trim() !== "") {
-        processAILogic(searchInput.value);
-    }
-});
-
-// Trigger Search on Enter key
-searchInput.addEventListener('keypress', (e) => {
-    if(e.key === 'Enter' && searchInput.value.trim() !== "") {
-        processAILogic(searchInput.value);
-    }
-});
-
-// Helper function for AI to change SPA views
-window.goToSection = function(sectionId) {
-    const targetBtn = document.querySelector(`[data-target="${sectionId}"]`);
-    if(targetBtn) targetBtn.click(); // Programmatically click the nav button
-    aiTutorWindow.classList.add('hidden'); // hide tutor after routing
-};
