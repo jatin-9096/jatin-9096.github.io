@@ -98,3 +98,8 @@ document.getElementById('search-btn').addEventListener('click', () => processAIL
 
 // INITIAL LOAD
 loadRealNews('home');
+// Test Request
+fetch(`https://gnews.io/api/v4/top-headlines?category=general&apikey=41f9ca60c9c4feea049876ff25827052`)
+.then(res => res.json())
+.then(data => console.log("Test Result:", data))
+.catch(err => console.log("Test Error:", err));
