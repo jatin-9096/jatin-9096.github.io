@@ -35,7 +35,11 @@ async function loadRealNews(category) {
     let query = category === 'govt' ? "government exams jobs india" : (category === 'cbse' ? "CBSE board exam india" : "education india");
     const url = `https://gnews.io/api/v4/search?q=${query}&lang=en&max=10&page=${pageTracker[category]}&apikey=${API_KEY}`;
 
-    try {
+        try {
+        console.log("Requesting URL:", url); // <--- Bas yeh line add karni hai
+        const response = await fetch(url);
+        const data = await response.json();
+            
         const response = await fetch(url);
         const data = await response.json();
         if (data.articles) {
