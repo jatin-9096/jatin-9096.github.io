@@ -29,7 +29,7 @@ navButtons.forEach(btn => {
 // ==========================================
 
 // IMPORTANT: Replace 'YOUR_API_KEY' with your actual free API key from gnews.io
-const API_KEY = 'YOUR_API_KEY'; 
+const API_KEY = ' 41f9ca60c9c4feea049876ff25827052'; 
 
 // Pagination Trackers: Har section ke liye track karenge ki hum kis page par hain
 const pageTracker = {
