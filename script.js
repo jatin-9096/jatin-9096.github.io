@@ -75,8 +75,7 @@ async function loadRealNews(category) {
                 // Agar news mein image nahi hai, toh ek placeholder set karna
                 const imageUrl = article.image || 'https://via.placeholder.com/300x150?text=No+Image';
 
-                // Real Data ke sath Card Generate karna
-                                // Real Data ke sath Card Generate karna (Now with Share & Save)
+               // Real Data ke sath Card Generate karna (Now with Share & Save)
                 card.innerHTML = `
                     <img src="${imageUrl}" alt="News" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
                     <div class="badges" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
