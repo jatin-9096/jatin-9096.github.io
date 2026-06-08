@@ -25,81 +25,116 @@ navButtons.forEach(btn => {
 });
 
 // ==========================================
-// 2. INFINITE SCROLL & CONTENT GENERATION
+// 2. REAL NEWS API & INFINITE SCROLL (GNEWS API)
 // ==========================================
-let articleCount = 0; // Keeping track of loaded items
 
-// Function to generate a mock News Card (HTML structure)
-function createCardElement(category) {
-    articleCount++;
-    const card = document.createElement('div');
-    card.classList.add('news-card');
+// IMPORTANT: Replace 'YOUR_API_KEY' with your actual free API key from gnews.io
+const API_KEY = 'YOUR_API_KEY'; 
 
-    // Category specific content
-    let title = "Default Title";
-    let badgeTxt = "Trending";
-    
-    if(category === 'home') {
-        title = `Top Breaking Education News #${articleCount}`;
-        badgeTxt = "Trending";
-    } else if (category === 'govt') {
-        title = `New Government Vacancy Announced #${articleCount}`;
-        badgeTxt = "Govt Alert";
-    } else if (category === 'cbse') {
-        title = `CBSE Board Important Notification #${articleCount}`;
-        badgeTxt = "CBSE Update";
-    }
+// Pagination Trackers: Har section ke liye track karenge ki hum kis page par hain
+const pageTracker = {
+    'home': 1,
+    'govt': 1,
+    'cbse': 1
+};
 
-    // HTML Injection (Professional Content Hierarchy)
-    card.innerHTML = `
-        <div class="badges">
-            <span class="badge verified"><i class="fa-solid fa-check-circle"></i> Verified</span>
-            <span class="badge trending">${badgeTxt}</span>
-        </div>
-        <h3>${title}</h3>
-        <p>This is a detailed, structured news excerpt. Our logic ensures that even on the 1000th scroll, the UI remains highly responsive and fast.</p>
-        <button class="read-btn" onclick="openAITutor('Read more about ${title}')">Read Detailed News</button>
-    `;
-    return card;
-}
+// Fetch Status Tracker: Ek sath multiple requests jane se rokne ke liye
+const isFetching = {
+    'home': false,
+    'govt': false,
+    'cbse': false
+};
 
-// Function to load cards into a specific grid
-function loadCards(category, amount = 6) {
+// Main Fetching Function
+async function loadRealNews(category) {
+    // Agar pehle se load ho raha hai, toh wahi ruk jao
+    if (isFetching[category]) return;
+    isFetching[category] = true;
+
     const gridId = `${category}-grid`;
     const gridElement = document.getElementById(gridId);
+    const loader = document.getElementById(`${category}-loader`);
     
-    for(let i = 0; i < amount; i++) {
-        const newCard = createCardElement(category);
-        gridElement.appendChild(newCard);
+    // Category ke hisaab se Search Query set karna
+    let query = "education india"; // Default for Home
+    if (category === 'govt') query = "government exams jobs india";
+    if (category === 'cbse') query = "CBSE board exam india";
+
+    // Dynamic API Endpoint (10 news per fetch)
+    const url = `https://gnews.io/api/v4/search?q=${query}&lang=en&country=in&max=10&page=${pageTracker[category]}&apikey=${API_KEY}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.articles && data.articles.length > 0) {
+            data.articles.forEach(article => {
+                const card = document.createElement('div');
+                card.classList.add('news-card');
+                
+                // Agar news mein image nahi hai, toh ek placeholder set karna
+                const imageUrl = article.image || 'https://via.placeholder.com/300x150?text=No+Image';
+
+                // Real Data ke sath Card Generate karna
+                card.innerHTML = `
+                    <img src="${imageUrl}" alt="News" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                    <div class="badges">
+                        <span class="badge verified"><i class="fa-solid fa-check-circle"></i> Verified Data</span>
+                    </div>
+                    <h3>${article.title}</h3>
+                    <p>${article.description.substring(0, 100)}...</p>
+                    
+                    <a href="${article.url}" target="_blank" class="read-btn" style="text-decoration:none; margin-bottom: 5px; display: block;">Read Official News</a>
+                    
+                    <button class="read-btn" style="background-color: #333;" onclick="openAITutor('Analyze this update: ${article.title.replace(/'/g, "")}')">
+                        <i class="fa-solid fa-robot"></i> Ask AI Tutor
+                    </button>
+                `;
+                gridElement.appendChild(card);
+            });
+            
+            // Success hone par page number badha do taaki agle scroll par nayi news aaye
+            pageTracker[category]++; 
+        } else {
+            // Agar API ne koi data nahi diya
+            loader.innerHTML = "No more updates available.";
+        }
+    } catch (error) {
+        console.error("News fetch me error aaya:", error);
+        loader.innerHTML = "Failed to load news. Please check your internet or API key.";
+    } finally {
+        isFetching[category] = false; // Fetching process khatam
     }
 }
 
 // Initial Load for Home Section
-loadCards('home', 9);
+loadRealNews('home');
 
-// Intersection Observer for Infinite Scrolling (The YouTube Feel)
-// Deep Logic: Ye check karta hai ki user screen ke end par pahuncha ya nahi
+// ==========================================
+// INFINITE SCROLL OBSERVER (The YouTube Feel)
+// ==========================================
 const observerOptions = {
     root: null,
-    rootMargin: "0px",
+    rootMargin: "0px", // Jab end element touch ho tabhi load karo
     threshold: 0.1
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+        // Jab loader screen par dikhne lage
         if (entry.isIntersecting) {
-            // Find which loader is visible, and load respective content
-            if(entry.target.id === 'home-loader') loadCards('home', 6);
-            if(entry.target.id === 'govt-loader') loadCards('govt', 6);
-            if(entry.target.id === 'cbse-loader') loadCards('cbse', 6);
+            if(entry.target.id === 'home-loader') loadRealNews('home');
+            if(entry.target.id === 'govt-loader') loadRealNews('govt');
+            if(entry.target.id === 'cbse-loader') loadRealNews('cbse');
         }
     });
 }, observerOptions);
 
-// Observe all loaders
+// Observers ko activate karna
 observer.observe(document.getElementById('home-loader'));
 observer.observe(document.getElementById('govt-loader'));
 observer.observe(document.getElementById('cbse-loader'));
+
 
 
 // ==========================================
