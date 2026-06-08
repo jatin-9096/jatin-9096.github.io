@@ -76,10 +76,17 @@ async function loadRealNews(category) {
                 const imageUrl = article.image || 'https://via.placeholder.com/300x150?text=No+Image';
 
                 // Real Data ke sath Card Generate karna
+                                // Real Data ke sath Card Generate karna (Now with Share & Save)
                 card.innerHTML = `
                     <img src="${imageUrl}" alt="News" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
-                    <div class="badges">
-                        <span class="badge verified"><i class="fa-solid fa-check-circle"></i> Verified Data</span>
+                    <div class="badges" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <div>
+                            <span class="badge verified"><i class="fa-solid fa-check-circle"></i> Verified Data</span>
+                        </div>
+                        <div style="display: flex; gap: 10px; color: var(--text-muted); font-size: 16px;">
+                            <i class="fa-regular fa-bookmark" style="cursor: pointer;" onclick="this.classList.toggle('fa-solid'); this.style.color='#1a73e8'; alert('News Saved to Bookmarks!');"></i>
+                            <i class="fa-solid fa-share-nodes" style="cursor: pointer;" onclick="shareNews('${article.title.replace(/'/g, "")}', '${article.url}')"></i>
+                        </div>
                     </div>
                     <h3>${article.title}</h3>
                     <p>${article.description.substring(0, 100)}...</p>
@@ -89,6 +96,8 @@ async function loadRealNews(category) {
                     <button class="read-btn" style="background-color: #333;" onclick="openAITutor('Analyze this update: ${article.title.replace(/'/g, "")}')">
                         <i class="fa-solid fa-robot"></i> Ask AI Tutor
                     </button>
+                `;
+                
                 `;
                 gridElement.appendChild(card);
             });
@@ -201,3 +210,18 @@ function processAILogic(query) {
     // Yahan hum chahein toh background mein GNews API ko is specific query ke sath dobara call kar sakte hain!
     // Example: loadRealNewsForCustomQuery(query); (Future scope)
 }
+// Function for Native Sharing (WhatsApp, Telegram, etc.)
+window.shareNews = function(title, url) {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Divya Drishti Update',
+            text: `Check out this important education update: ${title}`,
+            url: url
+        }).catch(console.error);
+    } else {
+        // Agar browser support nahi karta (jaise purane PC mein), toh link copy kar do
+        navigator.clipboard.writeText(url);
+        alert("Link copied to clipboard!");
+    }
+};
+                
