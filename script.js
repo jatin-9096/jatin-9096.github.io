@@ -1,12 +1,11 @@
 // ==========================================================
-// DIVYA DRISHTI MASTER SCRIPT - FULL SCALE VERSION (FIXED)
+// DIVYA DRISHTI MASTER SCRIPT - THE BULLETPROOF VERSION
 // ==========================================================
 
 // 1. API CONFIGURATION
 const API_KEY = '41f9ca60c9c4feea049876ff25827052'; 
 
-// 2. STATE MANAGEMENT
-const pageTracker = {'home': 1, 'govt': 1, 'cbse': 1};
+// 2. STATE MANAGEMENT (Removed Pagination for Free Tier Safety)
 const isFetching = {'home': false, 'govt': false, 'cbse': false};
 
 // 3. SPA ROUTING LOGIC
@@ -29,7 +28,7 @@ navButtons.forEach(btn => {
     });
 });
 
-// 4. NEWS FETCHING & INFINITE SCROLL (THE BRAIN)
+// 4. NEWS FETCHING (THE BRAIN - SPACES ENCODED)
 async function loadRealNews(category) {
     if (isFetching[category]) return;
     isFetching[category] = true;
@@ -37,50 +36,55 @@ async function loadRealNews(category) {
     const gridElement = document.getElementById(`${category}-grid`);
     const loader = document.getElementById(`${category}-loader`);
     
-    let query = category === 'govt' ? "government exams admit card india" : (category === 'cbse' ? "CBSE board exam india" : "education news india");
-    const url = `https://gnews.io/api/v4/search?q=${query}&lang=en&max=10&page=${pageTracker[category]}&apikey=${API_KEY}`;
+    // Deep targeted keywords
+    let query = category === 'govt' ? "Sarkari Result OR NDA OR Exam" : (category === 'cbse' ? "CBSE board exam syllabus" : "education student india");
+    
+    // THE FIX: encodeURIComponent safely converts spaces for the server. 
+    // Removed the 'page' parameter as Free GNews accounts block it.
+    const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&max=10&apikey=${API_KEY}`;
 
     try {
         const response = await fetch(url);
         
         if (!response.ok) {
-            throw new Error(`HTTP Error: ${response.status}`);
+            // This will tell us EXACTLY what GNews is complaining about
+            throw new Error(`GNews Server Rejected: Code ${response.status}`);
         }
         
         const data = await response.json();
         
         if (data.articles && data.articles.length > 0) {
             data.articles.forEach(article => {
-                
-                // YAHAN HAI ASLI CODE JO GAYAB THA (HTML CARDS GENERATOR)
                 const card = document.createElement('div');
                 card.className = 'news-card';
                 
-                // Agar news mein photo nahi hai, toh yeh default photo lagayega
+                // Fallback image if news doesn't provide one
                 const imgUrl = article.image || 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60';
                 
                 card.innerHTML = `
                     <img src="${imgUrl}" alt="News Image" style="width:100%; height:180px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
                     <div class="badges">
-                        <span class="badge verified"><i class="fa-solid fa-check-circle"></i> Verified</span>
+                        <span class="badge verified"><i class="fa-solid fa-bolt"></i> Live Sync</span>
                     </div>
                     <h3>${article.title}</h3>
-                    <p>${article.description ? article.description.substring(0, 80) + '...' : 'Click to read full details.'}</p>
+                    <p>${article.description ? article.description.substring(0, 80) + '...' : 'Click to read full detailed update.'}</p>
                     <a href="${article.url}" target="_blank" class="read-btn">Read Full Update</a>
                 `;
                 gridElement.appendChild(card);
             });
             
-            pageTracker[category]++;
+            // Hide the loader once cards are loaded
+            loader.style.display = "none";
             isFetching[category] = false;
             
         } else {
-            loader.innerHTML = "No more updates available.";
+            loader.innerHTML = "No more updates available today.";
             isFetching[category] = false;
         }
     } catch (err) {
         console.error("Error:", err);
-        loader.innerHTML = "<span style='color:red;'>API Limit Reached or Network Error. Refresh after sometime.</span>";
+        // Display exact error on screen for debugging
+        loader.innerHTML = `<span style='color:red; font-weight:bold;'>System Alert: ${err.message}.</span>`;
         isFetching[category] = false;
     }
 }
@@ -94,7 +98,7 @@ function processAILogic(query) {
     openAITutor(res);
 }
 
-// 6. OBSERVER SETUP (INFINITE SCROLL LAZY LOADER)
+// 6. OBSERVER SETUP (Only trigger once now since pagination is off)
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -127,4 +131,3 @@ document.getElementById('search-btn').addEventListener('click', () => {
 
 // INITIAL LOAD FOR HOME PAGE
 loadRealNews('home');
-    
