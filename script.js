@@ -1,133 +1,327 @@
-// ==========================================================
-// DIVYA DRISHTI MASTER SCRIPT - THE BULLETPROOF VERSION
-// ==========================================================
+/* ============================================
+   NEWSSYNC – script.js
+   Production-ready JS for GitHub Pages
+   ============================================ */
 
-// 1. API CONFIGURATION
-const API_KEY = '41f9ca60c9c4feea049876ff25827052'; 
+// ── CONFIG ──────────────────────────────────────────────────────────────────
 
-// 2. STATE MANAGEMENT (Removed Pagination for Free Tier Safety)
-const isFetching = {'home': false, 'govt': false, 'cbse': false};
+const CONFIG = {
+  // 🔑 REPLACE WITH YOUR GNEWS API KEY FROM https://gnews.io
+  API_KEY: 'YOUR_GNEWS_API_KEY_HERE',
 
-// 3. SPA ROUTING LOGIC
-const navButtons = document.querySelectorAll('.nav-btn');
-const viewSections = document.querySelectorAll('.view-section');
+  BASE_URL: 'https://gnews.io/api/v4',
+  REFRESH_INTERVAL: 300_000, // 5 minutes in ms
 
-navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        navButtons.forEach(b => b.classList.remove('active'));
-        viewSections.forEach(s => s.classList.remove('active'));
-        btn.classList.add('active');
-        const targetId = btn.getAttribute('data-target');
-        document.getElementById(targetId).classList.add('active');
-        
-        // Check if grid is empty, then load
-        const grid = document.getElementById(targetId.replace('-section', '-grid'));
-        if(grid && grid.children.length === 0) {
-            loadRealNews(targetId.replace('-section', ''));
-        }
+  ENDPOINTS: {
+    headlines: (key) =>
+      `${CONFIG.BASE_URL}/top-headlines?country=in&lang=en&category=general&max=8&apikey=${key}`,
+    exams: (key) =>
+      `${CONFIG.BASE_URL}/search?q=%22CBSE%22+OR+%22NDA%22+OR+%22CUET+UG%22+OR+%22UPSC%22&lang=en&country=in&sortby=publishedAt&max=8&apikey=${key}`,
+  },
+
+  PLACEHOLDER_IMG: 'https://placehold.co/640x360/EEF0FF/635BFF?text=NewsSync',
+
+  BADGE_RULES: [
+    { keywords: ['NDA', 'navy', 'defence', 'defense', 'army', 'air force'], cls: 'badge-exam', label: '🎖️ Defence' },
+    { keywords: ['CUET', 'CET', 'entrance', 'admission'],                   cls: 'badge-exam', label: '📝 Exam Alert' },
+    { keywords: ['CBSE', 'board', 'class 10', 'class 12', 'result'],        cls: 'badge-board', label: '📋 Board News' },
+    { keywords: ['UPSC', 'civil services', 'IAS', 'IPS', 'IFS'],           cls: 'badge-upsc', label: '🏛️ UPSC' },
+    { keywords: ['CUET UG'],                                                 cls: 'badge-cuet', label: '🎓 CUET UG' },
+  ],
+};
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+
+const state = {
+  headlineUrls: new Set(),
+  examUrls:     new Set(),
+};
+
+// ── DOM REFS ─────────────────────────────────────────────────────────────────
+
+const DOM = {
+  headlinesGrid: document.getElementById('headlines-grid'),
+  examsGrid:     document.getElementById('exams-grid'),
+  lastUpdated:   document.getElementById('last-updated'),
+  toast:         document.getElementById('toast'),
+};
+
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+
+/** Show a toast notification */
+let toastTimer;
+function showToast(message, type = '') {
+  clearTimeout(toastTimer);
+  DOM.toast.textContent = message;
+  DOM.toast.className = `toast${type ? ' ' + type : ''}`;
+  void DOM.toast.offsetWidth; // force reflow
+  DOM.toast.classList.add('show');
+  toastTimer = setTimeout(() => DOM.toast.classList.remove('show'), 4500);
+}
+
+/** Format ISO date to readable string */
+function formatDate(isoStr) {
+  if (!isoStr) return '';
+  try {
+    return new Date(isoStr).toLocaleString('en-IN', {
+      day: '2-digit', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', hour12: true,
     });
-});
+  } catch { return ''; }
+}
 
-// 4. NEWS FETCHING (THE BRAIN - SPACES ENCODED)
-async function loadRealNews(category) {
-    if (isFetching[category]) return;
-    isFetching[category] = true;
-    
-    const gridElement = document.getElementById(`${category}-grid`);
-    const loader = document.getElementById(`${category}-loader`);
-    
-    // Deep targeted keywords
-    let query = category === 'govt' ? "Sarkari Result OR NDA OR Exam" : (category === 'cbse' ? "CBSE board exam syllabus" : "education student india");
-    
-    // THE FIX: encodeURIComponent safely converts spaces for the server. 
-    // Removed the 'page' parameter as Free GNews accounts block it.
-    const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&max=10&apikey=${API_KEY}`;
-
-    try {
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            // This will tell us EXACTLY what GNews is complaining about
-            throw new Error(`GNews Server Rejected: Code ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (data.articles && data.articles.length > 0) {
-            data.articles.forEach(article => {
-                const card = document.createElement('div');
-                card.className = 'news-card';
-                
-                // Fallback image if news doesn't provide one
-                const imgUrl = article.image || 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&auto=format&fit=crop&q=60';
-                
-                card.innerHTML = `
-                    <img src="${imgUrl}" alt="News Image" style="width:100%; height:180px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
-                    <div class="badges">
-                        <span class="badge verified"><i class="fa-solid fa-bolt"></i> Live Sync</span>
-                    </div>
-                    <h3>${article.title}</h3>
-                    <p>${article.description ? article.description.substring(0, 80) + '...' : 'Click to read full detailed update.'}</p>
-                    <a href="${article.url}" target="_blank" class="read-btn">Read Full Update</a>
-                `;
-                gridElement.appendChild(card);
-            });
-            
-            // Hide the loader once cards are loaded
-            loader.style.display = "none";
-            isFetching[category] = false;
-            
-        } else {
-            loader.innerHTML = "No more updates available today.";
-            isFetching[category] = false;
-        }
-    } catch (err) {
-        console.error("Error:", err);
-        // Display exact error on screen for debugging
-        loader.innerHTML = `<span style='color:red; font-weight:bold;'>System Alert: ${err.message}.</span>`;
-        isFetching[category] = false;
+/** Determine badges for an article title */
+function getBadges(title = '') {
+  const upper = title.toUpperCase();
+  const badges = [];
+  for (const rule of CONFIG.BADGE_RULES) {
+    if (rule.keywords.some(kw => upper.includes(kw.toUpperCase()))) {
+      // avoid duplicates
+      if (!badges.find(b => b.cls === rule.cls)) {
+        badges.push(rule);
+      }
     }
+  }
+  return badges.slice(0, 2); // max 2 badges per card
 }
 
-// 5. ADVANCED AI TUTOR (DIVYA DRISHTI)
-function processAILogic(query) {
-    const q = query.toLowerCase();
-    let res = "Maine aapki query scan ki hai. Background mein verified updates load ho rahe hain.";
-    if (q.includes("nda") || q.includes("admit card")) res = "NDA admit cards UPSC website par available hain. Govt Exams section check karein.";
-    if (q.includes("cbse") || q.includes("result")) res = "CBSE ke liye official portal dekhein. Kya main aapko wahan le chalun?";
-    openAITutor(res);
+/** Render badge HTML */
+function renderBadges(badges) {
+  if (!badges.length) return '';
+  const items = badges.map(b => `<span class="badge ${b.cls}">${b.label}</span>`).join('');
+  return `<div class="card-badge-row">${items}</div>`;
 }
 
-// 6. OBSERVER SETUP (Only trigger once now since pagination is off)
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            if(entry.target.id === 'home-loader') loadRealNews('home');
-            if(entry.target.id === 'govt-loader') loadRealNews('govt');
-            if(entry.target.id === 'cbse-loader') loadRealNews('cbse');
-        }
-    });
-}, { threshold: 0.1 });
+/** Build one news card HTML string */
+function buildCardHTML(article) {
+  const img  = article.image || CONFIG.PLACEHOLDER_IMG;
+  const imgAlt = article.image ? `Thumbnail for: ${article.title}` : 'Placeholder news image';
+  const desc = article.description || 'No description available for this article.';
+  const src  = article.source?.name || 'Unknown Source';
+  const date = formatDate(article.publishedAt);
+  const badges = getBadges(article.title);
 
-// Attaching observer to loaders
-['home-loader', 'govt-loader', 'cbse-loader'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) observer.observe(el);
-});
-
-// 7. UTILS & UI CONTROLS
-function openAITutor(msg) {
-    document.getElementById('ai-tutor-window').classList.remove('hidden');
-    document.getElementById('tutor-response').innerHTML = `<strong>Divya Drishti AI:</strong><br>${msg}`;
+  return `
+    <article class="news-card">
+      <div class="card-img-wrap">
+        <img
+          src="${img}"
+          alt="${imgAlt}"
+          loading="lazy"
+          onerror="this.src='${CONFIG.PLACEHOLDER_IMG}'; this.alt='Placeholder news image';"
+        />
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-source">${src}</span>
+          <time class="card-date" datetime="${article.publishedAt || ''}">${date}</time>
+        </div>
+        ${renderBadges(badges)}
+        <h3 class="card-title">
+          <a href="${article.url}" target="_blank" rel="noopener noreferrer">
+            ${article.title}
+          </a>
+        </h3>
+        <p class="card-desc">${desc}</p>
+        <a class="card-link" href="${article.url}" target="_blank" rel="noopener noreferrer">
+          Read more →
+        </a>
+      </div>
+    </article>
+  `.trim();
 }
 
-document.getElementById('close-tutor').addEventListener('click', () => {
-    document.getElementById('ai-tutor-window').classList.add('hidden');
-});
+/** Build skeleton loader HTML (count cards) */
+function buildSkeletons(count = 6) {
+  return Array.from({ length: count }, () => `
+    <div class="skeleton-card" aria-hidden="true">
+      <div class="sk skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton-line w-30 sk"></div>
+        <div class="skeleton-gap">
+          <div class="skeleton-line h-20 w-80 sk"></div>
+          <div class="skeleton-line h-20 w-60 sk"></div>
+        </div>
+        <div class="skeleton-gap">
+          <div class="skeleton-line w-100 sk"></div>
+          <div class="skeleton-line w-100 sk"></div>
+          <div class="skeleton-line w-80 sk"></div>
+        </div>
+        <div class="skeleton-line w-30 sk"></div>
+      </div>
+    </div>
+  `).join('');
+}
 
-document.getElementById('search-btn').addEventListener('click', () => {
-    processAILogic(document.getElementById('ai-search-input').value);
-});
+/** Render fallback message inside a grid */
+function renderFallback(gridEl, message, icon = '📡') {
+  gridEl.innerHTML = `
+    <div class="fallback-msg" role="status">
+      <span class="fallback-icon">${icon}</span>
+      <p class="fallback-title">${message}</p>
+      <p class="fallback-sub">Updates will resume automatically. You can also refresh the page.</p>
+    </div>
+  `;
+}
 
-// INITIAL LOAD FOR HOME PAGE
-loadRealNews('home');
+/** Update the "Last Updated" timestamp in the header */
+function updateTimestamp() {
+  const now = new Date().toLocaleTimeString('en-IN', {
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true,
+  });
+  DOM.lastUpdated.textContent = `Last synced: ${now}`;
+}
+
+// ── FETCH FUNCTIONS ───────────────────────────────────────────────────────────
+
+/**
+ * Generic fetch wrapper with timeout, JSON parsing, and error classification.
+ */
+async function fetchJSON(url, timeoutMs = 10_000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const res = await fetch(url, { signal: controller.signal });
+    clearTimeout(timer);
+
+    if (res.status === 429) {
+      throw Object.assign(new Error('Rate limit exceeded'), { code: 'RATE_LIMIT' });
+    }
+    if (!res.ok) {
+      throw Object.assign(
+        new Error(`HTTP ${res.status}: ${res.statusText}`),
+        { code: 'HTTP_ERROR', status: res.status }
+      );
+    }
+
+    return await res.json();
+  } catch (err) {
+    clearTimeout(timer);
+    if (err.name === 'AbortError') {
+      throw Object.assign(new Error('Request timed out'), { code: 'TIMEOUT' });
+    }
+    throw err;
+  }
+}
+
+/**
+ * Fetch and render top India headlines.
+ * Uses state diffing: only re-renders if new articles found.
+ */
+async function fetchHeadlines() {
+  try {
+    const data = await fetchJSON(CONFIG.ENDPOINTS.headlines(CONFIG.API_KEY));
+    const articles = data?.articles ?? [];
+
+    if (!articles.length) {
+      renderFallback(DOM.headlinesGrid, 'No headlines found at the moment.', '📰');
+      return;
+    }
+
+    // State diff: check if any article is new
+    const newUrls = articles.map(a => a.url);
+    const hasNew  = newUrls.some(url => !state.headlineUrls.has(url));
+
+    if (!hasNew && DOM.headlinesGrid.querySelector('.news-card')) return; // no change
+
+    // Update state
+    state.headlineUrls = new Set(newUrls);
+
+    // Render
+    DOM.headlinesGrid.innerHTML = articles.map(buildCardHTML).join('');
+    updateTimestamp();
+
+  } catch (err) {
+    handleFetchError(err, DOM.headlinesGrid, 'headlines');
+  }
+}
+
+/**
+ * Fetch and render exam/board notifications.
+ */
+async function fetchExamUpdates() {
+  try {
+    const data = await fetchJSON(CONFIG.ENDPOINTS.exams(CONFIG.API_KEY));
+    const articles = data?.articles ?? [];
+
+    if (!articles.length) {
+      renderFallback(DOM.examsGrid, 'No exam alerts found at the moment.', '📚');
+      return;
+    }
+
+    const newUrls = articles.map(a => a.url);
+    const hasNew  = newUrls.some(url => !state.examUrls.has(url));
+
+    if (!hasNew && DOM.examsGrid.querySelector('.news-card')) return;
+
+    state.examUrls = new Set(newUrls);
+    DOM.examsGrid.innerHTML = articles.map(buildCardHTML).join('');
+    updateTimestamp();
+
+  } catch (err) {
+    handleFetchError(err, DOM.examsGrid, 'exam alerts');
+  }
+}
+
+/**
+ * Centralised error handler for fetch failures.
+ */
+function handleFetchError(err, gridEl, context) {
+  console.error(`[NewsSync] Error fetching ${context}:`, err);
+
+  // Only replace skeleton/card UI on first failure (not on repeat timer hits if cards exist)
+  const hasCards = gridEl.querySelector('.news-card');
+
+  if (err.code === 'RATE_LIMIT') {
+    showToast('⏳ API limit reached. Auto-retrying in 5 min.', 'warn');
+    if (!hasCards) renderFallback(gridEl, 'Updates paused — rate limit reached.', '⏳');
+    return;
+  }
+
+  if (!navigator.onLine || err.message?.includes('Failed to fetch') || err.code === 'TIMEOUT') {
+    showToast('📶 You are offline. Showing older results.', 'warn');
+    if (!hasCards) renderFallback(gridEl, 'No internet connection.', '📶');
+    return;
+  }
+
+  // Generic API error
+  showToast(`⚠️ Could not load ${context}. Retrying soon…`, 'error');
+  if (!hasCards) renderFallback(gridEl, 'Updates temporarily unavailable.', '⚠️');
+}
+
+// ── SYNC ENGINE ───────────────────────────────────────────────────────────────
+
+/**
+ * Runs both fetch functions concurrently.
+ * Called on init and every 5 minutes.
+ */
+async function syncAll() {
+  await Promise.allSettled([
+    fetchHeadlines(),
+    fetchExamUpdates(),
+  ]);
+}
+
+/**
+ * Initialise the app: show skeletons → start sync → schedule interval.
+ */
+function init() {
+  // Show skeleton placeholders immediately
+  DOM.headlinesGrid.innerHTML = buildSkeletons(6);
+  DOM.examsGrid.innerHTML     = buildSkeletons(6);
+
+  // First data load
+  syncAll();
+
+  // Auto-refresh every 5 minutes
+  setInterval(syncAll, CONFIG.REFRESH_INTERVAL);
+
+  // Listen for connectivity changes
+  window.addEventListener('online',  () => { showToast('✅ Back online! Syncing now…'); syncAll(); });
+  window.addEventListener('offline', () => showToast('📶 You are offline. Showing cached data.', 'warn'));
+}
+
+// ── BOOT ─────────────────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', init);
