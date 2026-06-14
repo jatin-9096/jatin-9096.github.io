@@ -7,7 +7,7 @@
 
 const CONFIG = {
   // 🔑 REPLACE WITH YOUR GNEWS API KEY FROM https://gnews.io
-  API_KEY: 'YOUR_GNEWS_API_KEY_HERE',
+  API_KEY: '41f9ca60c9c4feea049876ff25827052',
 
   BASE_URL: 'https://gnews.io/api/v4',
   REFRESH_INTERVAL: 300_000, // 5 minutes in ms
