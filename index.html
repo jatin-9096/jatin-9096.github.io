@@ -3,79 +3,388 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Live News & Exam Updates Portal – Latest India Headlines, CBSE Board News, NDA, CUET UG, UPSC notifications. Auto-synced every 5 minutes." />
-  <meta name="theme-color" content="#0A2540" />
-  <title>NewsSync – Live India News & Exam Alerts</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <title>NewsSync India – Live News & Exam Updates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0A2540;
+      --indigo: #635BFF;
+      --bg: #F6F9FC;
+      --white: #FFFFFF;
+      --text: #425466;
+      --muted: #8898AA;
+      --border: #E8EFF5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--navy);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--indigo);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(99,91,255,.6); }
+      70%  { box-shadow: 0 0 0 8px rgba(99,91,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(99,91,255,0); }
+    }
+
+    .brand-name { color: #fff; font-weight: 800; font-size: 1.2rem; }
+    .live-tag {
+      background: rgba(99,91,255,.2);
+      color: var(--indigo);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid rgba(99,91,255,.4);
+    }
+
+    #last-updated {
+      color: rgba(255,255,255,.5);
+      font-size: 0.75rem;
+    }
+
+    /* MAIN */
+    main { max-width: 1200px; margin: auto; padding: 32px 16px; }
+
+    .section { margin-bottom: 48px; }
+
+    .section-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .section-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    /* CARD */
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(10,37,64,.07);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s ease, box-shadow .25s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(99,91,255,.15);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      background: var(--bg);
+    }
+
+    .card-body { padding: 16px 18px 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+    .card-source {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--indigo);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--text);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-link {
+      margin-top: auto;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--indigo);
+    }
+
+    /* SKELETON */
+    @keyframes shimmer {
+      0%   { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
+    }
+
+    .sk {
+      background: linear-gradient(90deg, #E8EFF5 25%, #F0F4F8 50%, #E8EFF5 75%);
+      background-size: 400px 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 6px;
+    }
+
+    .skel-card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .skel-img  { height: 170px; width: 100%; border-radius: 0; }
+    .skel-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .skel-line { height: 12px; }
+    .w30 { width: 30%; } .w60 { width: 60%; } .w80 { width: 80%; } .w100 { width: 100%; }
+    .h18 { height: 18px; }
+
+    /* ERROR STATE */
+    .error-box {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+    }
+
+    .error-box .icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .error-box p { color: var(--muted); font-size: .9rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.78rem;
+    }
+
+    footer a { color: rgba(255,255,255,.8); }
+  </style>
 </head>
 <body>
 
-  <!-- TOAST NOTIFICATION -->
-  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+<header>
+  <div class="brand">
+    <div class="dot"></div>
+    <span class="brand-name">NewsSync</span>
+    <span class="live-tag">LIVE</span>
+  </div>
+  <span id="last-updated">Loading…</span>
+</header>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <span class="brand-dot"></span>
-        <span class="brand-name">NewsSync</span>
-        <span class="brand-tag">LIVE</span>
-      </div>
-      <div class="header-meta">
-        <span class="sync-icon">↻</span>
-        <span id="last-updated">Syncing…</span>
-      </div>
+<main>
+
+  <!-- TOP NEWS -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">🇮🇳 India Top News</h2>
+      <p class="section-sub">Latest headlines · Auto-refresh every 10 min</p>
     </div>
-  </header>
+    <div class="grid" id="news-grid" aria-live="polite"></div>
+  </section>
 
-  <!-- MAIN CONTENT -->
-  <main class="site-main container">
-
-    <!-- TOP HEADLINES SECTION -->
-    <section class="section" aria-labelledby="headlines-title">
-      <div class="section-header">
-        <h2 id="headlines-title" class="section-title">🇮🇳 Top Headlines</h2>
-        <span class="section-subtitle">India · General · Auto-refresh every 5 min</span>
-      </div>
-      <div
-        id="headlines-grid"
-        class="news-grid"
-        aria-live="polite"
-        aria-label="Latest India headlines"
-      >
-        <!-- Skeleton loaders injected by JS -->
-      </div>
-    </section>
-
-    <!-- EXAM ALERTS SECTION -->
-    <section class="section" aria-labelledby="exams-title">
-      <div class="section-header">
-        <h2 id="exams-title" class="section-title">📚 Exam &amp; Board Alerts</h2>
-        <span class="section-subtitle">CBSE · NDA · CUET UG · UPSC · Latest Notifications</span>
-      </div>
-      <div
-        id="exams-grid"
-        class="news-grid"
-        aria-live="polite"
-        aria-label="Latest exam and board updates"
-      >
-        <!-- Skeleton loaders injected by JS -->
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="footer-copy">© 2025 NewsSync. Powered by <a href="https://gnews.io" target="_blank" rel="noopener noreferrer">GNews API</a>.</p>
-      <p class="footer-disclaimer">Content sourced from public news APIs. For informational purposes only.</p>
+  <!-- EXAM ALERTS -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">📚 Exam & Board Alerts</h2>
+      <p class="section-sub">CBSE · NDA · CUET · UPSC · Latest Notifications</p>
     </div>
-  </footer>
+    <div class="grid" id="exam-grid" aria-live="polite"></div>
+  </section>
 
-  <script src="script.js"></script>
+</main>
+
+<footer>
+  © 2025 NewsSync &nbsp;·&nbsp; Powered by public RSS feeds &nbsp;·&nbsp; For informational purposes only
+</footer>
+
+<script>
+// ── RSS FEEDS (no API key needed!) ─────────────────────────────────────────
+const RSS2JSON = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+const FEEDS = {
+  news: [
+    'https://feeds.feedburner.com/ndtvnews-india-news',
+    'https://timesofindia.indiatimes.com/rssfeeds/296589292.cms',
+    'https://www.thehindu.com/news/national/feeder/default.rss',
+  ],
+  exams: [
+    'https://www.jagranjosh.com/rss/exam-news.xml',
+    'https://www.careers360.com/rss/articles',
+    'https://feeds.feedburner.com/ndtvnews-education',
+  ],
+};
+
+const PLACEHOLDER = 'https://placehold.co/600x340/EEF0FF/635BFF?text=NewsSync';
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+const seenNews = new Set();
+const seenExam = new Set();
+
+// ── HELPERS ────────────────────────────────────────────────────────────────
+function skeletons(n = 6) {
+  return Array.from({length: n}, () => `
+    <div class="skel-card">
+      <div class="sk skel-img"></div>
+      <div class="skel-body">
+        <div class="sk skel-line w30"></div>
+        <div class="sk skel-line h18 w80"></div>
+        <div class="sk skel-line h18 w60"></div>
+        <div class="sk skel-line w100"></div>
+        <div class="sk skel-line w100"></div>
+        <div class="sk skel-line w30"></div>
+      </div>
+    </div>`).join('');
+}
+
+function errorBox(msg) {
+  return `<div class="error-box"><div class="icon">📡</div><p>${msg}</p></div>`;
+}
+
+function timeAgo(dateStr) {
+  if (!dateStr) return '';
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1)  return 'Just now';
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h/24)}d ago`;
+}
+
+function buildCard(item) {
+  const img   = item.thumbnail || item.enclosure?.link || PLACEHOLDER;
+  const title = item.title || 'No title';
+  const desc  = item.description
+    ? item.description.replace(/<[^>]+>/g, '').slice(0, 160) + '…'
+    : 'No description available.';
+  const src   = item.author || 'News';
+  const ago   = timeAgo(item.pubDate);
+
+  return `
+    <a class="card" href="${item.link}" target="_blank" rel="noopener noreferrer">
+      <img class="card-img" src="${img}" alt="${title}"
+           onerror="this.src='${PLACEHOLDER}'" loading="lazy" />
+      <div class="card-body">
+        <span class="card-source">${src} · ${ago}</span>
+        <p class="card-title">${title}</p>
+        <p class="card-desc">${desc}</p>
+        <span class="card-link">Read more →</span>
+      </div>
+    </a>`;
+}
+
+// ── FETCH ONE RSS FEED ─────────────────────────────────────────────────────
+async function fetchFeed(url) {
+  try {
+    const res  = await fetch(`${RSS2JSON}${encodeURIComponent(url)}&count=5`);
+    const data = await res.json();
+    if (data.status !== 'ok') return [];
+    return data.items || [];
+  } catch {
+    return [];
+  }
+}
+
+// ── FETCH ALL & RENDER ─────────────────────────────────────────────────────
+async function loadSection(feedUrls, gridId, seenSet) {
+  const grid = document.getElementById(gridId);
+
+  const results = await Promise.allSettled(feedUrls.map(fetchFeed));
+  const allItems = results
+    .filter(r => r.status === 'fulfilled')
+    .flatMap(r => r.value)
+    .filter(item => item.link && !seenSet.has(item.link))
+    .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
+    .slice(0, 9);
+
+  if (!allItems.length) {
+    grid.innerHTML = errorBox('Could not load news right now. Retrying in 10 minutes…');
+    return;
+  }
+
+  // Check if new content
+  const hasNew = allItems.some(i => !seenSet.has(i.link));
+  if (!hasNew && grid.querySelector('.card')) return;
+
+  allItems.forEach(i => seenSet.add(i.link));
+  grid.innerHTML = allItems.map(buildCard).join('');
+}
+
+function updateTime() {
+  document.getElementById('last-updated').textContent =
+    'Updated: ' + new Date().toLocaleTimeString('en-IN', {hour:'2-digit', minute:'2-digit', hour12:true});
+}
+
+async function syncAll() {
+  await Promise.allSettled([
+    loadSection(FEEDS.news,  'news-grid',  seenNews),
+    loadSection(FEEDS.exams, 'exam-grid',  seenExam),
+  ]);
+  updateTime();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+document.getElementById('news-grid').innerHTML  = skeletons(6);
+document.getElementById('exam-grid').innerHTML  = skeletons(6);
+
+syncAll();
+setInterval(syncAll, 10 * 60 * 1000); // 10 minutes
+
+window.addEventListener('online',  () => syncAll());
+</script>
 </body>
 </html>
