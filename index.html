@@ -1,63 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divya Drishti | Revolution in Ed-Tech Media</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Live News & Exam Updates Portal – Latest India Headlines, CBSE Board News, NDA, CUET UG, UPSC notifications. Auto-synced every 5 minutes." />
+  <meta name="theme-color" content="#0A2540" />
+  <title>NewsSync – Live India News & Exam Alerts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-eye"></i> Divya Drishti
-        </div>
-        
-        <div class="search-container">
-            <input type="text" id="ai-search-input" placeholder="Ask Divya Drishti (e.g., 'NDA admit card')...">
-            <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
 
-        <div class="nav-links">
-            <button class="nav-btn active" data-target="home-section">Home</button>
-            <button class="nav-btn" data-target="govt-section">Govt Exams</button>
-            <button class="nav-btn" data-target="cbse-section">CBSE</button>
-        </div>
-    </nav>
-
-    <main class="app-container">
-        
-        <section id="home-section" class="view-section active">
-            <h2>Trending Updates</h2>
-            <div class="news-grid" id="home-grid">
-                </div>
-            <div class="loader" id="home-loader">Loading more updates... <i class="fa-solid fa-spinner fa-spin"></i></div>
-        </section>
-
-        <section id="govt-section" class="view-section">
-            <h2>Government Exams</h2>
-            <div class="news-grid" id="govt-grid"></div>
-            <div class="loader" id="govt-loader">Loading more updates... <i class="fa-solid fa-spinner fa-spin"></i></div>
-        </section>
-
-        <section id="cbse-section" class="view-section">
-            <h2>CBSE Board Updates</h2>
-            <div class="news-grid" id="cbse-grid"></div>
-            <div class="loader" id="cbse-loader">Loading more updates... <i class="fa-solid fa-spinner fa-spin"></i></div>
-        </section>
-
-    </main>
-
-    <div id="ai-tutor-window" class="hidden">
-        <div class="tutor-header">
-            <h3><i class="fa-solid fa-robot"></i> Divya Drishti Tutor</h3>
-            <button id="close-tutor"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="tutor-body" id="tutor-response">
-            </div>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">NewsSync</span>
+        <span class="brand-tag">LIVE</span>
+      </div>
+      <div class="header-meta">
+        <span class="sync-icon">↻</span>
+        <span id="last-updated">Syncing…</span>
+      </div>
     </div>
+  </header>
 
-    <script src="script.js?v=final"></script>
+  <!-- MAIN CONTENT -->
+  <main class="site-main container">
+
+    <!-- TOP HEADLINES SECTION -->
+    <section class="section" aria-labelledby="headlines-title">
+      <div class="section-header">
+        <h2 id="headlines-title" class="section-title">🇮🇳 Top Headlines</h2>
+        <span class="section-subtitle">India · General · Auto-refresh every 5 min</span>
+      </div>
+      <div
+        id="headlines-grid"
+        class="news-grid"
+        aria-live="polite"
+        aria-label="Latest India headlines"
+      >
+        <!-- Skeleton loaders injected by JS -->
+      </div>
+    </section>
+
+    <!-- EXAM ALERTS SECTION -->
+    <section class="section" aria-labelledby="exams-title">
+      <div class="section-header">
+        <h2 id="exams-title" class="section-title">📚 Exam &amp; Board Alerts</h2>
+        <span class="section-subtitle">CBSE · NDA · CUET UG · UPSC · Latest Notifications</span>
+      </div>
+      <div
+        id="exams-grid"
+        class="news-grid"
+        aria-live="polite"
+        aria-label="Latest exam and board updates"
+      >
+        <!-- Skeleton loaders injected by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">© 2025 NewsSync. Powered by <a href="https://gnews.io" target="_blank" rel="noopener noreferrer">GNews API</a>.</p>
+      <p class="footer-disclaimer">Content sourced from public news APIs. For informational purposes only.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
