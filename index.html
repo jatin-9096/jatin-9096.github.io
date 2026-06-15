@@ -35,22 +35,49 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .page-btn:hover:not(:disabled){background:#635BFF;color:#fff;border-color:#635BFF}
 .page-btn:disabled{opacity:.4;cursor:not-allowed}
 .page-info{font-size:.82rem;color:#8898AA;font-weight:500}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,37,64,.7);z-index:999;align-items:center;justify-content:center;padding:16px}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,37,64,.85);z-index:999;align-items:flex-start;justify-content:center;padding:0}
 .modal-overlay.open{display:flex}
-.modal{background:#fff;border-radius:16px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:slideUp .3s ease}
-@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
-.modal-img{width:100%;height:220px;object-fit:cover;border-radius:16px 16px 0 0;background:#EEF0FF}
-.modal-body{padding:24px}
-.modal-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.modal-source{font-size:.72rem;font-weight:700;color:#635BFF;text-transform:uppercase;letter-spacing:.8px}
-.modal-date{font-size:.72rem;color:#8898AA}
-.modal-title{font-size:1.2rem;font-weight:800;color:#0A2540;line-height:1.4;margin-bottom:12px}
-.modal-desc{font-size:.9rem;color:#425466;line-height:1.7;margin-bottom:20px}
-.modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+.modal{background:#fff;width:100%;height:100vh;max-width:900px;display:flex;flex-direction:column;position:relative;animation:slideUp .25s ease}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* Modal top bar */
+.modal-topbar{background:#0A2540;padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.modal-topbar .site-brand{color:#fff;font-weight:800;font-size:.95rem;flex:1}
+.modal-url{color:rgba(255,255,255,.5);font-size:.72rem;flex:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.modal-close-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:30px;height:30px;border-radius:50%;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.modal-close-btn:hover{background:rgba(255,255,255,.3)}
+
+/* iframe view */
+.iframe-wrap{flex:1;position:relative;background:#F6F9FC}
+.article-iframe{width:100%;height:100%;border:none;display:block}
+
+/* Fallback summary view */
+.summary-view{display:none;flex:1;overflow-y:auto;padding:0}
+.summary-img{width:100%;height:220px;object-fit:cover;background:#EEF0FF;flex-shrink:0}
+.summary-body{padding:24px}
+.summary-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.summary-source{font-size:.72rem;font-weight:700;color:#635BFF;text-transform:uppercase;letter-spacing:.8px}
+.summary-date{font-size:.72rem;color:#8898AA}
+.summary-title{font-size:1.15rem;font-weight:800;color:#0A2540;line-height:1.4;margin-bottom:12px}
+.summary-desc{font-size:.9rem;color:#425466;line-height:1.7;margin-bottom:20px}
+.summary-actions{display:flex;gap:10px;flex-wrap:wrap}
 .btn-primary{background:#635BFF;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .btn-primary:hover{background:#4f46e5}
-.btn-secondary{background:#F6F9FC;color:#425466;border:1px solid #E8EFF5;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer}
-.modal-close{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.5);color:#fff;border:none;width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10}
+.btn-secondary{background:#F6F9FC;color:#425466;border:1px solid #E8EFF5;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+
+/* Loading spinner inside iframe */
+.iframe-loader{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#F6F9FC;z-index:2}
+.spinner{width:36px;height:36px;border:3px solid #E8EFF5;border-top-color:#635BFF;border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-text{font-size:.82rem;color:#8898AA}
+
+/* Blocked notice inside modal */
+.blocked-notice{display:none;background:#FFF8E1;border:1px solid #FFE082;border-radius:8px;padding:10px 14px;margin:12px 24px 0;font-size:.78rem;color:#B8860B;align-items:center;gap:8px}
+.blocked-notice.show{display:flex}
+
+/* FEEDBACK */
 .feedback-section{background:#fff;border-radius:16px;border:1px solid #E8EFF5;padding:32px;margin-bottom:48px}
 .feedback-title{font-size:1.1rem;font-weight:800;color:#0A2540;margin-bottom:6px}
 .feedback-sub{font-size:.82rem;color:#8898AA;margin-bottom:20px}
@@ -66,18 +93,20 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .star{font-size:1.4rem;cursor:pointer;color:#E8EFF5;transition:color .15s}
 .star.active{color:#F5A623}
 .rating-stars{display:flex;gap:8px}
+
+/* SKELETON */
 @keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
 .sk{background:linear-gradient(90deg,#E8EFF5 25%,#F0F4F8 50%,#E8EFF5 75%);background-size:400px 100%;animation:shimmer 1.4s infinite;border-radius:6px}
 .skel-card{background:#fff;border-radius:12px;border:1px solid #E8EFF5;overflow:hidden}
 .skel-img{height:170px;width:100%;border-radius:0}
 .skel-body{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
 .skel-line{height:12px}
-.w30{width:30%}.w60{width:60%}.w80{width:80%}.w100{width:100%}.h18{height:18px}
+.w30{width:30%}.w80{width:80%}.w100{width:100%}.h18{height:18px}
 .error-box{grid-column:1/-1;text-align:center;padding:40px 20px;background:#fff;border-radius:12px;border:1px dashed #E8EFF5}
 .error-box .icon{font-size:2.5rem;margin-bottom:12px}
 .error-box p{color:#8898AA;font-size:.9rem;margin-top:8px}
 footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:24px 20px;font-size:.78rem;line-height:2}
-@media(max-width:600px){.form-row{grid-template-columns:1fr}.modal-title{font-size:1rem}.modal-img{height:160px}}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}.summary-title{font-size:1rem}}
 </style>
 </head>
 <body>
@@ -91,22 +120,55 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
   <span id="last-updated">Loading...</span>
 </header>
 
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModalBtn()">X</button>
-    <img class="modal-img" id="modal-img" src="" alt=""/>
-    <div class="modal-body">
-      <div class="modal-meta">
-        <span class="modal-source" id="modal-source"></span>
-        <span class="modal-date" id="modal-date"></span>
+<!-- FULLSCREEN MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+
+    <!-- Top browser-like bar -->
+    <div class="modal-topbar">
+      <span class="site-brand">NewsSync</span>
+      <span class="modal-url" id="modal-url"></span>
+      <button class="modal-close-btn" onclick="closeModal()">X</button>
+    </div>
+
+    <!-- Blocked notice -->
+    <div class="blocked-notice" id="blocked-notice">
+      This site blocked embedding. Showing summary instead.
+    </div>
+
+    <!-- IFRAME VIEW -->
+    <div class="iframe-wrap" id="iframe-wrap">
+      <div class="iframe-loader" id="iframe-loader">
+        <div class="spinner"></div>
+        <span class="loader-text">Loading article...</span>
       </div>
-      <h2 class="modal-title" id="modal-title"></h2>
-      <p class="modal-desc" id="modal-desc"></p>
-      <div class="modal-actions">
-        <a class="btn-primary" id="modal-link" href="#" target="_blank" rel="noopener">Read Full Article</a>
-        <button class="btn-secondary" onclick="closeModalBtn()">Close</button>
+      <iframe
+        class="article-iframe"
+        id="article-iframe"
+        src=""
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+        referrerpolicy="no-referrer"
+        title="Article"
+      ></iframe>
+    </div>
+
+    <!-- SUMMARY FALLBACK VIEW -->
+    <div class="summary-view" id="summary-view">
+      <img class="summary-img" id="sum-img" src="" alt=""/>
+      <div class="summary-body">
+        <div class="summary-meta">
+          <span class="summary-source" id="sum-source"></span>
+          <span class="summary-date" id="sum-date"></span>
+        </div>
+        <h2 class="summary-title" id="sum-title"></h2>
+        <p class="summary-desc" id="sum-desc"></p>
+        <div class="summary-actions">
+          <a class="btn-primary" id="sum-link" href="#" target="_blank" rel="noopener">Open Original Site</a>
+          <button class="btn-secondary" onclick="closeModal()">Close</button>
+        </div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -151,12 +213,12 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
       </div>
       <div class="form-group">
         <label>Website kaisi lagi?</label>
-        <div class="rating-stars" id="stars">
-          <span class="star" onclick="rate(1)">*</span>
-          <span class="star" onclick="rate(2)">*</span>
-          <span class="star" onclick="rate(3)">*</span>
-          <span class="star" onclick="rate(4)">*</span>
-          <span class="star" onclick="rate(5)">*</span>
+        <div class="rating-stars">
+          <span class="star" onclick="rate(1)">&#9733;</span>
+          <span class="star" onclick="rate(2)">&#9733;</span>
+          <span class="star" onclick="rate(3)">&#9733;</span>
+          <span class="star" onclick="rate(4)">&#9733;</span>
+          <span class="star" onclick="rate(5)">&#9733;</span>
         </div>
       </div>
       <div class="form-group">
@@ -185,19 +247,20 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
 </footer>
 
 <script>
-var KEY  = 'pub_50035c437a574af1b18c1f6b056f5ad9';
-var BASE = 'https://newsdata.io/api/1';
-var IMG  = 'https://placehold.co/600x340/EEF0FF/635BFF?text=NewsSync';
-var PER  = 9;
+var KEY      = 'pub_50035c437a574af1b18c1f6b056f5ad9';
+var BASE     = 'https://newsdata.io/api/1';
+var IMG      = 'https://placehold.co/600x340/EEF0FF/635BFF?text=NewsSync';
+var PER      = 9;
 var CACHE_MS = 30 * 60 * 1000;
+var store    = { news: [], exam: [] };
+var pages    = { news: 1, exam: 1 };
+var allArticles = [];
+var iframeTimer = null;
 
-var store = { news: [], exam: [] };
-var pages = { news: 1, exam: 1 };
-
+// ── CACHE ──────────────────────────────────────────────────────────────────
 function saveCache(key, data) {
   try { localStorage.setItem('ns_' + key, JSON.stringify({ data: data, time: Date.now() })); } catch(e) {}
 }
-
 function loadCache(key) {
   try {
     var c = JSON.parse(localStorage.getItem('ns_' + key) || 'null');
@@ -206,61 +269,109 @@ function loadCache(key) {
   return null;
 }
 
+// ── SKELETON ───────────────────────────────────────────────────────────────
 function skels(n) {
   var s = '';
   for (var i = 0; i < n; i++) {
-    s += '<div class="skel-card"><div class="sk skel-img"></div><div class="skel-body"><div class="sk skel-line w30"></div><div class="sk skel-line h18 w80"></div><div class="sk skel-line h18 w60"></div><div class="sk skel-line w100"></div><div class="sk skel-line w100"></div></div></div>';
+    s += '<div class="skel-card"><div class="sk skel-img"></div><div class="skel-body"><div class="sk skel-line w30"></div><div class="sk skel-line h18 w80"></div><div class="sk skel-line h18 w80"></div><div class="sk skel-line w100"></div><div class="sk skel-line w100"></div></div></div>';
   }
   return s;
 }
 
+// ── TIME ───────────────────────────────────────────────────────────────────
 function ago(d) {
   if (!d) return '';
   var m = Math.floor((Date.now() - new Date(d)) / 60000);
-  if (m < 1)  return 'Just now';
+  if (m < 1) return 'Just now';
   if (m < 60) return m + 'm ago';
   var h = Math.floor(m / 60);
   if (h < 24) return h + 'h ago';
   return Math.floor(h / 24) + 'd ago';
 }
-
 function fmtDate(d) {
   if (!d) return '';
-  return new Date(d).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+  return new Date(d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
-function errBox(msg) {
-  return '<div class="error-box"><div class="icon">Sorry</div><p>' + msg + '</p></div>';
-}
-
-var currentArticles = [];
-
+// ── MODAL ──────────────────────────────────────────────────────────────────
 function openModal(idx) {
-  var a = currentArticles[idx];
+  var a = allArticles[idx];
   if (!a) return;
-  var img = a.image_url || IMG;
-  document.getElementById('modal-img').src = img;
-  document.getElementById('modal-img').onerror = function() { this.src = IMG; };
-  document.getElementById('modal-source').textContent = a.source_name || 'News';
-  document.getElementById('modal-date').textContent   = fmtDate(a.pubDate);
-  document.getElementById('modal-title').textContent  = a.title || '';
-  document.getElementById('modal-desc').textContent   = a.description || a.content || 'Read the full article for complete details.';
-  document.getElementById('modal-link').href          = a.link || '#';
+
+  var url = a.link || '';
+
+  // Reset views
+  document.getElementById('iframe-wrap').style.display = 'flex';
+  document.getElementById('summary-view').style.display = 'none';
+  document.getElementById('blocked-notice').classList.remove('show');
+  document.getElementById('iframe-loader').style.display = 'flex';
+  document.getElementById('modal-url').textContent = url;
+  document.getElementById('sum-link').href = url;
+
+  // Pre-fill summary (used if iframe fails)
+  document.getElementById('sum-img').src = a.image_url || IMG;
+  document.getElementById('sum-source').textContent = a.source_name || 'News';
+  document.getElementById('sum-date').textContent = fmtDate(a.pubDate);
+  document.getElementById('sum-title').textContent = a.title || '';
+  document.getElementById('sum-desc').textContent = a.description || a.content || 'Read the full article for complete details.';
+
+  // Load iframe
+  var iframe = document.getElementById('article-iframe');
+  iframe.src = '';
+
+  // Timeout — if iframe doesn't load in 5s, show summary
+  clearTimeout(iframeTimer);
+  iframeTimer = setTimeout(function() {
+    showSummaryFallback();
+  }, 5000);
+
+  iframe.onload = function() {
+    clearTimeout(iframeTimer);
+    // Try to detect if iframe is blank/blocked
+    try {
+      var doc = iframe.contentDocument || iframe.contentWindow.document;
+      if (!doc || doc.body.innerHTML === '') {
+        showSummaryFallback();
+        return;
+      }
+    } catch(e) {
+      // Cross-origin — means it loaded! Hide loader
+    }
+    document.getElementById('iframe-loader').style.display = 'none';
+  };
+
+  iframe.onerror = function() {
+    clearTimeout(iframeTimer);
+    showSummaryFallback();
+  };
+
+  setTimeout(function() { iframe.src = url; }, 100);
+
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
-function closeModalBtn() {
+function showSummaryFallback() {
+  document.getElementById('iframe-wrap').style.display = 'none';
+  document.getElementById('summary-view').style.display = 'block';
+  document.getElementById('blocked-notice').classList.add('show');
+  document.getElementById('iframe-loader').style.display = 'none';
+}
+
+function closeModal() {
+  clearTimeout(iframeTimer);
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
+  var iframe = document.getElementById('article-iframe');
+  iframe.src = '';
 }
 
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModalBtn();
-}
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModalBtn(); });
-
+// ── CARD ───────────────────────────────────────────────────────────────────
 function buildCard(a, idx) {
   var img  = a.image_url || IMG;
   var desc = (a.description || a.content || 'Tap to read more.').slice(0, 120) + '...';
@@ -269,12 +380,17 @@ function buildCard(a, idx) {
     '<img class="card-img" src="' + img + '" alt="" loading="lazy" onerror="this.src=\'' + IMG + '\'"/>' +
     '<div class="card-body">' +
     '<span class="card-source">' + src + ' - ' + ago(a.pubDate) + '</span>' +
-    '<p class="card-title">' + a.title + '</p>' +
+    '<p class="card-title">' + (a.title || '') + '</p>' +
     '<p class="card-desc">' + desc + '</p>' +
     '<button class="card-btn">Read More</button>' +
     '</div></div>';
 }
 
+function errBox(msg) {
+  return '<div class="error-box"><div class="icon">📡</div><p>' + msg + '</p></div>';
+}
+
+// ── PAGINATION ─────────────────────────────────────────────────────────────
 function renderPage(type) {
   var grid  = document.getElementById(type + '-grid');
   var pgDiv = document.getElementById(type + '-pages');
@@ -284,11 +400,12 @@ function renderPage(type) {
   var start = (pg - 1) * PER;
   var slice = all.slice(start, start + PER);
 
-  currentArticles = all;
+  allArticles = store['news'].concat(store['exam']);
 
   var html = '';
+  var offset = type === 'exam' ? store['news'].length : 0;
   for (var i = 0; i < slice.length; i++) {
-    html += buildCard(slice[i], start + i);
+    html += buildCard(slice[i], offset + start + i);
   }
   grid.innerHTML = html;
 
@@ -313,6 +430,7 @@ function tick() {
     'Updated: ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
 }
 
+// ── FETCH ──────────────────────────────────────────────────────────────────
 async function fetchSection(url, type) {
   var grid = document.getElementById(type + '-grid');
   try {
@@ -347,25 +465,25 @@ async function sync() {
   tick();
 }
 
+// ── FEEDBACK ───────────────────────────────────────────────────────────────
 var rating = 0;
 function rate(n) {
   rating = n;
   var stars = document.querySelectorAll('.star');
   for (var i = 0; i < stars.length; i++) {
-    if (i < n) stars[i].classList.add('active');
-    else stars[i].classList.remove('active');
+    stars[i].classList.toggle('active', i < n);
   }
 }
 
 function submitFeedback(e) {
   e.preventDefault();
   var entry = {
-    name:   document.getElementById('fb-name').value,
-    email:  document.getElementById('fb-email').value,
+    name: document.getElementById('fb-name').value,
+    email: document.getElementById('fb-email').value,
     rating: rating,
-    type:   document.getElementById('fb-type').value,
-    msg:    document.getElementById('fb-msg').value,
-    time:   new Date().toISOString()
+    type: document.getElementById('fb-type').value,
+    msg: document.getElementById('fb-msg').value,
+    time: new Date().toISOString()
   };
   try {
     var prev = JSON.parse(localStorage.getItem('feedback') || '[]');
@@ -379,11 +497,11 @@ function submitFeedback(e) {
     document.getElementById('fb-success').style.display = 'none';
     document.getElementById('feedback-form').reset();
     rating = 0;
-    var stars = document.querySelectorAll('.star');
-    for (var i = 0; i < stars.length; i++) stars[i].classList.remove('active');
+    document.querySelectorAll('.star').forEach(function(s) { s.classList.remove('active'); });
   }, 3000);
 }
 
+// ── INIT ───────────────────────────────────────────────────────────────────
 document.getElementById('news-grid').innerHTML = skels(6);
 document.getElementById('exam-grid').innerHTML = skels(6);
 sync();
