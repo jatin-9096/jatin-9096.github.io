@@ -23,7 +23,7 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
 .card{background:#fff;border-radius:12px;border:1px solid #E8EFF5;box-shadow:0 2px 8px rgba(10,37,64,.07);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;text-decoration:none;color:inherit}
 .card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(99,91,255,.15)}
-.card-img{width:100%;height:170px;object-fit:cover;background:#F6F9FC}
+.card-img{width:100%;height:170px;object-fit:cover;background:#EEF0FF}
 .card-body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column;gap:8px}
 .card-source{font-size:.7rem;font-weight:700;color:#635BFF;text-transform:uppercase;letter-spacing:.8px}
 .card-title{font-size:.95rem;font-weight:700;color:#0A2540;line-height:1.4}
@@ -43,7 +43,6 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
 </style>
 </head>
 <body>
-
 <header>
   <div class="brand">
     <div class="dot"></div>
@@ -52,16 +51,14 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
   </div>
   <span id="last-updated">Loading…</span>
 </header>
-
 <main>
   <section class="section">
     <div class="section-header">
       <h2 class="section-title">🇮🇳 India Top News</h2>
-      <p class="section-sub">Latest headlines · Auto-refresh every 10 min</p>
+      <p class="section-sub">Latest headlines · Auto-refresh every 30 min</p>
     </div>
     <div class="grid" id="news-grid"></div>
   </section>
-
   <section class="section">
     <div class="section-header">
       <h2 class="section-title">📚 Exam &amp; Board Alerts</h2>
@@ -70,19 +67,14 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
     <div class="grid" id="exam-grid"></div>
   </section>
 </main>
-
-<footer>© 2025 NewsSync · Powered by GNews API · For informational purposes only</footer>
+<footer>© 2025 NewsSync · Powered by NewsData.io · For informational purposes only</footer>
 
 <script>
-const API_KEY = '41f9ca60c9c4feea049876ff25827052';
-const BASE    = 'https://gnews.io/api/v4';
-const PLACEHOLDER = 'https://placehold.co/600x340/EEF0FF/635BFF?text=NewsSync';
+const KEY = 'pub_50035c437a574af1b18c1f6b056f5ad9';
+const BASE = 'https://newsdata.io/api/1';
+const IMG  = 'https://placehold.co/600x340/EEF0FF/635BFF?text=NewsSync';
 
-// Har 10 min mein sirf 2 requests — din mein 288 requests max
-// GNews free limit: 100/day → isliye 30 min interval safe hai
-const INTERVAL = 30 * 60 * 1000; // 30 minutes
-
-function skeletons(n=6){
+function skels(n){
   return Array.from({length:n},()=>`
     <div class="skel-card">
       <div class="sk skel-img"></div>
@@ -97,27 +89,29 @@ function skeletons(n=6){
     </div>`).join('');
 }
 
-function timeAgo(d){
+function ago(d){
   if(!d) return '';
-  const m=Math.floor((Date.now()-new Date(d))/60000);
-  if(m<1) return 'Just now';
-  if(m<60) return m+'m ago';
-  const h=Math.floor(m/60);
-  if(h<24) return h+'h ago';
-  return Math.floor(h/24)+'d ago';
+  const m = Math.floor((Date.now() - new Date(d)) / 60000);
+  if(m < 1)  return 'Just now';
+  if(m < 60) return m + 'm ago';
+  const h = Math.floor(m/60);
+  if(h < 24) return h + 'h ago';
+  return Math.floor(h/24) + 'd ago';
 }
 
-function buildCard(a){
-  const img = a.image || PLACEHOLDER;
-  const desc = (a.description||'No description available.').slice(0,160)+'…';
-  const src  = a.source?.name || 'News';
+function card(a){
+  const img  = a.image_url || IMG;
+  const desc = (a.description || a.content || 'Read the full article for details.').slice(0,160) + '…';
+  const src  = a.source_name || a.source_id || 'News';
+  const link = a.link || '#';
+  const title = a.title || 'No title';
+  const date = a.pubDate || '';
   return `
-    <a class="card" href="${a.url}" target="_blank" rel="noopener">
-      <img class="card-img" src="${img}" alt="${a.title}" loading="lazy"
-           onerror="this.src='${PLACEHOLDER}'"/>
+    <a class="card" href="${link}" target="_blank" rel="noopener">
+      <img class="card-img" src="${img}" alt="" loading="lazy" onerror="this.src='${IMG}'"/>
       <div class="card-body">
-        <span class="card-source">${src} · ${timeAgo(a.publishedAt)}</span>
-        <p class="card-title">${a.title}</p>
+        <span class="card-source">${src} · ${ago(date)}</span>
+        <p class="card-title">${title}</p>
         <p class="card-desc">${desc}</p>
         <span class="card-link">Read more →</span>
       </div>
@@ -125,56 +119,55 @@ function buildCard(a){
 }
 
 function errBox(msg){
-  return `<div class="error-box">
-    <div class="icon">📡</div>
-    <p>${msg}</p>
-  </div>`;
+  return `<div class="error-box"><div class="icon">📡</div><p>${msg}</p></div>`;
 }
 
 async function loadNews(){
-  const grid = document.getElementById('news-grid');
+  const g = document.getElementById('news-grid');
   try{
-    const url = `${BASE}/top-headlines?country=in&lang=en&category=general&max=9&apikey=${API_KEY}`;
-    const res  = await fetch(url);
-    const data = await res.json();
-    if(!data.articles?.length){ grid.innerHTML=errBox('No headlines found.'); return; }
-    grid.innerHTML = data.articles.map(buildCard).join('');
-  }catch(e){
-    grid.innerHTML = errBox('Could not load news. Check internet & try again.');
+    const url = `${BASE}/latest?apikey=${KEY}&country=in&language=en&size=9`;
+    const r = await fetch(url);
+    const d = await r.json();
+    if(d.status !== 'success') throw new Error(d.message || 'API error');
+    const arts = d.results || [];
+    g.innerHTML = arts.length ? arts.map(card).join('') : errBox('No headlines found.');
+  } catch(e){
+    console.error('News error:', e);
+    g.innerHTML = errBox('Could not load news. Retrying in 30 min.');
   }
 }
 
 async function loadExams(){
-  const grid = document.getElementById('exam-grid');
+  const g = document.getElementById('exam-grid');
   try{
-    const q   = encodeURIComponent('"CBSE" OR "NDA" OR "CUET" OR "UPSC"');
-    const url = `${BASE}/search?q=${q}&lang=en&country=in&max=9&sortby=publishedAt&apikey=${API_KEY}`;
-    const res  = await fetch(url);
-    const data = await res.json();
-    if(!data.articles?.length){ grid.innerHTML=errBox('No exam alerts found.'); return; }
-    grid.innerHTML = data.articles.map(buildCard).join('');
-  }catch(e){
-    grid.innerHTML = errBox('Could not load exam news. Try again later.');
+    const url = `${BASE}/latest?apikey=${KEY}&q=CBSE OR NDA OR CUET OR UPSC&country=in&language=en&size=9`;
+    const r = await fetch(url);
+    const d = await r.json();
+    if(d.status !== 'success') throw new Error(d.message || 'API error');
+    const arts = d.results || [];
+    g.innerHTML = arts.length ? arts.map(card).join('') : errBox('No exam alerts found.');
+  } catch(e){
+    console.error('Exam error:', e);
+    g.innerHTML = errBox('Could not load exam news. Retrying in 30 min.');
   }
 }
 
-function updateTime(){
+function tick(){
   document.getElementById('last-updated').textContent =
-    'Updated: '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
+    'Updated: ' + new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
 }
 
-async function syncAll(){
+async function sync(){
   await Promise.allSettled([loadNews(), loadExams()]);
-  updateTime();
+  tick();
 }
 
 // Init
-document.getElementById('news-grid').innerHTML = skeletons(6);
-document.getElementById('exam-grid').innerHTML  = skeletons(6);
-
-syncAll();
-setInterval(syncAll, INTERVAL);
-window.addEventListener('online', syncAll);
+document.getElementById('news-grid').innerHTML = skels(6);
+document.getElementById('exam-grid').innerHTML  = skels(6);
+sync();
+setInterval(sync, 30 * 60 * 1000);
+window.addEventListener('online', sync);
 </script>
 </body>
 </html>
