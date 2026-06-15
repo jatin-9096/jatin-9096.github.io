@@ -282,8 +282,7 @@ function fmtDate(d) {
   if (!d) return '';
   return new Date(d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
 }
-
-// ── AI SUMMARY ────────────────────────────────────────────────────────────
+// ── AI SUMMARY (UPDATED WITH GEMINI) ──────────────────────────────────────
 async function getAISummary(article) {
   var cacheKey = article.link || article.title;
 
@@ -299,48 +298,37 @@ async function getAISummary(article) {
 
   var prompt = 'You are a news summarizer for an Indian news website. Based on this news article information, provide a comprehensive summary in simple English that anyone can understand.\n\nTitle: ' + title + '\nSource: ' + source + '\nDate: ' + date + '\nDescription: ' + desc + '\n\nProvide:\n1. A 3-4 sentence detailed summary explaining what happened, why it matters, and what the impact is.\n2. Exactly 4 key points as bullet points.\n\nFormat your response EXACTLY like this:\nSUMMARY: [your 3-4 sentence summary here]\nKEY_POINTS:\n- [point 1]\n- [point 2]\n- [point 3]\n- [point 4]';
 
+  // APNI GEMINI API KEY YAHAN DALO
+  var GEMINI_API_KEY = 'AQ.Ab8RN6JEKPMdsV3ydnsPz5tANgN6mkvvp7rf86rZVTK6pQmHDw'; 
+
   try {
-    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+    var resp = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + GEMINI_API_KEY, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
+        contents: [{
+          parts: [{ text: prompt }]
+        }],
+        generationConfig: {
+          temperature: 0.3,
+          maxOutputTokens: 500
+        }
       })
     });
+
+    if (!resp.ok) throw new Error('Gemini Request Failed');
+
     var data = await resp.json();
-    var text = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : '';
+    var text = data.candidates[0].content.parts[0].text;
+    
     summaryCache[cacheKey] = text;
     return text;
   } catch(e) {
+    console.error("AI Summary Error:", e);
     return null;
   }
 }
 
-function renderAISummary(text) {
-  if (!text) {
-    return '<div class="ai-content"><p>Could not generate AI summary. Please read the original article.</p></div>';
-  }
-
-  var summaryMatch = text.match(/SUMMARY:\s*([\s\S]*?)(?=KEY_POINTS:|$)/);
-  var pointsMatch  = text.match(/KEY_POINTS:\s*([\s\S]*?)$/);
-
-  var summary = summaryMatch ? summaryMatch[1].trim() : text;
-  var pointsRaw = pointsMatch ? pointsMatch[1].trim() : '';
-  var points = pointsRaw ? pointsRaw.split('\n').filter(function(p) { return p.trim().startsWith('-'); }).map(function(p) { return p.replace(/^-\s*/, '').trim(); }) : [];
-
-  var html = '<div class="ai-content"><p>' + summary + '</p>';
-  if (points.length) {
-    html += '<div class="key-points"><h4>Key Points</h4>';
-    points.forEach(function(p) {
-      html += '<div class="key-point"><div class="key-dot"></div><span>' + p + '</span></div>';
-    });
-    html += '</div>';
-  }
-  html += '</div>';
-  return html;
-}
 
 // ── MODAL ─────────────────────────────────────────────────────────────────
 async function openModal(idx) {
