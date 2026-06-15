@@ -1,3 +1,4 @@
+cat > /mnt/user-data/outputs/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,45 +38,46 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .page-info{font-size:.82rem;color:#8898AA;font-weight:500}
 
 /* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,37,64,.85);z-index:999;align-items:flex-start;justify-content:center;padding:0}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,37,64,.85);z-index:999;align-items:center;justify-content:center;padding:12px}
 .modal-overlay.open{display:flex}
-.modal{background:#fff;width:100%;height:100vh;max-width:900px;display:flex;flex-direction:column;position:relative;animation:slideUp .25s ease}
+.modal{background:#fff;width:100%;max-width:760px;max-height:92vh;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;animation:slideUp .25s ease}
 @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-topbar{background:#0A2540;padding:12px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.modal-brand{color:#fff;font-weight:800;font-size:.95rem}
+.ai-badge{background:#635BFF;color:#fff;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.5px}
+.modal-close-btn{margin-left:auto;background:rgba(255,255,255,.15);color:#fff;border:none;width:30px;height:30px;border-radius:50%;font-size:1rem;cursor:pointer}
+.modal-scroll{overflow-y:auto;flex:1}
+.modal-hero{width:100%;height:200px;object-fit:cover;background:#EEF0FF;display:block}
+.modal-body{padding:20px 24px 28px}
+.modal-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.modal-source{font-size:.7rem;font-weight:700;color:#635BFF;text-transform:uppercase;letter-spacing:.8px}
+.modal-date{font-size:.7rem;color:#8898AA}
+.modal-title{font-size:1.15rem;font-weight:800;color:#0A2540;line-height:1.4;margin-bottom:16px}
 
-/* Modal top bar */
-.modal-topbar{background:#0A2540;padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
-.modal-topbar .site-brand{color:#fff;font-weight:800;font-size:.95rem;flex:1}
-.modal-url{color:rgba(255,255,255,.5);font-size:.72rem;flex:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.modal-close-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:30px;height:30px;border-radius:50%;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.modal-close-btn:hover{background:rgba(255,255,255,.3)}
+/* AI Summary Box */
+.ai-box{background:linear-gradient(135deg,#EEF0FF,#F6F9FC);border:1px solid #D0CFFF;border-radius:12px;padding:18px;margin-bottom:20px}
+.ai-box-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.ai-icon{font-size:1.2rem}
+.ai-box-title{font-size:.82rem;font-weight:700;color:#635BFF}
+.ai-loading{display:flex;align-items:center;gap:10px;color:#8898AA;font-size:.85rem}
+.ai-dots span{display:inline-block;width:6px;height:6px;border-radius:50%;background:#635BFF;animation:dot-bounce .8s infinite;margin:0 2px}
+.ai-dots span:nth-child(2){animation-delay:.15s}
+.ai-dots span:nth-child(3){animation-delay:.3s}
+@keyframes dot-bounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+.ai-content{font-size:.88rem;color:#425466;line-height:1.75}
+.ai-content p{margin-bottom:10px}
+.ai-content strong{color:#0A2540}
 
-/* iframe view */
-.iframe-wrap{flex:1;position:relative;background:#F6F9FC}
-.article-iframe{width:100%;height:100%;border:none;display:block}
+/* Key Points */
+.key-points{margin-top:12px}
+.key-points h4{font-size:.78rem;font-weight:700;color:#0A2540;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.key-point{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;font-size:.84rem;color:#425466}
+.key-dot{width:6px;height:6px;border-radius:50%;background:#635BFF;flex-shrink:0;margin-top:6px}
 
-/* Fallback summary view */
-.summary-view{display:none;flex:1;overflow-y:auto;padding:0}
-.summary-img{width:100%;height:220px;object-fit:cover;background:#EEF0FF;flex-shrink:0}
-.summary-body{padding:24px}
-.summary-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.summary-source{font-size:.72rem;font-weight:700;color:#635BFF;text-transform:uppercase;letter-spacing:.8px}
-.summary-date{font-size:.72rem;color:#8898AA}
-.summary-title{font-size:1.15rem;font-weight:800;color:#0A2540;line-height:1.4;margin-bottom:12px}
-.summary-desc{font-size:.9rem;color:#425466;line-height:1.7;margin-bottom:20px}
-.summary-actions{display:flex;gap:10px;flex-wrap:wrap}
-.btn-primary{background:#635BFF;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-.btn-primary:hover{background:#4f46e5}
-.btn-secondary{background:#F6F9FC;color:#425466;border:1px solid #E8EFF5;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-
-/* Loading spinner inside iframe */
-.iframe-loader{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#F6F9FC;z-index:2}
-.spinner{width:36px;height:36px;border:3px solid #E8EFF5;border-top-color:#635BFF;border-radius:50%;animation:spin 0.8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.loader-text{font-size:.82rem;color:#8898AA}
-
-/* Blocked notice inside modal */
-.blocked-notice{display:none;background:#FFF8E1;border:1px solid #FFE082;border-radius:8px;padding:10px 14px;margin:12px 24px 0;font-size:.78rem;color:#B8860B;align-items:center;gap:8px}
-.blocked-notice.show{display:flex}
+.modal-orig-desc{font-size:.85rem;color:#8898AA;line-height:1.6;margin-bottom:18px;padding:14px;background:#F6F9FC;border-radius:8px;border-left:3px solid #E8EFF5}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-primary{background:#635BFF;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-secondary{background:#F6F9FC;color:#425466;border:1px solid #E8EFF5;padding:10px 18px;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer}
 
 /* FEEDBACK */
 .feedback-section{background:#fff;border-radius:16px;border:1px solid #E8EFF5;padding:32px;margin-bottom:48px}
@@ -89,7 +91,7 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:#635BFF;background:#fff}
 .form-group textarea{resize:vertical;min-height:90px}
 .submit-btn{background:#635BFF;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer;align-self:flex-start}
-.feedback-success{display:none;text-align:center;padding:20px;color:#00C48C;font-weight:600;font-size:1rem}
+.feedback-success{display:none;text-align:center;padding:20px;color:#00C48C;font-weight:600}
 .star{font-size:1.4rem;cursor:pointer;color:#E8EFF5;transition:color .15s}
 .star.active{color:#F5A623}
 .rating-stars{display:flex;gap:8px}
@@ -103,10 +105,9 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .skel-line{height:12px}
 .w30{width:30%}.w80{width:80%}.w100{width:100%}.h18{height:18px}
 .error-box{grid-column:1/-1;text-align:center;padding:40px 20px;background:#fff;border-radius:12px;border:1px dashed #E8EFF5}
-.error-box .icon{font-size:2.5rem;margin-bottom:12px}
 .error-box p{color:#8898AA;font-size:.9rem;margin-top:8px}
 footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:24px 20px;font-size:.78rem;line-height:2}
-@media(max-width:600px){.form-row{grid-template-columns:1fr}.summary-title{font-size:1rem}}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}.modal-title{font-size:1rem}.modal-hero{height:150px}}
 </style>
 </head>
 <body>
@@ -120,55 +121,48 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
   <span id="last-updated">Loading...</span>
 </header>
 
-<!-- FULLSCREEN MODAL -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-
-    <!-- Top browser-like bar -->
     <div class="modal-topbar">
-      <span class="site-brand">NewsSync</span>
-      <span class="modal-url" id="modal-url"></span>
-      <button class="modal-close-btn" onclick="closeModal()">X</button>
+      <span class="modal-brand">NewsSync</span>
+      <span class="ai-badge">AI SUMMARY</span>
+      <button class="modal-close-btn" onclick="closeModal()">&#10005;</button>
     </div>
-
-    <!-- Blocked notice -->
-    <div class="blocked-notice" id="blocked-notice">
-      This site blocked embedding. Showing summary instead.
-    </div>
-
-    <!-- IFRAME VIEW -->
-    <div class="iframe-wrap" id="iframe-wrap">
-      <div class="iframe-loader" id="iframe-loader">
-        <div class="spinner"></div>
-        <span class="loader-text">Loading article...</span>
-      </div>
-      <iframe
-        class="article-iframe"
-        id="article-iframe"
-        src=""
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-        referrerpolicy="no-referrer"
-        title="Article"
-      ></iframe>
-    </div>
-
-    <!-- SUMMARY FALLBACK VIEW -->
-    <div class="summary-view" id="summary-view">
-      <img class="summary-img" id="sum-img" src="" alt=""/>
-      <div class="summary-body">
-        <div class="summary-meta">
-          <span class="summary-source" id="sum-source"></span>
-          <span class="summary-date" id="sum-date"></span>
+    <div class="modal-scroll">
+      <img class="modal-hero" id="m-img" src="" alt=""/>
+      <div class="modal-body">
+        <div class="modal-meta">
+          <span class="modal-source" id="m-source"></span>
+          <span class="modal-date" id="m-date"></span>
         </div>
-        <h2 class="summary-title" id="sum-title"></h2>
-        <p class="summary-desc" id="sum-desc"></p>
-        <div class="summary-actions">
-          <a class="btn-primary" id="sum-link" href="#" target="_blank" rel="noopener">Open Original Site</a>
+        <h2 class="modal-title" id="m-title"></h2>
+
+        <!-- AI Summary Box -->
+        <div class="ai-box">
+          <div class="ai-box-header">
+            <span class="ai-icon">🤖</span>
+            <span class="ai-box-title">AI Summary by NewsSync</span>
+          </div>
+          <div id="ai-content">
+            <div class="ai-loading">
+              <div class="ai-dots">
+                <span></span><span></span><span></span>
+              </div>
+              AI is analyzing this article...
+            </div>
+          </div>
+        </div>
+
+        <!-- Original description -->
+        <p class="modal-orig-desc" id="m-desc"></p>
+
+        <div class="modal-actions">
+          <a class="btn-primary" id="m-link" href="#" target="_blank" rel="noopener">&#128279; Read Original</a>
           <button class="btn-secondary" onclick="closeModal()">Close</button>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -176,8 +170,8 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
   <section class="section">
     <div class="section-header">
       <div>
-        <h2 class="section-title">India Top News</h2>
-        <p class="section-sub">Latest headlines - Auto-refresh every 30 min</p>
+        <h2 class="section-title">&#127988; India Top News</h2>
+        <p class="section-sub">Latest headlines · Auto-refresh every 30 min · AI Powered</p>
       </div>
       <span class="article-count" id="news-count"></span>
     </div>
@@ -188,8 +182,8 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
   <section class="section">
     <div class="section-header">
       <div>
-        <h2 class="section-title">Exam and Board Alerts</h2>
-        <p class="section-sub">CBSE - NDA - CUET - UPSC - Latest Notifications</p>
+        <h2 class="section-title">&#128218; Exam &amp; Board Alerts</h2>
+        <p class="section-sub">CBSE · NDA · CUET · UPSC · AI Summarized</p>
       </div>
       <span class="article-count" id="exam-count"></span>
     </div>
@@ -198,7 +192,7 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
   </section>
 
   <section class="feedback-section">
-    <h2 class="feedback-title">Feedback and Suggestions</h2>
+    <h2 class="feedback-title">&#128172; Feedback &amp; Suggestions</h2>
     <p class="feedback-sub">Hamari website kaisi lagi? Apni rai zaroor batao!</p>
     <form class="feedback-form" id="feedback-form" onsubmit="submitFeedback(event)">
       <div class="form-row">
@@ -236,15 +230,11 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
       </div>
       <button type="submit" class="submit-btn">Submit Feedback</button>
     </form>
-    <div class="feedback-success" id="fb-success">
-      Shukriya! Aapka feedback mil gaya. Hum zaroor improve karenge!
-    </div>
+    <div class="feedback-success" id="fb-success">Shukriya! Feedback mil gaya. Hum zaroor improve karenge!</div>
   </section>
 </main>
 
-<footer>
-  2025 NewsSync - Powered by NewsData.io - For informational purposes only
-</footer>
+<footer>2025 NewsSync · AI Powered · For informational purposes only</footer>
 
 <script>
 var KEY      = 'pub_50035c437a574af1b18c1f6b056f5ad9';
@@ -255,9 +245,9 @@ var CACHE_MS = 30 * 60 * 1000;
 var store    = { news: [], exam: [] };
 var pages    = { news: 1, exam: 1 };
 var allArticles = [];
-var iframeTimer = null;
+var summaryCache = {};
 
-// ── CACHE ──────────────────────────────────────────────────────────────────
+// ── CACHE ─────────────────────────────────────────────────────────────────
 function saveCache(key, data) {
   try { localStorage.setItem('ns_' + key, JSON.stringify({ data: data, time: Date.now() })); } catch(e) {}
 }
@@ -269,7 +259,7 @@ function loadCache(key) {
   return null;
 }
 
-// ── SKELETON ───────────────────────────────────────────────────────────────
+// ── SKELETON ──────────────────────────────────────────────────────────────
 function skels(n) {
   var s = '';
   for (var i = 0; i < n; i++) {
@@ -278,7 +268,7 @@ function skels(n) {
   return s;
 }
 
-// ── TIME ───────────────────────────────────────────────────────────────────
+// ── TIME ──────────────────────────────────────────────────────────────────
 function ago(d) {
   if (!d) return '';
   var m = Math.floor((Date.now() - new Date(d)) / 60000);
@@ -293,77 +283,94 @@ function fmtDate(d) {
   return new Date(d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
-// ── MODAL ──────────────────────────────────────────────────────────────────
-function openModal(idx) {
+// ── AI SUMMARY ────────────────────────────────────────────────────────────
+async function getAISummary(article) {
+  var cacheKey = article.link || article.title;
+
+  // Return cached summary if exists
+  if (summaryCache[cacheKey]) {
+    return summaryCache[cacheKey];
+  }
+
+  var title   = article.title || '';
+  var desc    = article.description || article.content || '';
+  var source  = article.source_name || '';
+  var date    = fmtDate(article.pubDate);
+
+  var prompt = 'You are a news summarizer for an Indian news website. Based on this news article information, provide a comprehensive summary in simple English that anyone can understand.\n\nTitle: ' + title + '\nSource: ' + source + '\nDate: ' + date + '\nDescription: ' + desc + '\n\nProvide:\n1. A 3-4 sentence detailed summary explaining what happened, why it matters, and what the impact is.\n2. Exactly 4 key points as bullet points.\n\nFormat your response EXACTLY like this:\nSUMMARY: [your 3-4 sentence summary here]\nKEY_POINTS:\n- [point 1]\n- [point 2]\n- [point 3]\n- [point 4]';
+
+  try {
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    var data = await resp.json();
+    var text = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : '';
+    summaryCache[cacheKey] = text;
+    return text;
+  } catch(e) {
+    return null;
+  }
+}
+
+function renderAISummary(text) {
+  if (!text) {
+    return '<div class="ai-content"><p>Could not generate AI summary. Please read the original article.</p></div>';
+  }
+
+  var summaryMatch = text.match(/SUMMARY:\s*([\s\S]*?)(?=KEY_POINTS:|$)/);
+  var pointsMatch  = text.match(/KEY_POINTS:\s*([\s\S]*?)$/);
+
+  var summary = summaryMatch ? summaryMatch[1].trim() : text;
+  var pointsRaw = pointsMatch ? pointsMatch[1].trim() : '';
+  var points = pointsRaw ? pointsRaw.split('\n').filter(function(p) { return p.trim().startsWith('-'); }).map(function(p) { return p.replace(/^-\s*/, '').trim(); }) : [];
+
+  var html = '<div class="ai-content"><p>' + summary + '</p>';
+  if (points.length) {
+    html += '<div class="key-points"><h4>Key Points</h4>';
+    points.forEach(function(p) {
+      html += '<div class="key-point"><div class="key-dot"></div><span>' + p + '</span></div>';
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+// ── MODAL ─────────────────────────────────────────────────────────────────
+async function openModal(idx) {
   var a = allArticles[idx];
   if (!a) return;
 
-  var url = a.link || '';
+  // Fill basic info
+  document.getElementById('m-img').src        = a.image_url || IMG;
+  document.getElementById('m-img').onerror    = function() { this.src = IMG; };
+  document.getElementById('m-source').textContent = a.source_name || 'News';
+  document.getElementById('m-date').textContent   = fmtDate(a.pubDate);
+  document.getElementById('m-title').textContent  = a.title || '';
+  document.getElementById('m-desc').textContent   = a.description || a.content || '';
+  document.getElementById('m-link').href           = a.link || '#';
 
-  // Reset views
-  document.getElementById('iframe-wrap').style.display = 'flex';
-  document.getElementById('summary-view').style.display = 'none';
-  document.getElementById('blocked-notice').classList.remove('show');
-  document.getElementById('iframe-loader').style.display = 'flex';
-  document.getElementById('modal-url').textContent = url;
-  document.getElementById('sum-link').href = url;
-
-  // Pre-fill summary (used if iframe fails)
-  document.getElementById('sum-img').src = a.image_url || IMG;
-  document.getElementById('sum-source').textContent = a.source_name || 'News';
-  document.getElementById('sum-date').textContent = fmtDate(a.pubDate);
-  document.getElementById('sum-title').textContent = a.title || '';
-  document.getElementById('sum-desc').textContent = a.description || a.content || 'Read the full article for complete details.';
-
-  // Load iframe
-  var iframe = document.getElementById('article-iframe');
-  iframe.src = '';
-
-  // Timeout — if iframe doesn't load in 5s, show summary
-  clearTimeout(iframeTimer);
-  iframeTimer = setTimeout(function() {
-    showSummaryFallback();
-  }, 5000);
-
-  iframe.onload = function() {
-    clearTimeout(iframeTimer);
-    // Try to detect if iframe is blank/blocked
-    try {
-      var doc = iframe.contentDocument || iframe.contentWindow.document;
-      if (!doc || doc.body.innerHTML === '') {
-        showSummaryFallback();
-        return;
-      }
-    } catch(e) {
-      // Cross-origin — means it loaded! Hide loader
-    }
-    document.getElementById('iframe-loader').style.display = 'none';
-  };
-
-  iframe.onerror = function() {
-    clearTimeout(iframeTimer);
-    showSummaryFallback();
-  };
-
-  setTimeout(function() { iframe.src = url; }, 100);
+  // Show loading
+  document.getElementById('ai-content').innerHTML =
+    '<div class="ai-loading"><div class="ai-dots"><span></span><span></span><span></span></div>AI is analyzing this article...</div>';
 
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-}
 
-function showSummaryFallback() {
-  document.getElementById('iframe-wrap').style.display = 'none';
-  document.getElementById('summary-view').style.display = 'block';
-  document.getElementById('blocked-notice').classList.add('show');
-  document.getElementById('iframe-loader').style.display = 'none';
+  // Fetch AI summary
+  var summary = await getAISummary(a);
+  document.getElementById('ai-content').innerHTML = renderAISummary(summary);
 }
 
 function closeModal() {
-  clearTimeout(iframeTimer);
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
-  var iframe = document.getElementById('article-iframe');
-  iframe.src = '';
 }
 
 document.getElementById('modal-overlay').addEventListener('click', function(e) {
@@ -371,26 +378,26 @@ document.getElementById('modal-overlay').addEventListener('click', function(e) {
 });
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-// ── CARD ───────────────────────────────────────────────────────────────────
+// ── CARD ──────────────────────────────────────────────────────────────────
 function buildCard(a, idx) {
   var img  = a.image_url || IMG;
-  var desc = (a.description || a.content || 'Tap to read more.').slice(0, 120) + '...';
+  var desc = (a.description || a.content || 'Tap for AI summary.').slice(0, 120) + '...';
   var src  = a.source_name || 'News';
   return '<div class="card" onclick="openModal(' + idx + ')">' +
     '<img class="card-img" src="' + img + '" alt="" loading="lazy" onerror="this.src=\'' + IMG + '\'"/>' +
     '<div class="card-body">' +
-    '<span class="card-source">' + src + ' - ' + ago(a.pubDate) + '</span>' +
+    '<span class="card-source">' + src + ' · ' + ago(a.pubDate) + '</span>' +
     '<p class="card-title">' + (a.title || '') + '</p>' +
     '<p class="card-desc">' + desc + '</p>' +
-    '<button class="card-btn">Read More</button>' +
+    '<button class="card-btn">&#129302; AI Summary</button>' +
     '</div></div>';
 }
 
 function errBox(msg) {
-  return '<div class="error-box"><div class="icon">📡</div><p>' + msg + '</p></div>';
+  return '<div class="error-box"><p>' + msg + '</p></div>';
 }
 
-// ── PAGINATION ─────────────────────────────────────────────────────────────
+// ── PAGINATION ────────────────────────────────────────────────────────────
 function renderPage(type) {
   var grid  = document.getElementById(type + '-grid');
   var pgDiv = document.getElementById(type + '-pages');
@@ -399,11 +406,11 @@ function renderPage(type) {
   var total = Math.ceil(all.length / PER);
   var start = (pg - 1) * PER;
   var slice = all.slice(start, start + PER);
+  var offset = type === 'exam' ? store['news'].length : 0;
 
   allArticles = store['news'].concat(store['exam']);
 
   var html = '';
-  var offset = type === 'exam' ? store['news'].length : 0;
   for (var i = 0; i < slice.length; i++) {
     html += buildCard(slice[i], offset + start + i);
   }
@@ -430,7 +437,7 @@ function tick() {
     'Updated: ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
 }
 
-// ── FETCH ──────────────────────────────────────────────────────────────────
+// ── FETCH ─────────────────────────────────────────────────────────────────
 async function fetchSection(url, type) {
   var grid = document.getElementById(type + '-grid');
   try {
@@ -452,7 +459,6 @@ async function fetchSection(url, type) {
     pages[type] = 1;
     renderPage(type);
   } catch(e) {
-    console.error(type, e);
     if (!store[type].length) grid.innerHTML = errBox('Could not load news. Will retry in 30 min.');
   }
 }
@@ -465,31 +471,17 @@ async function sync() {
   tick();
 }
 
-// ── FEEDBACK ───────────────────────────────────────────────────────────────
+// ── FEEDBACK ──────────────────────────────────────────────────────────────
 var rating = 0;
 function rate(n) {
   rating = n;
-  var stars = document.querySelectorAll('.star');
-  for (var i = 0; i < stars.length; i++) {
-    stars[i].classList.toggle('active', i < n);
-  }
+  document.querySelectorAll('.star').forEach(function(s, i) { s.classList.toggle('active', i < n); });
 }
 
 function submitFeedback(e) {
   e.preventDefault();
-  var entry = {
-    name: document.getElementById('fb-name').value,
-    email: document.getElementById('fb-email').value,
-    rating: rating,
-    type: document.getElementById('fb-type').value,
-    msg: document.getElementById('fb-msg').value,
-    time: new Date().toISOString()
-  };
-  try {
-    var prev = JSON.parse(localStorage.getItem('feedback') || '[]');
-    prev.push(entry);
-    localStorage.setItem('feedback', JSON.stringify(prev));
-  } catch(e) {}
+  var entry = { name: document.getElementById('fb-name').value, email: document.getElementById('fb-email').value, rating: rating, type: document.getElementById('fb-type').value, msg: document.getElementById('fb-msg').value, time: new Date().toISOString() };
+  try { var prev = JSON.parse(localStorage.getItem('feedback') || '[]'); prev.push(entry); localStorage.setItem('feedback', JSON.stringify(prev)); } catch(e) {}
   document.getElementById('feedback-form').style.display = 'none';
   document.getElementById('fb-success').style.display = 'block';
   setTimeout(function() {
@@ -501,7 +493,7 @@ function submitFeedback(e) {
   }, 3000);
 }
 
-// ── INIT ───────────────────────────────────────────────────────────────────
+// ── INIT ──────────────────────────────────────────────────────────────────
 document.getElementById('news-grid').innerHTML = skels(6);
 document.getElementById('exam-grid').innerHTML = skels(6);
 sync();
@@ -510,3 +502,5 @@ window.addEventListener('online', sync);
 </script>
 </body>
 </html>
+HTMLEOF
+echo "DONE"
