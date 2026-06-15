@@ -8,8 +8,6 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',sans-serif;background:#F6F9FC;color:#425466;font-size:16px;line-height:1.6}
-
-/* HEADER */
 header{background:#0A2540;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
 .brand{display:flex;align-items:center;gap:10px}
 .dot{width:10px;height:10px;border-radius:50%;background:#635BFF;animation:pulse 2s infinite}
@@ -17,19 +15,13 @@ header{background:#0A2540;padding:14px 20px;display:flex;align-items:center;just
 .brand-name{color:#fff;font-weight:800;font-size:1.2rem}
 .live-tag{background:rgba(99,91,255,.2);color:#635BFF;font-size:.6rem;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:4px;border:1px solid rgba(99,91,255,.4)}
 #last-updated{color:rgba(255,255,255,.5);font-size:.75rem}
-
-/* MAIN */
 main{max-width:1200px;margin:auto;padding:32px 16px}
 .section{margin-bottom:48px}
 .section-header{border-bottom:2px solid #E8EFF5;padding-bottom:12px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .section-title{font-size:1.3rem;font-weight:800;color:#0A2540}
 .section-sub{font-size:.78rem;color:#8898AA;margin-top:3px}
 .article-count{font-size:.75rem;color:#635BFF;font-weight:600;background:#EEF0FF;padding:3px 10px;border-radius:20px}
-
-/* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
-
-/* CARD */
 .card{background:#fff;border-radius:12px;border:1px solid #E8EFF5;box-shadow:0 2px 8px rgba(10,37,64,.07);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .25s,box-shadow .25s}
 .card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(99,91,255,.15)}
 .card-img{width:100%;height:170px;object-fit:cover;background:#EEF0FF}
@@ -37,17 +29,12 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .card-source{font-size:.7rem;font-weight:700;color:#635BFF;text-transform:uppercase;letter-spacing:.8px}
 .card-title{font-size:.95rem;font-weight:700;color:#0A2540;line-height:1.4}
 .card-desc{font-size:.82rem;color:#425466;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.card-btn{margin-top:auto;display:inline-flex;align-items:center;gap:6px;background:#635BFF;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
-.card-btn:hover{background:#4f46e5}
-
-/* PAGINATION */
+.card-btn{margin-top:auto;display:inline-flex;align-items:center;gap:6px;background:#635BFF;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:.78rem;font-weight:600;cursor:pointer}
 .pagination{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px}
 .page-btn{background:#fff;border:1px solid #E8EFF5;color:#425466;padding:8px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s}
 .page-btn:hover:not(:disabled){background:#635BFF;color:#fff;border-color:#635BFF}
 .page-btn:disabled{opacity:.4;cursor:not-allowed}
 .page-info{font-size:.82rem;color:#8898AA;font-weight:500}
-
-/* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,37,64,.7);z-index:999;align-items:center;justify-content:center;padding:16px}
 .modal-overlay.open{display:flex}
 .modal{background:#fff;border-radius:16px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:slideUp .3s ease}
@@ -63,10 +50,7 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .btn-primary{background:#635BFF;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .btn-primary:hover{background:#4f46e5}
 .btn-secondary{background:#F6F9FC;color:#425466;border:1px solid #E8EFF5;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer}
-.btn-secondary:hover{background:#E8EFF5}
 .modal-close{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.5);color:#fff;border:none;width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10}
-
-/* FEEDBACK SECTION */
 .feedback-section{background:#fff;border-radius:16px;border:1px solid #E8EFF5;padding:32px;margin-bottom:48px}
 .feedback-title{font-size:1.1rem;font-weight:800;color:#0A2540;margin-bottom:6px}
 .feedback-sub{font-size:.82rem;color:#8898AA;margin-bottom:20px}
@@ -77,14 +61,11 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .form-group input,.form-group textarea,.form-group select{border:1px solid #E8EFF5;border-radius:8px;padding:10px 14px;font-size:.85rem;font-family:inherit;color:#425466;outline:none;transition:border .2s;background:#F6F9FC}
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:#635BFF;background:#fff}
 .form-group textarea{resize:vertical;min-height:90px}
-.submit-btn{background:#635BFF;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .2s;align-self:flex-start}
-.submit-btn:hover{background:#4f46e5}
-.feedback-success{display:none;text-align:center;padding:20px;color:#00C48C;font-weight:600}
-.rating-stars{display:flex;gap:8px}
+.submit-btn{background:#635BFF;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer;align-self:flex-start}
+.feedback-success{display:none;text-align:center;padding:20px;color:#00C48C;font-weight:600;font-size:1rem}
 .star{font-size:1.4rem;cursor:pointer;color:#E8EFF5;transition:color .15s}
 .star.active{color:#F5A623}
-
-/* SKELETON */
+.rating-stars{display:flex;gap:8px}
 @keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
 .sk{background:linear-gradient(90deg,#E8EFF5 25%,#F0F4F8 50%,#E8EFF5 75%);background-size:400px 100%;animation:shimmer 1.4s infinite;border-radius:6px}
 .skel-card{background:#fff;border-radius:12px;border:1px solid #E8EFF5;overflow:hidden}
@@ -92,40 +73,27 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .skel-body{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
 .skel-line{height:12px}
 .w30{width:30%}.w60{width:60%}.w80{width:80%}.w100{width:100%}.h18{height:18px}
-
-/* ERROR */
 .error-box{grid-column:1/-1;text-align:center;padding:40px 20px;background:#fff;border-radius:12px;border:1px dashed #E8EFF5}
 .error-box .icon{font-size:2.5rem;margin-bottom:12px}
 .error-box p{color:#8898AA;font-size:.9rem;margin-top:8px}
-
-/* FOOTER */
 footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:24px 20px;font-size:.78rem;line-height:2}
-footer a{color:rgba(255,255,255,.7)}
-
-/* RESPONSIVE */
-@media(max-width:600px){
-  .form-row{grid-template-columns:1fr}
-  .modal-title{font-size:1rem}
-  .modal-img{height:160px}
-}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}.modal-title{font-size:1rem}.modal-img{height:160px}}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="brand">
     <div class="dot"></div>
     <span class="brand-name">NewsSync</span>
     <span class="live-tag">LIVE</span>
   </div>
-  <span id="last-updated">Loading…</span>
+  <span id="last-updated">Loading...</span>
 </header>
 
-<!-- ARTICLE MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <button class="modal-close" onclick="closeModalBtn()">X</button>
     <img class="modal-img" id="modal-img" src="" alt=""/>
     <div class="modal-body">
       <div class="modal-meta">
@@ -135,21 +103,19 @@ footer a{color:rgba(255,255,255,.7)}
       <h2 class="modal-title" id="modal-title"></h2>
       <p class="modal-desc" id="modal-desc"></p>
       <div class="modal-actions">
-        <a class="btn-primary" id="modal-link" href="#" target="_blank" rel="noopener">🔗 Read Full Article</a>
-        <button class="btn-secondary" onclick="closeModalBtn()">✕ Close</button>
+        <a class="btn-primary" id="modal-link" href="#" target="_blank" rel="noopener">Read Full Article</a>
+        <button class="btn-secondary" onclick="closeModalBtn()">Close</button>
       </div>
     </div>
   </div>
 </div>
 
 <main>
-
-  <!-- TOP NEWS -->
   <section class="section">
     <div class="section-header">
       <div>
-        <h2 class="section-title">🇮🇳 India Top News</h2>
-        <p class="section-sub">Latest headlines · Auto-refresh every 30 min</p>
+        <h2 class="section-title">India Top News</h2>
+        <p class="section-sub">Latest headlines - Auto-refresh every 30 min</p>
       </div>
       <span class="article-count" id="news-count"></span>
     </div>
@@ -157,12 +123,11 @@ footer a{color:rgba(255,255,255,.7)}
     <div class="pagination" id="news-pages"></div>
   </section>
 
-  <!-- EXAM ALERTS -->
   <section class="section">
     <div class="section-header">
       <div>
-        <h2 class="section-title">📚 Exam &amp; Board Alerts</h2>
-        <p class="section-sub">CBSE · NDA · CUET · UPSC · Latest Notifications</p>
+        <h2 class="section-title">Exam and Board Alerts</h2>
+        <p class="section-sub">CBSE - NDA - CUET - UPSC - Latest Notifications</p>
       </div>
       <span class="article-count" id="exam-count"></span>
     </div>
@@ -170,9 +135,8 @@ footer a{color:rgba(255,255,255,.7)}
     <div class="pagination" id="exam-pages"></div>
   </section>
 
-  <!-- FEEDBACK -->
   <section class="feedback-section">
-    <h2 class="feedback-title">💬 Feedback & Suggestions</h2>
+    <h2 class="feedback-title">Feedback and Suggestions</h2>
     <p class="feedback-sub">Hamari website kaisi lagi? Apni rai zaroor batao!</p>
     <form class="feedback-form" id="feedback-form" onsubmit="submitFeedback(event)">
       <div class="form-row">
@@ -186,13 +150,13 @@ footer a{color:rgba(255,255,255,.7)}
         </div>
       </div>
       <div class="form-group">
-        <label>Website kaisi lagi? ⭐</label>
+        <label>Website kaisi lagi?</label>
         <div class="rating-stars" id="stars">
-          <span class="star" onclick="rate(1)">★</span>
-          <span class="star" onclick="rate(2)">★</span>
-          <span class="star" onclick="rate(3)">★</span>
-          <span class="star" onclick="rate(4)">★</span>
-          <span class="star" onclick="rate(5)">★</span>
+          <span class="star" onclick="rate(1)">*</span>
+          <span class="star" onclick="rate(2)">*</span>
+          <span class="star" onclick="rate(3)">*</span>
+          <span class="star" onclick="rate(4)">*</span>
+          <span class="star" onclick="rate(5)">*</span>
         </div>
       </div>
       <div class="form-group">
@@ -208,66 +172,75 @@ footer a{color:rgba(255,255,255,.7)}
         <label>Aapka Feedback</label>
         <textarea id="fb-msg" placeholder="Kya achha laga, kya improve ho sakta hai..." required></textarea>
       </div>
-      <button type="submit" class="submit-btn">📨 Submit Feedback</button>
+      <button type="submit" class="submit-btn">Submit Feedback</button>
     </form>
     <div class="feedback-success" id="fb-success">
-      ✅ Shukriya! Aapka feedback mil gaya. Hum zaroor improve karenge! 🙏
+      Shukriya! Aapka feedback mil gaya. Hum zaroor improve karenge!
     </div>
   </section>
-
 </main>
 
 <footer>
-  © 2025 NewsSync &nbsp;·&nbsp; Powered by NewsData.io &nbsp;·&nbsp; For informational purposes only<br/>
-  <small>News content belongs to respective publishers.</small>
+  2025 NewsSync - Powered by NewsData.io - For informational purposes only
 </footer>
 
 <script>
-const KEY  = 'pub_50035c437a574af1b18c1f6b056f5ad9';
-const BASE = 'https://newsdata.io/api/1';
-const IMG  = 'https://placehold.co/600x340/EEF0FF/635BFF?text=NewsSync';
-const PER_PAGE = 9;
+var KEY  = 'pub_50035c437a574af1b18c1f6b056f5ad9';
+var BASE = 'https://newsdata.io/api/1';
+var IMG  = 'https://placehold.co/600x340/EEF0FF/635BFF?text=NewsSync';
+var PER  = 9;
+var CACHE_MS = 30 * 60 * 1000;
 
-// All articles stored here for pagination
-const store = { news: [], exam: [] };
-const pages = { news: 1, exam: 1 };
+var store = { news: [], exam: [] };
+var pages = { news: 1, exam: 1 };
 
-/* ── SKELETON ── */
-function skels(n){
-  return Array.from({length:n},()=>`
-    <div class="skel-card">
-      <div class="sk skel-img"></div>
-      <div class="skel-body">
-        <div class="sk skel-line w30"></div>
-        <div class="sk skel-line h18 w80"></div>
-        <div class="sk skel-line h18 w60"></div>
-        <div class="sk skel-line w100"></div>
-        <div class="sk skel-line w100"></div>
-        <div class="sk skel-line w30"></div>
-      </div>
-    </div>`).join('');
+function saveCache(key, data) {
+  try { localStorage.setItem('ns_' + key, JSON.stringify({ data: data, time: Date.now() })); } catch(e) {}
 }
 
-/* ── TIME ── */
-function ago(d){
-  if(!d) return '';
-  const m=Math.floor((Date.now()-new Date(d))/60000);
-  if(m<1) return 'Just now';
-  if(m<60) return m+'m ago';
-  const h=Math.floor(m/60);
-  if(h<24) return h+'h ago';
-  return Math.floor(h/24)+'d ago';
+function loadCache(key) {
+  try {
+    var c = JSON.parse(localStorage.getItem('ns_' + key) || 'null');
+    if (c && (Date.now() - c.time) < CACHE_MS) return c.data;
+  } catch(e) {}
+  return null;
 }
 
-function fmtDate(d){
-  if(!d) return '';
-  return new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true});
+function skels(n) {
+  var s = '';
+  for (var i = 0; i < n; i++) {
+    s += '<div class="skel-card"><div class="sk skel-img"></div><div class="skel-body"><div class="sk skel-line w30"></div><div class="sk skel-line h18 w80"></div><div class="sk skel-line h18 w60"></div><div class="sk skel-line w100"></div><div class="sk skel-line w100"></div></div></div>';
+  }
+  return s;
 }
 
-/* ── MODAL ── */
-function openModal(a){
-  document.getElementById('modal-img').src   = a.image_url || IMG;
-  document.getElementById('modal-img').onerror = function(){ this.src = IMG; };
+function ago(d) {
+  if (!d) return '';
+  var m = Math.floor((Date.now() - new Date(d)) / 60000);
+  if (m < 1)  return 'Just now';
+  if (m < 60) return m + 'm ago';
+  var h = Math.floor(m / 60);
+  if (h < 24) return h + 'h ago';
+  return Math.floor(h / 24) + 'd ago';
+}
+
+function fmtDate(d) {
+  if (!d) return '';
+  return new Date(d).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+}
+
+function errBox(msg) {
+  return '<div class="error-box"><div class="icon">Sorry</div><p>' + msg + '</p></div>';
+}
+
+var currentArticles = [];
+
+function openModal(idx) {
+  var a = currentArticles[idx];
+  if (!a) return;
+  var img = a.image_url || IMG;
+  document.getElementById('modal-img').src = img;
+  document.getElementById('modal-img').onerror = function() { this.src = IMG; };
   document.getElementById('modal-source').textContent = a.source_name || 'News';
   document.getElementById('modal-date').textContent   = fmtDate(a.pubDate);
   document.getElementById('modal-title').textContent  = a.title || '';
@@ -277,134 +250,144 @@ function openModal(a){
   document.body.style.overflow = 'hidden';
 }
 
-function closeModalBtn(){
+function closeModalBtn() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
 
-function closeModal(e){
-  if(e.target === document.getElementById('modal-overlay')) closeModalBtn();
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalBtn();
 }
 
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModalBtn(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModalBtn(); });
 
-/* ── CARD ── */
-function card(a, idx){
-  const img  = a.image_url || IMG;
-  const desc = (a.description || a.content || 'Tap to read more.').slice(0,120) + '…';
-  const src  = a.source_name || 'News';
-  return `
-    <div class="card" onclick='openModal(${JSON.stringify(a).replace(/'/g,"&#39;")})'>
-      <img class="card-img" src="${img}" alt="" loading="lazy" onerror="this.src='${IMG}'"/>
-      <div class="card-body">
-        <span class="card-source">${src} · ${ago(a.pubDate)}</span>
-        <p class="card-title">${a.title||'No title'}</p>
-        <p class="card-desc">${desc}</p>
-        <button class="card-btn">📖 Read More</button>
-      </div>
-    </div>`;
+function buildCard(a, idx) {
+  var img  = a.image_url || IMG;
+  var desc = (a.description || a.content || 'Tap to read more.').slice(0, 120) + '...';
+  var src  = a.source_name || 'News';
+  return '<div class="card" onclick="openModal(' + idx + ')">' +
+    '<img class="card-img" src="' + img + '" alt="" loading="lazy" onerror="this.src=\'' + IMG + '\'"/>' +
+    '<div class="card-body">' +
+    '<span class="card-source">' + src + ' - ' + ago(a.pubDate) + '</span>' +
+    '<p class="card-title">' + a.title + '</p>' +
+    '<p class="card-desc">' + desc + '</p>' +
+    '<button class="card-btn">Read More</button>' +
+    '</div></div>';
 }
 
-function errBox(msg){
-  return `<div class="error-box"><div class="icon">📡</div><p>${msg}</p></div>`;
+function renderPage(type) {
+  var grid  = document.getElementById(type + '-grid');
+  var pgDiv = document.getElementById(type + '-pages');
+  var all   = store[type];
+  var pg    = pages[type];
+  var total = Math.ceil(all.length / PER);
+  var start = (pg - 1) * PER;
+  var slice = all.slice(start, start + PER);
+
+  currentArticles = all;
+
+  var html = '';
+  for (var i = 0; i < slice.length; i++) {
+    html += buildCard(slice[i], start + i);
+  }
+  grid.innerHTML = html;
+
+  var countEl = document.getElementById(type + '-count');
+  if (countEl) countEl.textContent = all.length ? all.length + ' articles' : '';
+
+  if (total <= 1) { pgDiv.innerHTML = ''; return; }
+  pgDiv.innerHTML =
+    '<button class="page-btn" onclick="changePage(\'' + type + '\',-1)" ' + (pg <= 1 ? 'disabled' : '') + '>Prev</button>' +
+    '<span class="page-info">Page ' + pg + ' of ' + total + '</span>' +
+    '<button class="page-btn" onclick="changePage(\'' + type + '\',1)" ' + (pg >= total ? 'disabled' : '') + '>Next</button>';
 }
 
-/* ── PAGINATION ── */
-function renderPage(type){
-  const grid  = document.getElementById(type+'-grid');
-  const pgDiv = document.getElementById(type+'-pages');
-  const all   = store[type];
-  const pg    = pages[type];
-  const total = Math.ceil(all.length / PER_PAGE);
-  const slice = all.slice((pg-1)*PER_PAGE, pg*PER_PAGE);
-
-  grid.innerHTML = slice.map(card).join('');
-
-  // count badge
-  document.getElementById(type+'-count').textContent =
-    all.length ? all.length + ' articles' : '';
-
-  if(total <= 1){ pgDiv.innerHTML=''; return; }
-  pgDiv.innerHTML = `
-    <button class="page-btn" onclick="changePage('${type}',-1)" ${pg<=1?'disabled':''}>← Prev</button>
-    <span class="page-info">Page ${pg} of ${total}</span>
-    <button class="page-btn" onclick="changePage('${type}',1)" ${pg>=total?'disabled':''}>Next →</button>`;
-}
-
-function changePage(type, dir){
+function changePage(type, dir) {
   pages[type] += dir;
   renderPage(type);
-  document.querySelector('.section-title').scrollIntoView({behavior:'smooth'});
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ── FETCH ── */
-async function fetchSection(endpoint, type){
-  const grid = document.getElementById(type+'-grid');
-  try{
-    const r = await fetch(endpoint);
-    const d = await r.json();
-    if(d.status !== 'success') throw new Error(d.message||'API error');
-    const arts = d.results || [];
-    if(!arts.length){ grid.innerHTML = errBox('No articles found.'); return; }
+function tick() {
+  document.getElementById('last-updated').textContent =
+    'Updated: ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+}
+
+async function fetchSection(url, type) {
+  var grid = document.getElementById(type + '-grid');
+  try {
+    var cached = loadCache(type);
+    if (cached && cached.length > 0) {
+      store[type] = cached;
+      pages[type] = 1;
+      renderPage(type);
+      tick();
+      return;
+    }
+    var r = await fetch(url);
+    var d = await r.json();
+    if (d.status !== 'success') throw new Error(d.message || 'API error');
+    var arts = d.results || [];
+    if (!arts.length) { grid.innerHTML = errBox('No articles found.'); return; }
     store[type] = arts;
+    saveCache(type, arts);
     pages[type] = 1;
     renderPage(type);
-  }catch(e){
+  } catch(e) {
     console.error(type, e);
-    if(!store[type].length)
-      grid.innerHTML = errBox('Could not load. Will retry in 30 min.');
+    if (!store[type].length) grid.innerHTML = errBox('Could not load news. Will retry in 30 min.');
   }
 }
 
-function tick(){
-  document.getElementById('last-updated').textContent =
-    'Updated: '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
-}
-
-async function sync(){
-  await Promise.allSettled([
-    fetchSection(`${BASE}/latest?apikey=${KEY}&country=in&language=en&size=10`, 'news'),
-    fetchSection(`${BASE}/latest?apikey=${KEY}&q=CBSE OR NDA OR CUET OR UPSC&country=in&language=en&size=10`, 'exam'),
+async function sync() {
+  await Promise.all([
+    fetchSection(BASE + '/latest?apikey=' + KEY + '&country=in&language=en&size=10', 'news'),
+    fetchSection(BASE + '/latest?apikey=' + KEY + '&q=CBSE OR NDA OR CUET OR UPSC&country=in&language=en&size=10', 'exam')
   ]);
   tick();
 }
 
-/* ── FEEDBACK ── */
-let rating = 0;
-function rate(n){
+var rating = 0;
+function rate(n) {
   rating = n;
-  document.querySelectorAll('.star').forEach((s,i)=>{
-    s.classList.toggle('active', i < n);
-  });
+  var stars = document.querySelectorAll('.star');
+  for (var i = 0; i < stars.length; i++) {
+    if (i < n) stars[i].classList.add('active');
+    else stars[i].classList.remove('active');
+  }
 }
 
-function submitFeedback(e){
+function submitFeedback(e) {
   e.preventDefault();
-  const name = document.getElementById('fb-name').value;
-  const email= document.getElementById('fb-email').value;
-  const type = document.getElementById('fb-type').value;
-  const msg  = document.getElementById('fb-msg').value;
-  // Save to localStorage as simple log
-  const entry = {name,email,rating,type,msg,time:new Date().toISOString()};
-  const prev  = JSON.parse(localStorage.getItem('feedback')||'[]');
-  prev.push(entry);
-  localStorage.setItem('feedback', JSON.stringify(prev));
-  document.getElementById('feedback-form').style.display='none';
-  document.getElementById('fb-success').style.display='block';
-  setTimeout(()=>{
-    document.getElementById('feedback-form').style.display='flex';
-    document.getElementById('fb-success').style.display='none';
+  var entry = {
+    name:   document.getElementById('fb-name').value,
+    email:  document.getElementById('fb-email').value,
+    rating: rating,
+    type:   document.getElementById('fb-type').value,
+    msg:    document.getElementById('fb-msg').value,
+    time:   new Date().toISOString()
+  };
+  try {
+    var prev = JSON.parse(localStorage.getItem('feedback') || '[]');
+    prev.push(entry);
+    localStorage.setItem('feedback', JSON.stringify(prev));
+  } catch(e) {}
+  document.getElementById('feedback-form').style.display = 'none';
+  document.getElementById('fb-success').style.display = 'block';
+  setTimeout(function() {
+    document.getElementById('feedback-form').style.display = 'flex';
+    document.getElementById('fb-success').style.display = 'none';
     document.getElementById('feedback-form').reset();
-    rating=0;
-    document.querySelectorAll('.star').forEach(s=>s.classList.remove('active'));
+    rating = 0;
+    var stars = document.querySelectorAll('.star');
+    for (var i = 0; i < stars.length; i++) stars[i].classList.remove('active');
   }, 3000);
 }
 
-/* ── INIT ── */
 document.getElementById('news-grid').innerHTML = skels(6);
-document.getElementById('exam-grid').innerHTML  = skels(6);
+document.getElementById('exam-grid').innerHTML = skels(6);
 sync();
-setInterval(sync, 30*60*1000);
+setInterval(sync, CACHE_MS);
 window.addEventListener('online', sync);
 </script>
 </body>
