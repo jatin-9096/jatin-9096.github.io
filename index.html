@@ -3,32 +3,88 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>NewsSync India</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<title>NewsSync India – Live News & Exam Alerts</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#F6F9FC;color:#425466;font-size:16px}
-header{background:#0A2540;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+body{font-family:'Inter',sans-serif;background:#F6F9FC;color:#425466;font-size:16px;line-height:1.6}
+
+/* HEADER */
+header{background:#0A2540;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
 .brand{display:flex;align-items:center;gap:10px}
 .dot{width:10px;height:10px;border-radius:50%;background:#635BFF;animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(99,91,255,.6)}70%{box-shadow:0 0 0 8px rgba(99,91,255,0)}100%{box-shadow:0 0 0 0 rgba(99,91,255,0)}}
 .brand-name{color:#fff;font-weight:800;font-size:1.2rem}
 .live-tag{background:rgba(99,91,255,.2);color:#635BFF;font-size:.6rem;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:4px;border:1px solid rgba(99,91,255,.4)}
 #last-updated{color:rgba(255,255,255,.5);font-size:.75rem}
+
+/* MAIN */
 main{max-width:1200px;margin:auto;padding:32px 16px}
 .section{margin-bottom:48px}
-.section-header{border-bottom:2px solid #E8EFF5;padding-bottom:12px;margin-bottom:24px}
+.section-header{border-bottom:2px solid #E8EFF5;padding-bottom:12px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .section-title{font-size:1.3rem;font-weight:800;color:#0A2540}
 .section-sub{font-size:.78rem;color:#8898AA;margin-top:3px}
+.article-count{font-size:.75rem;color:#635BFF;font-weight:600;background:#EEF0FF;padding:3px 10px;border-radius:20px}
+
+/* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
-.card{background:#fff;border-radius:12px;border:1px solid #E8EFF5;box-shadow:0 2px 8px rgba(10,37,64,.07);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;text-decoration:none;color:inherit}
+
+/* CARD */
+.card{background:#fff;border-radius:12px;border:1px solid #E8EFF5;box-shadow:0 2px 8px rgba(10,37,64,.07);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .25s,box-shadow .25s}
 .card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(99,91,255,.15)}
 .card-img{width:100%;height:170px;object-fit:cover;background:#EEF0FF}
 .card-body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column;gap:8px}
 .card-source{font-size:.7rem;font-weight:700;color:#635BFF;text-transform:uppercase;letter-spacing:.8px}
 .card-title{font-size:.95rem;font-weight:700;color:#0A2540;line-height:1.4}
 .card-desc{font-size:.82rem;color:#425466;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.card-link{margin-top:auto;font-size:.78rem;font-weight:600;color:#635BFF}
+.card-btn{margin-top:auto;display:inline-flex;align-items:center;gap:6px;background:#635BFF;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:.78rem;font-weight:600;cursor:pointer;transition:background .2s}
+.card-btn:hover{background:#4f46e5}
+
+/* PAGINATION */
+.pagination{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px}
+.page-btn{background:#fff;border:1px solid #E8EFF5;color:#425466;padding:8px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s}
+.page-btn:hover:not(:disabled){background:#635BFF;color:#fff;border-color:#635BFF}
+.page-btn:disabled{opacity:.4;cursor:not-allowed}
+.page-info{font-size:.82rem;color:#8898AA;font-weight:500}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,37,64,.7);z-index:999;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:16px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:slideUp .3s ease}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-img{width:100%;height:220px;object-fit:cover;border-radius:16px 16px 0 0;background:#EEF0FF}
+.modal-body{padding:24px}
+.modal-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.modal-source{font-size:.72rem;font-weight:700;color:#635BFF;text-transform:uppercase;letter-spacing:.8px}
+.modal-date{font-size:.72rem;color:#8898AA}
+.modal-title{font-size:1.2rem;font-weight:800;color:#0A2540;line-height:1.4;margin-bottom:12px}
+.modal-desc{font-size:.9rem;color:#425466;line-height:1.7;margin-bottom:20px}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-primary{background:#635BFF;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary:hover{background:#4f46e5}
+.btn-secondary{background:#F6F9FC;color:#425466;border:1px solid #E8EFF5;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer}
+.btn-secondary:hover{background:#E8EFF5}
+.modal-close{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.5);color:#fff;border:none;width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10}
+
+/* FEEDBACK SECTION */
+.feedback-section{background:#fff;border-radius:16px;border:1px solid #E8EFF5;padding:32px;margin-bottom:48px}
+.feedback-title{font-size:1.1rem;font-weight:800;color:#0A2540;margin-bottom:6px}
+.feedback-sub{font-size:.82rem;color:#8898AA;margin-bottom:20px}
+.feedback-form{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:.78rem;font-weight:600;color:#425466}
+.form-group input,.form-group textarea,.form-group select{border:1px solid #E8EFF5;border-radius:8px;padding:10px 14px;font-size:.85rem;font-family:inherit;color:#425466;outline:none;transition:border .2s;background:#F6F9FC}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:#635BFF;background:#fff}
+.form-group textarea{resize:vertical;min-height:90px}
+.submit-btn{background:#635BFF;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .2s;align-self:flex-start}
+.submit-btn:hover{background:#4f46e5}
+.feedback-success{display:none;text-align:center;padding:20px;color:#00C48C;font-weight:600}
+.rating-stars{display:flex;gap:8px}
+.star{font-size:1.4rem;cursor:pointer;color:#E8EFF5;transition:color .15s}
+.star.active{color:#F5A623}
+
+/* SKELETON */
 @keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
 .sk{background:linear-gradient(90deg,#E8EFF5 25%,#F0F4F8 50%,#E8EFF5 75%);background-size:400px 100%;animation:shimmer 1.4s infinite;border-radius:6px}
 .skel-card{background:#fff;border-radius:12px;border:1px solid #E8EFF5;overflow:hidden}
@@ -36,13 +92,27 @@ main{max-width:1200px;margin:auto;padding:32px 16px}
 .skel-body{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
 .skel-line{height:12px}
 .w30{width:30%}.w60{width:60%}.w80{width:80%}.w100{width:100%}.h18{height:18px}
+
+/* ERROR */
 .error-box{grid-column:1/-1;text-align:center;padding:40px 20px;background:#fff;border-radius:12px;border:1px dashed #E8EFF5}
 .error-box .icon{font-size:2.5rem;margin-bottom:12px}
 .error-box p{color:#8898AA;font-size:.9rem;margin-top:8px}
-footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:20px;font-size:.78rem}
+
+/* FOOTER */
+footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:24px 20px;font-size:.78rem;line-height:2}
+footer a{color:rgba(255,255,255,.7)}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .form-row{grid-template-columns:1fr}
+  .modal-title{font-size:1rem}
+  .modal-img{height:160px}
+}
 </style>
 </head>
 <body>
+
+<!-- HEADER -->
 <header>
   <div class="brand">
     <div class="dot"></div>
@@ -51,29 +121,118 @@ footer{background:#0A2540;color:rgba(255,255,255,.5);text-align:center;padding:2
   </div>
   <span id="last-updated">Loading…</span>
 </header>
+
+<!-- ARTICLE MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <img class="modal-img" id="modal-img" src="" alt=""/>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="modal-source" id="modal-source"></span>
+        <span class="modal-date" id="modal-date"></span>
+      </div>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-actions">
+        <a class="btn-primary" id="modal-link" href="#" target="_blank" rel="noopener">🔗 Read Full Article</a>
+        <button class="btn-secondary" onclick="closeModalBtn()">✕ Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <main>
+
+  <!-- TOP NEWS -->
   <section class="section">
     <div class="section-header">
-      <h2 class="section-title">🇮🇳 India Top News</h2>
-      <p class="section-sub">Latest headlines · Auto-refresh every 30 min</p>
+      <div>
+        <h2 class="section-title">🇮🇳 India Top News</h2>
+        <p class="section-sub">Latest headlines · Auto-refresh every 30 min</p>
+      </div>
+      <span class="article-count" id="news-count"></span>
     </div>
     <div class="grid" id="news-grid"></div>
+    <div class="pagination" id="news-pages"></div>
   </section>
+
+  <!-- EXAM ALERTS -->
   <section class="section">
     <div class="section-header">
-      <h2 class="section-title">📚 Exam &amp; Board Alerts</h2>
-      <p class="section-sub">CBSE · NDA · CUET · UPSC · Latest Notifications</p>
+      <div>
+        <h2 class="section-title">📚 Exam &amp; Board Alerts</h2>
+        <p class="section-sub">CBSE · NDA · CUET · UPSC · Latest Notifications</p>
+      </div>
+      <span class="article-count" id="exam-count"></span>
     </div>
     <div class="grid" id="exam-grid"></div>
+    <div class="pagination" id="exam-pages"></div>
   </section>
+
+  <!-- FEEDBACK -->
+  <section class="feedback-section">
+    <h2 class="feedback-title">💬 Feedback & Suggestions</h2>
+    <p class="feedback-sub">Hamari website kaisi lagi? Apni rai zaroor batao!</p>
+    <form class="feedback-form" id="feedback-form" onsubmit="submitFeedback(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Aapka Naam</label>
+          <input type="text" id="fb-name" placeholder="Jaise: Rahul Kumar" required/>
+        </div>
+        <div class="form-group">
+          <label>Email (Optional)</label>
+          <input type="email" id="fb-email" placeholder="email@example.com"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Website kaisi lagi? ⭐</label>
+        <div class="rating-stars" id="stars">
+          <span class="star" onclick="rate(1)">★</span>
+          <span class="star" onclick="rate(2)">★</span>
+          <span class="star" onclick="rate(3)">★</span>
+          <span class="star" onclick="rate(4)">★</span>
+          <span class="star" onclick="rate(5)">★</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select id="fb-type">
+          <option value="general">General Feedback</option>
+          <option value="bug">Bug / Problem</option>
+          <option value="suggestion">Suggestion</option>
+          <option value="news">News Related</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Aapka Feedback</label>
+        <textarea id="fb-msg" placeholder="Kya achha laga, kya improve ho sakta hai..." required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">📨 Submit Feedback</button>
+    </form>
+    <div class="feedback-success" id="fb-success">
+      ✅ Shukriya! Aapka feedback mil gaya. Hum zaroor improve karenge! 🙏
+    </div>
+  </section>
+
 </main>
-<footer>© 2025 NewsSync · Powered by NewsData.io · For informational purposes only</footer>
+
+<footer>
+  © 2025 NewsSync &nbsp;·&nbsp; Powered by NewsData.io &nbsp;·&nbsp; For informational purposes only<br/>
+  <small>News content belongs to respective publishers.</small>
+</footer>
 
 <script>
-const KEY = 'pub_50035c437a574af1b18c1f6b056f5ad9';
+const KEY  = 'pub_50035c437a574af1b18c1f6b056f5ad9';
 const BASE = 'https://newsdata.io/api/1';
 const IMG  = 'https://placehold.co/600x340/EEF0FF/635BFF?text=NewsSync';
+const PER_PAGE = 9;
 
+// All articles stored here for pagination
+const store = { news: [], exam: [] };
+const pages = { news: 1, exam: 1 };
+
+/* ── SKELETON ── */
 function skels(n){
   return Array.from({length:n},()=>`
     <div class="skel-card">
@@ -89,84 +248,163 @@ function skels(n){
     </div>`).join('');
 }
 
+/* ── TIME ── */
 function ago(d){
   if(!d) return '';
-  const m = Math.floor((Date.now() - new Date(d)) / 60000);
-  if(m < 1)  return 'Just now';
-  if(m < 60) return m + 'm ago';
-  const h = Math.floor(m/60);
-  if(h < 24) return h + 'h ago';
-  return Math.floor(h/24) + 'd ago';
+  const m=Math.floor((Date.now()-new Date(d))/60000);
+  if(m<1) return 'Just now';
+  if(m<60) return m+'m ago';
+  const h=Math.floor(m/60);
+  if(h<24) return h+'h ago';
+  return Math.floor(h/24)+'d ago';
 }
 
-function card(a){
+function fmtDate(d){
+  if(!d) return '';
+  return new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true});
+}
+
+/* ── MODAL ── */
+function openModal(a){
+  document.getElementById('modal-img').src   = a.image_url || IMG;
+  document.getElementById('modal-img').onerror = function(){ this.src = IMG; };
+  document.getElementById('modal-source').textContent = a.source_name || 'News';
+  document.getElementById('modal-date').textContent   = fmtDate(a.pubDate);
+  document.getElementById('modal-title').textContent  = a.title || '';
+  document.getElementById('modal-desc').textContent   = a.description || a.content || 'Read the full article for complete details.';
+  document.getElementById('modal-link').href          = a.link || '#';
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModalBtn(){
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModal(e){
+  if(e.target === document.getElementById('modal-overlay')) closeModalBtn();
+}
+
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModalBtn(); });
+
+/* ── CARD ── */
+function card(a, idx){
   const img  = a.image_url || IMG;
-  const desc = (a.description || a.content || 'Read the full article for details.').slice(0,160) + '…';
-  const src  = a.source_name || a.source_id || 'News';
-  const link = a.link || '#';
-  const title = a.title || 'No title';
-  const date = a.pubDate || '';
+  const desc = (a.description || a.content || 'Tap to read more.').slice(0,120) + '…';
+  const src  = a.source_name || 'News';
   return `
-    <a class="card" href="${link}" target="_blank" rel="noopener">
+    <div class="card" onclick='openModal(${JSON.stringify(a).replace(/'/g,"&#39;")})'>
       <img class="card-img" src="${img}" alt="" loading="lazy" onerror="this.src='${IMG}'"/>
       <div class="card-body">
-        <span class="card-source">${src} · ${ago(date)}</span>
-        <p class="card-title">${title}</p>
+        <span class="card-source">${src} · ${ago(a.pubDate)}</span>
+        <p class="card-title">${a.title||'No title'}</p>
         <p class="card-desc">${desc}</p>
-        <span class="card-link">Read more →</span>
+        <button class="card-btn">📖 Read More</button>
       </div>
-    </a>`;
+    </div>`;
 }
 
 function errBox(msg){
   return `<div class="error-box"><div class="icon">📡</div><p>${msg}</p></div>`;
 }
 
-async function loadNews(){
-  const g = document.getElementById('news-grid');
-  try{
-    const url = `${BASE}/latest?apikey=${KEY}&country=in&language=en&size=9`;
-    const r = await fetch(url);
-    const d = await r.json();
-    if(d.status !== 'success') throw new Error(d.message || 'API error');
-    const arts = d.results || [];
-    g.innerHTML = arts.length ? arts.map(card).join('') : errBox('No headlines found.');
-  } catch(e){
-    console.error('News error:', e);
-    g.innerHTML = errBox('Could not load news. Retrying in 30 min.');
-  }
+/* ── PAGINATION ── */
+function renderPage(type){
+  const grid  = document.getElementById(type+'-grid');
+  const pgDiv = document.getElementById(type+'-pages');
+  const all   = store[type];
+  const pg    = pages[type];
+  const total = Math.ceil(all.length / PER_PAGE);
+  const slice = all.slice((pg-1)*PER_PAGE, pg*PER_PAGE);
+
+  grid.innerHTML = slice.map(card).join('');
+
+  // count badge
+  document.getElementById(type+'-count').textContent =
+    all.length ? all.length + ' articles' : '';
+
+  if(total <= 1){ pgDiv.innerHTML=''; return; }
+  pgDiv.innerHTML = `
+    <button class="page-btn" onclick="changePage('${type}',-1)" ${pg<=1?'disabled':''}>← Prev</button>
+    <span class="page-info">Page ${pg} of ${total}</span>
+    <button class="page-btn" onclick="changePage('${type}',1)" ${pg>=total?'disabled':''}>Next →</button>`;
 }
 
-async function loadExams(){
-  const g = document.getElementById('exam-grid');
+function changePage(type, dir){
+  pages[type] += dir;
+  renderPage(type);
+  document.querySelector('.section-title').scrollIntoView({behavior:'smooth'});
+}
+
+/* ── FETCH ── */
+async function fetchSection(endpoint, type){
+  const grid = document.getElementById(type+'-grid');
   try{
-    const url = `${BASE}/latest?apikey=${KEY}&q=CBSE OR NDA OR CUET OR UPSC&country=in&language=en&size=9`;
-    const r = await fetch(url);
+    const r = await fetch(endpoint);
     const d = await r.json();
-    if(d.status !== 'success') throw new Error(d.message || 'API error');
+    if(d.status !== 'success') throw new Error(d.message||'API error');
     const arts = d.results || [];
-    g.innerHTML = arts.length ? arts.map(card).join('') : errBox('No exam alerts found.');
-  } catch(e){
-    console.error('Exam error:', e);
-    g.innerHTML = errBox('Could not load exam news. Retrying in 30 min.');
+    if(!arts.length){ grid.innerHTML = errBox('No articles found.'); return; }
+    store[type] = arts;
+    pages[type] = 1;
+    renderPage(type);
+  }catch(e){
+    console.error(type, e);
+    if(!store[type].length)
+      grid.innerHTML = errBox('Could not load. Will retry in 30 min.');
   }
 }
 
 function tick(){
   document.getElementById('last-updated').textContent =
-    'Updated: ' + new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
+    'Updated: '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
 }
 
 async function sync(){
-  await Promise.allSettled([loadNews(), loadExams()]);
+  await Promise.allSettled([
+    fetchSection(`${BASE}/latest?apikey=${KEY}&country=in&language=en&size=10`, 'news'),
+    fetchSection(`${BASE}/latest?apikey=${KEY}&q=CBSE OR NDA OR CUET OR UPSC&country=in&language=en&size=10`, 'exam'),
+  ]);
   tick();
 }
 
-// Init
+/* ── FEEDBACK ── */
+let rating = 0;
+function rate(n){
+  rating = n;
+  document.querySelectorAll('.star').forEach((s,i)=>{
+    s.classList.toggle('active', i < n);
+  });
+}
+
+function submitFeedback(e){
+  e.preventDefault();
+  const name = document.getElementById('fb-name').value;
+  const email= document.getElementById('fb-email').value;
+  const type = document.getElementById('fb-type').value;
+  const msg  = document.getElementById('fb-msg').value;
+  // Save to localStorage as simple log
+  const entry = {name,email,rating,type,msg,time:new Date().toISOString()};
+  const prev  = JSON.parse(localStorage.getItem('feedback')||'[]');
+  prev.push(entry);
+  localStorage.setItem('feedback', JSON.stringify(prev));
+  document.getElementById('feedback-form').style.display='none';
+  document.getElementById('fb-success').style.display='block';
+  setTimeout(()=>{
+    document.getElementById('feedback-form').style.display='flex';
+    document.getElementById('fb-success').style.display='none';
+    document.getElementById('feedback-form').reset();
+    rating=0;
+    document.querySelectorAll('.star').forEach(s=>s.classList.remove('active'));
+  }, 3000);
+}
+
+/* ── INIT ── */
 document.getElementById('news-grid').innerHTML = skels(6);
 document.getElementById('exam-grid').innerHTML  = skels(6);
 sync();
-setInterval(sync, 30 * 60 * 1000);
+setInterval(sync, 30*60*1000);
 window.addEventListener('online', sync);
 </script>
 </body>
